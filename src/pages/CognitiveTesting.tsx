@@ -62,7 +62,7 @@ export default function CognitiveTesting() {
           </span>
           <span className="font-bold text-sm" style={{ color: "var(--accent-primary)" }}>Tech Student Track</span>
         </div>
-        <div className="text-sm" style={{ color: "var(--text-secondary)" }}>B.Tech · Computer Science Engineering · VIT Vellore</div>
+        <div className="text-sm" style={{ color: "var(--text-secondary)" }}>B.Tech · Computer Science Engineering · Gyan Ganga Institute of Technology and Sciences (GGITS)</div>
       </div>
 
       {/* Scorecards */}

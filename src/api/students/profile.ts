@@ -51,11 +51,11 @@ const STORAGE_KEY = "optivators_student_profile";
 
 const INITIAL_PROFILE: StudentProfileData = {
   name: "Rahul Kumar",
-  email: "rahul.kumar@vit.ac.in",
+  email: "rahul.kumar@ggits.net",
   phone: "+91 98765 43210",
-  college: "VIT Vellore",
+  college: "Gyan Ganga Institute of Technology and Sciences (GGITS)",
   branch: "Computer Science Engineering",
-  rollNo: "21BCE1240",
+  rollNo: "0208CS211040",
   degree: "B.Tech · 3rd Year (Batch 2021–2025)",
   cgpa: "8.9",
   rank: "#14",
@@ -64,7 +64,7 @@ const INITIAL_PROFILE: StudentProfileData = {
     photoUrl: "",
     resumeUrl: "https://drive.google.com/file/d/rahul_resume_2025.pdf",
     githubUrl: "https://github.com/rahulkumar-dev",
-    linkedinUrl: "https://linkedin.com/in/rahulkumar-vit",
+    linkedinUrl: "https://linkedin.com/in/rahulkumar-ggits",
     portfolioUrl: "https://rahulkumar.dev",
     completionPercentage: 92,
     skills: [
@@ -81,7 +81,7 @@ const INITIAL_PROFILE: StudentProfileData = {
     ],
     education: [
       {
-        school: "VIT Vellore",
+        school: "Gyan Ganga Institute of Technology and Sciences (GGITS)",
         degree: "B.Tech",
         fieldOfStudy: "Computer Science and Engineering",
         startDate: "2021-08-01",

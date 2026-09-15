@@ -516,15 +516,15 @@ export default function CollegeAdminDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 pb-2">
         <div className="flex items-center gap-4 sm:gap-5">
           <div
-            className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-xl shrink-0"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-xl shrink-0"
             style={{ background: "linear-gradient(135deg, #0D9488 0%, #2563EB 50%, #7C3AED 100%)" }}
           >
-            VIT
+            GGITS
           </div>
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight" style={{ color: "var(--text-primary)" }}>
-                VIT Vellore
+                Gyan Ganga Institute of Technology and Sciences (GGITS)
               </h1>
               <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

@@ -62,7 +62,7 @@ export default function StudentDashboard() {
 
           <div className="md:hidden flex-1">
             <div className="font-bold text-base" style={{ color: "var(--text-primary)" }}>Rahul Kumar</div>
-            <div className="text-xs" style={{ color: "var(--text-secondary)" }}>B.Tech CSE · VIT Vellore</div>
+            <div className="text-xs" style={{ color: "var(--text-secondary)" }}>B.Tech CSE · Gyan Ganga Institute of Technology and Sciences (GGITS)</div>
           </div>
         </div>
 
@@ -71,7 +71,7 @@ export default function StudentDashboard() {
             <div className="font-bold text-base flex items-center gap-2" style={{ color: "var(--text-primary)" }}>
               <span>Rahul Kumar</span>
               <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-orange-500/15 text-orange-600 dark:text-orange-400 border border-orange-500/20">
-                B.Tech CSE, 3rd Year · VIT Vellore
+                B.Tech CSE, 3rd Year · Gyan Ganga Institute of Technology and Sciences (GGITS)
               </span>
             </div>
           </div>

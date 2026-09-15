@@ -32,7 +32,7 @@ export default function AdminPromo() {
       >
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.08) 0%, transparent 60%)" }} />
         <div className="relative">
-          <div className="text-sm font-bold uppercase tracking-widest text-teal-200 mb-4" style={{ fontFamily: "var(--font-mono)" }}>College Promo Wallet — VIT Vellore</div>
+          <div className="text-sm font-bold uppercase tracking-widest text-teal-200 mb-4" style={{ fontFamily: "var(--font-mono)" }}>College Promo Wallet — Gyan Ganga Institute of Technology and Sciences (GGITS)</div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { label: "Credits Purchased", value: totalAllocated, sub: "Total pool" },

@@ -122,7 +122,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder="rahul.kumar@vit.ac.in"
+                placeholder="rahul.kumar@ggits.net"
                 className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
                 style={{
                   background: "var(--surface-elevated)",

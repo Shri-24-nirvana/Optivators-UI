@@ -24,7 +24,7 @@ export default function FacultyDashboard() {
         <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-xl" style={{ background: "linear-gradient(135deg, #0D9488, #2563EB)" }}>KM</div>
         <div>
           <h1 className="text-2xl font-extrabold" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Good morning, Prof. Karthik!</h1>
-          <p className="text-sm" style={{ color: "var(--text-secondary)" }}>Senior Professor · CSE Department · VIT Vellore</p>
+          <p className="text-sm" style={{ color: "var(--text-secondary)" }}>Senior Professor · CSE Department · Gyan Ganga Institute of Technology and Sciences (GGITS)</p>
         </div>
       </div>
 

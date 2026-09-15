@@ -172,7 +172,7 @@ const TRAIL_ITEMS = [
       <span className="text-[9px] font-black uppercase tracking-wider text-amber-300" style={{ fontFamily: "var(--font-mono)" }}>APEX TIER</span>
     </div>
     <div className="text-xs font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>Rank #1 MVP</div>
-    <div className="text-[9px] font-semibold text-amber-100/80">VIT Vellore '26</div>
+    <div className="text-[9px] font-semibold text-amber-100/80">GGITS '26</div>
   </div>,
 
   // 5. GODSPEED PLACEMENT

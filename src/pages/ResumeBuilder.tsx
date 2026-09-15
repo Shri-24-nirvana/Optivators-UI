@@ -133,12 +133,12 @@ export default function ResumeBuilder() {
                 <div className="flex items-start justify-between">
                   <div>
                     <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 4 }}>Rahul Kumar</div>
-                    <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 8 }}>Software Engineer · B.Tech CSE · VIT Vellore</div>
+                    <div style={{ fontSize: 13, opacity: 0.85, marginBottom: 8 }}>Software Engineer · B.Tech CSE · Gyan Ganga Institute of Technology and Sciences (GGITS)</div>
                     <div className="flex flex-wrap gap-3" style={{ fontSize: 11, opacity: 0.8 }}>
-                      <span>📧 rahul.kumar@vit.ac.in</span>
+                      <span>📧 rahul.kumar@ggits.net</span>
                       <span>📱 +91 98765 43210</span>
-                      <span>🔗 linkedin.com/in/rahulkumar</span>
-                      <span>💻 github.com/rahulk</span>
+                      <span>🔗 linkedin.com/in/rahulkumar-ggits</span>
+                      <span>💻 github.com/rahulkumar-dev</span>
                     </div>
                   </div>
                   {showPhoto && (
@@ -151,7 +151,7 @@ export default function ResumeBuilder() {
                 {/* Summary */}
                 <div style={{ marginBottom: 20 }}>
                   <div style={{ fontSize: 13, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: TEMPLATES[activeTemplate].preview, marginBottom: 6, borderBottom: `2px solid ${TEMPLATES[activeTemplate].preview}`, paddingBottom: 4 }}>Summary</div>
-                  <p style={{ color: "#374151" }}>Final-year Computer Science student at VIT Vellore with 8.9 CGPA. Passionate about scalable system design, distributed computing, and full-stack development. Seeking SDE roles at high-growth technology companies.</p>
+                  <p style={{ color: "#374151" }}>Final-year Computer Science student at Gyan Ganga Institute of Technology and Sciences (GGITS) with 8.9 CGPA. Passionate about scalable system design, distributed computing, and full-stack development. Seeking SDE roles at high-growth technology companies.</p>
                 </div>
 
                 {/* Education */}
@@ -161,7 +161,7 @@ export default function ResumeBuilder() {
                     <div className="flex justify-between" style={{ marginBottom: 4 }}>
                       <div>
                         <div style={{ fontWeight: 700, fontSize: 13 }}>B.Tech Computer Science Engineering</div>
-                        <div style={{ color: "#6B7280" }}>VIT Vellore · Batch 2021–2025</div>
+                        <div style={{ color: "#6B7280" }}>Gyan Ganga Institute of Technology and Sciences (GGITS) · Batch 2021–2025</div>
                       </div>
                       <div style={{ textAlign: "right" }}>
                         <div style={{ fontWeight: 700, color: TEMPLATES[activeTemplate].preview, fontFamily: "JetBrains Mono, monospace" }}>CGPA: 8.9</div>

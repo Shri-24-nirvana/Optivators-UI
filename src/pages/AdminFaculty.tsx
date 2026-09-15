@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 const FACULTY = [
-  { name: "Dr. Anitha Rajan", email: "anitha.rajan@vit.ac.in", dept: "CSE", designation: "Head of Department", subtree: 12, students: 280, promos: 150, used: 98, perms: ["branches:manage", "cohortgroups:manage", "cohorts:manage", "promos:allocate"] },
-  { name: "Prof. Karthik Menon", email: "karthik.menon@vit.ac.in", dept: "CSE", designation: "Senior Professor", subtree: 4, students: 120, promos: 60, used: 45, perms: ["cohorts:manage", "promos:allocate"] },
-  { name: "Dr. Preethi Sundaram", email: "preethi@vit.ac.in", dept: "AIML", designation: "Associate Professor", subtree: 6, students: 95, promos: 40, used: 28, perms: ["branches:manage", "cohorts:manage", "promos:allocate"] },
-  { name: "Prof. Ravi Shankar", email: "ravi.s@vit.ac.in", dept: "IT", designation: "Assistant Professor", subtree: 0, students: 60, promos: 20, used: 18, perms: ["promos:allocate"] },
-  { name: "Dr. Lakshmi Narayan", email: "lakshmi.n@vit.ac.in", dept: "DS", designation: "Senior Professor", subtree: 3, students: 75, promos: 35, used: 22, perms: ["cohortgroups:manage", "cohorts:manage", "promos:allocate"] },
+  { name: "Dr. Anitha Rajan", email: "anitha.rajan@ggits.net", dept: "CSE", designation: "Head of Department", subtree: 12, students: 280, promos: 150, used: 98, perms: ["branches:manage", "cohortgroups:manage", "cohorts:manage", "promos:allocate"] },
+  { name: "Prof. Karthik Menon", email: "karthik.menon@ggits.net", dept: "CSE", designation: "Senior Professor", subtree: 4, students: 120, promos: 60, used: 45, perms: ["cohorts:manage", "promos:allocate"] },
+  { name: "Dr. Preethi Sundaram", email: "preethi@ggits.net", dept: "AIML", designation: "Associate Professor", subtree: 6, students: 95, promos: 40, used: 28, perms: ["branches:manage", "cohorts:manage", "promos:allocate"] },
+  { name: "Prof. Ravi Shankar", email: "ravi.s@ggits.net", dept: "IT", designation: "Assistant Professor", subtree: 0, students: 60, promos: 20, used: 18, perms: ["promos:allocate"] },
+  { name: "Dr. Lakshmi Narayan", email: "lakshmi.n@ggits.net", dept: "DS", designation: "Senior Professor", subtree: 3, students: 75, promos: 35, used: 22, perms: ["cohortgroups:manage", "cohorts:manage", "promos:allocate"] },
 ];
 
 const PERM_COLORS: Record<string, string> = {
@@ -157,7 +157,7 @@ export default function AdminFaculty() {
               <div className="space-y-4">
                 {[
                   { label: "Full Name", placeholder: "Dr. Firstname Lastname" },
-                  { label: "Email Address", placeholder: "faculty@vit.ac.in" },
+                  { label: "Email Address", placeholder: "faculty@ggits.net" },
                 ].map(({ label, placeholder }) => (
                   <div key={label}>
                     <label className="block text-xs font-semibold mb-1.5" style={{ color: "var(--text-secondary)" }}>{label}</label>

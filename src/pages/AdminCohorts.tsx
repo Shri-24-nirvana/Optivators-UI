@@ -133,7 +133,7 @@ export default function AdminCohorts() {
               <button onClick={() => setShowModal(false)} style={{ color: "var(--text-muted)" }}>✕</button>
             </div>
             <div className="space-y-4">
-              {[{ label: "Cohort Name", ph: "Alpha Batch – CSE 2024" }, { label: "Mentor / Faculty Email", ph: "faculty@vit.ac.in" }].map(({ label, ph }) => (
+              {[{ label: "Cohort Name", ph: "Alpha Batch – CSE 2024" }, { label: "Mentor / Faculty Email", ph: "faculty@ggits.net" }].map(({ label, ph }) => (
                 <div key={label}>
                   <label className="block text-xs font-semibold mb-1.5" style={{ color: "var(--text-secondary)" }}>{label}</label>
                   <input placeholder={ph} className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ background: "var(--surface-bg)", border: "1px solid var(--border-strong)", color: "var(--text-primary)" }} />

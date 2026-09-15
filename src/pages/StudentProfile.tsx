@@ -374,15 +374,15 @@ export default function StudentProfile() {
   const [photoUrl, setPhotoUrl] = useState("");
   const [resumeUrl, setResumeUrl] = useState("https://drive.google.com/file/d/rahul_resume_2025.pdf");
   const [githubUrl, setGithubUrl] = useState("https://github.com/rahulkumar-dev");
-  const [linkedinUrl, setLinkedinUrl] = useState("https://linkedin.com/in/rahulkumar-vit");
+  const [linkedinUrl, setLinkedinUrl] = useState("https://linkedin.com/in/rahulkumar-ggits");
   const [portfolioUrl, setPortfolioUrl] = useState("https://rahulkumar.dev");
   const [completionPct, setCompletionPct] = useState(92);
 
   // Other meta
-  const [college, setCollege] = useState("VIT Vellore");
+  const [college, setCollege] = useState("Gyan Ganga Institute of Technology and Sciences (GGITS)");
   const [branch, setBranch] = useState("Computer Science Engineering");
-  const [rollNo, setRollNo] = useState("21BCE1240");
-  const [email, setEmail] = useState("rahul.kumar@vit.ac.in");
+  const [rollNo, setRollNo] = useState("0208CS211040");
+  const [email, setEmail] = useState("rahul.kumar@ggits.net");
   const [phone, setPhone] = useState("+91 98765 43210");
   const [cgpa, setCgpa] = useState("8.9");
   const [rank, setRank] = useState("#14");
@@ -395,7 +395,7 @@ export default function StudentProfile() {
 
   const [education, setEducation] = useState<any[]>([
     {
-      school: "VIT Vellore",
+      school: "Gyan Ganga Institute of Technology and Sciences (GGITS)",
       degree: "B.Tech",
       fieldOfStudy: "Computer Science and Engineering",
       startDate: "2021-08-01",

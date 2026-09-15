@@ -3,7 +3,7 @@ import { useState } from "react";
 const CLUBS = [
   { name: "AI & ML Club", members: 342, posts: 28, desc: "Research papers, hackathons, and weekly ML workshops.", color: "#0D9488", tag: "Technical", joined: true },
   { name: "Coding Society", members: 580, posts: 64, desc: "Competitive programming, CP contests, and DSA bootcamps.", color: "#2563EB", tag: "Technical", joined: true },
-  { name: "E-Cell VIT", members: 215, posts: 19, desc: "Entrepreneurship, startup pitches, and founder talks.", color: "#D97706", tag: "Entrepreneurship", joined: false },
+  { name: "E-Cell GGITS", members: 215, posts: 19, desc: "Entrepreneurship, startup pitches, and founder talks.", color: "#D97706", tag: "Entrepreneurship", joined: false },
   { name: "Open Source Club", members: 128, posts: 41, desc: "Contribute to GitHub, GSoC prep, and open-source sprints.", color: "#059669", tag: "Technical", joined: false },
   { name: "HR & Management Club", members: 96, posts: 12, desc: "Case studies, role-plays, and corporate simulations.", color: "#EA580C", tag: "Non-Tech", joined: false },
   { name: "Design & UX Guild", members: 74, posts: 22, desc: "Figma workshops, design critiques, and portfolio reviews.", color: "#7C3AED", tag: "Creative", joined: true },
@@ -11,7 +11,7 @@ const CLUBS = [
 
 const ANNOUNCEMENTS = [
   { title: "Campus Placement Drive — Infosys", body: "Infosys is visiting campus on Sept 20th for SDE roles. Ensure your profile is 90%+ complete. Eligibility: 7.0+ CGPA, No active backlogs.", time: "2h ago", tag: "Placement", color: "#059669" },
-  { title: "Coding Contest — HackVIT Round 2", body: "Round 2 of HackVIT begins this Saturday at 10 AM. Teams of 2-4 students. Register before Sept 12th.", time: "1d ago", tag: "Contest", color: "#2563EB" },
+  { title: "Coding Contest — HackGGITS Round 2", body: "Round 2 of HackGGITS begins this Saturday at 10 AM. Teams of 2-4 students. Register before Sept 12th.", time: "1d ago", tag: "Contest", color: "#2563EB" },
   { title: "Profile Completion Drive — Deadline Sept 15", body: "Ensure your Optivators profile is at least 85% complete before the mega placement drive. This affects recruiter visibility.", time: "2d ago", tag: "Important", color: "#DC2626" },
   { title: "AI Club Weekly — Transformer Architecture Deep Dive", body: "This week's session covers attention mechanisms and positional encoding. Join via Google Meet link in the group.", time: "3d ago", tag: "Event", color: "#D97706" },
 ];
@@ -19,7 +19,7 @@ const ANNOUNCEMENTS = [
 const FEED = [
   { user: "Priya Sharma", club: "AI & ML Club", action: "shared a paper", content: "Must-read: 'Attention Is All You Need' — Vaswani et al. (2017). Foundation of all modern LLMs. My summary in the comments!", time: "3h ago", likes: 42, comments: 8, avatar: "#0D9488" },
   { user: "Arjun Mehta", club: "Coding Society", action: "posted", content: "Just solved my 500th LeetCode problem! 🎯 Consistency beats intensity. Starting from easy → medium → hard worked perfectly. AMA about DSA prep.", time: "5h ago", likes: 89, comments: 23, avatar: "#2563EB" },
-  { user: "Sneha Patel", club: "Design & UX Guild", action: "shared a project", content: "Finished my Figma redesign of the VIT Library app. Focused on reducing cognitive load — check out the Behance link!", time: "1d ago", likes: 31, comments: 11, avatar: "#7C3AED" },
+  { user: "Sneha Patel", club: "Design & UX Guild", action: "shared a project", content: "Finished my Figma redesign of the GGITS Library app. Focused on reducing cognitive load — check out the Behance link!", time: "1d ago", likes: 31, comments: 11, avatar: "#7C3AED" },
 ];
 
 export default function Communities() {

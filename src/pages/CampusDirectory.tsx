@@ -36,7 +36,7 @@ export default function CampusDirectory() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-extrabold" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Campus Directory</h1>
-        <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>Browse batchmates, peers, and collaborators at VIT Vellore · {PEERS.length} students</p>
+        <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>Browse batchmates, peers, and collaborators at Gyan Ganga Institute of Technology and Sciences (GGITS) · {PEERS.length} students</p>
       </div>
 
       {/* Search + Filters */}

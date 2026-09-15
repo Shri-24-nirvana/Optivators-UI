@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 const PROMO_HISTORY = [
-  { code: "OPT-K2A9-XRVQ", student: "Priya Sharma", email: "priya@vit.ac.in", package: "DSA & Algorithms Pro", status: "Redeemed", date: "Sep 2, 2026" },
-  { code: "OPT-B7F1-MNZK", student: "Arjun Mehta", email: "arjun@vit.ac.in", package: "System Design Mastery", status: "Redeemed", date: "Sep 3, 2026" },
-  { code: "OPT-Q3R8-PLWX", student: "Sneha Patel", email: "sneha@vit.ac.in", package: "DSA & Algorithms Pro", status: "Unused", date: "Sep 4, 2026" },
-  { code: "OPT-Y6T4-CBGJ", student: "Kiran Kumar", email: "kiran@vit.ac.in", package: "Full Stack Dev Bundle", status: "Redeemed", date: "Sep 5, 2026" },
-  { code: "OPT-H2E5-DRST", student: "Divya Krishnan", email: "divya@vit.ac.in", package: "ML Fundamentals", status: "Unused", date: "Sep 6, 2026" },
+  { code: "OPT-K2A9-XRVQ", student: "Priya Sharma", email: "priya@ggits.net", package: "DSA & Algorithms Pro", status: "Redeemed", date: "Sep 2, 2026" },
+  { code: "OPT-B7F1-MNZK", student: "Arjun Mehta", email: "arjun@ggits.net", package: "System Design Mastery", status: "Redeemed", date: "Sep 3, 2026" },
+  { code: "OPT-Q3R8-PLWX", student: "Sneha Patel", email: "sneha@ggits.net", package: "DSA & Algorithms Pro", status: "Unused", date: "Sep 4, 2026" },
+  { code: "OPT-Y6T4-CBGJ", student: "Kiran Kumar", email: "kiran@ggits.net", package: "Full Stack Dev Bundle", status: "Redeemed", date: "Sep 5, 2026" },
+  { code: "OPT-H2E5-DRST", student: "Divya Krishnan", email: "divya@ggits.net", package: "ML Fundamentals", status: "Unused", date: "Sep 6, 2026" },
 ];
 
 export default function FacultyPromo() {
@@ -99,7 +99,7 @@ export default function FacultyPromo() {
             <div className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold mb-1.5" style={{ color: "var(--text-secondary)" }}>Student Email Address</label>
-                <input type="email" placeholder="student@vit.ac.in" className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ background: "var(--surface-bg)", border: "1px solid var(--border-strong)", color: "var(--text-primary)" }} />
+                <input type="email" placeholder="student@ggits.net" className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ background: "var(--surface-bg)", border: "1px solid var(--border-strong)", color: "var(--text-primary)" }} />
               </div>
               <div>
                 <label className="block text-xs font-semibold mb-1.5" style={{ color: "var(--text-secondary)" }}>Select Course Package</label>
@@ -138,7 +138,7 @@ export default function FacultyPromo() {
               <div className="p-4 rounded-xl" style={{ background: "var(--surface-bg)", border: "1px solid var(--border-subtle)" }}>
                 <div className="text-xs font-bold mb-2" style={{ color: "var(--text-secondary)" }}>CSV Preview (from last upload)</div>
                 <div className="space-y-1">
-                  {[["Priya Sharma", "priya@vit.ac.in", "21BCE0147", "DSA Pro"], ["Arjun Mehta", "arjun@vit.ac.in", "21BCE0234", "System Design"]].map(([n, e, r, p]) => (
+                  {[["Priya Sharma", "priya@ggits.net", "0208CS211047", "DSA Pro"], ["Arjun Mehta", "arjun@ggits.net", "0208CS211034", "System Design"]].map(([n, e, r, p]) => (
                     <div key={r} className="flex gap-3 text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
                       <span className="w-28 truncate">{n}</span><span className="flex-1 truncate">{e}</span><span>{r}</span>
                     </div>

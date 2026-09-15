@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const COLLEGES = [
-  { name: "VIT Vellore", domain: "vit.ac.in", admin: "Dr. Rajesh Pillai", students: 1450, packages: 12, expiry: "Mar 2027", status: "Active", tier: "Premium" },
+  { name: "Gyan Ganga Institute of Technology and Sciences (GGITS)", domain: "ggits.ac.in", admin: "Dr. Rajesh Pillai", students: 1450, packages: 12, expiry: "Mar 2027", status: "Active", tier: "Premium" },
   { name: "SRM Institute", domain: "srmist.edu.in", admin: "Prof. Anand Kumar", students: 1120, packages: 10, expiry: "Jan 2027", status: "Active", tier: "Standard" },
   { name: "Manipal University", domain: "manipal.edu", admin: "Dr. Priya Sharma", students: 980, packages: 9, expiry: "Jun 2027", status: "Active", tier: "Premium" },
   { name: "Amrita University", domain: "amrita.edu", admin: "Dr. Meera Pillai", students: 830, packages: 7, expiry: "Sep 2026", status: "Trial", tier: "Trial" },

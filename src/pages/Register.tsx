@@ -20,7 +20,7 @@ import {
 import OnboardingScreen from "@/components/ui/OnboardingScreen";
 
 const COLLEGES = [
-  "VIT Vellore",
+  "Gyan Ganga Institute of Technology and Sciences (GGITS)",
   "SRM Institute of Science & Technology",
   "Manipal Institute of Technology",
   "Amrita University",
@@ -34,7 +34,9 @@ const COLLEGES = [
 ];
 
 const PROMO_CODES: Record<string, { college: string; name: string; discount: string }> = {
-  VIT2026: { college: "VIT Vellore", name: "VIT Campus Placement Cell", discount: "100% Free Institutional Pro" },
+  GGITS2026: { college: "Gyan Ganga Institute of Technology and Sciences (GGITS)", name: "GGITS Campus Placement Cell", discount: "100% Free Institutional Pro" },
+  GGITS: { college: "Gyan Ganga Institute of Technology and Sciences (GGITS)", name: "GGITS Campus Pro Hub", discount: "100% Free Institutional Pro" },
+  VIT2026: { college: "Gyan Ganga Institute of Technology and Sciences (GGITS)", name: "GGITS Campus Placement Cell", discount: "100% Free Institutional Pro" },
   SRMPRO: { college: "SRM Institute of Science & Technology", name: "SRM Career Centre", discount: "100% Free Institutional Pro" },
   MANIPALAI: { college: "Manipal Institute of Technology", name: "MIT Placement Division", discount: "100% Free Institutional Pro" },
   AMRITA26: { college: "Amrita University", name: "Amrita Career Hub", discount: "100% Free Institutional Pro" },
@@ -95,8 +97,11 @@ export default function Register() {
     }
 
     const lowerEmail = email.toLowerCase().trim();
+    if (lowerEmail.includes("@ggits.net") || lowerEmail.includes("@ggits.ac.in")) {
+      return { college: "Gyan Ganga Institute of Technology and Sciences (GGITS)", name: "GGITS Campus Placement Cell", discount: "100% Free Campus Pro" };
+    }
     if (lowerEmail.includes("@vit.ac.in") || lowerEmail.includes("@vitstudent.ac.in")) {
-      return { college: "VIT Vellore", name: "VIT Campus Placement Cell", discount: "100% Free Campus Pro" };
+      return { college: "Gyan Ganga Institute of Technology and Sciences (GGITS)", name: "GGITS Campus Placement Cell", discount: "100% Free Campus Pro" };
     }
     if (lowerEmail.includes("@srmist.edu.in")) {
       return { college: "SRM Institute of Science & Technology", name: "SRM Career Centre", discount: "100% Free Campus Pro" };
@@ -306,7 +311,7 @@ export default function Register() {
               </div>
               <input
                 type="email"
-                placeholder="e.g. rahul@vit.ac.in or rahul@gmail.com"
+                placeholder="e.g. rahul@ggits.net or rahul@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-all focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-white/10 dark:bg-[#161D2B] dark:text-white"
@@ -357,11 +362,11 @@ export default function Register() {
                     <label className="text-xs font-bold uppercase tracking-wider text-teal-800 dark:text-teal-300 flex items-center gap-1.5">
                       <Ticket size={13} /> College Promo / Institutional Access Code
                     </label>
-                    <span className="text-[10px] text-teal-700 dark:text-teal-400 font-semibold">Try: VIT2026, SRMPRO</span>
+                    <span className="text-[10px] text-teal-700 dark:text-teal-400 font-semibold">Try: GGITS2026, GGITS</span>
                   </div>
                   <input
                     type="text"
-                    placeholder="Enter code (e.g. VIT2026, SRMPRO, CAMPUSFREE)"
+                    placeholder="Enter code (e.g. GGITS2026, GGITS, CAMPUSFREE)"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                     className="w-full rounded-lg border border-teal-300 bg-white px-3.5 py-2 text-sm text-slate-900 uppercase font-mono tracking-wider outline-none focus:ring-2 focus:ring-teal-500/30 dark:border-teal-500/40 dark:bg-[#121826] dark:text-white"

@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 const TOP_STUDENTS = [
-  { rank: 1, name: "Priya Sharma", branch: "CSE", batch: "2021-25", score: 9.1, domain: 8.9, skills: 14, college: "VIT Vellore" },
-  { rank: 2, name: "Siddharth Joshi", branch: "IT", batch: "2020-24", score: 9.0, domain: 8.7, skills: 12, college: "VIT Vellore" },
-  { rank: 3, name: "Ananya Gupta", branch: "AIML", batch: "2021-25", score: 8.9, domain: 8.8, skills: 11, college: "VIT Vellore" },
-  { rank: 4, name: "Arjun Mehta", branch: "AIML", batch: "2021-25", score: 8.6, domain: 8.4, skills: 13, college: "VIT Vellore" },
-  { rank: 5, name: "Kiran Kumar", branch: "DS", batch: "2022-26", score: 8.4, domain: 8.2, skills: 10, college: "VIT Vellore" },
-  { rank: 6, name: "Meera Patel", branch: "CSE", batch: "2020-24", score: 8.3, domain: 8.0, skills: 12, college: "VIT Vellore" },
-  { rank: 7, name: "Rohit Sharma", branch: "CSE", batch: "2021-25", score: 8.2, domain: 7.9, skills: 9, college: "VIT Vellore" },
-  { rank: 8, name: "Divya Krishnan", branch: "IT", batch: "2022-26", score: 8.0, domain: 7.7, skills: 8, college: "VIT Vellore" },
-  { rank: 9, name: "Aditya Rao", branch: "CSE", batch: "2021-25", score: 7.9, domain: 7.6, skills: 11, college: "VIT Vellore" },
-  { rank: 10, name: "Sneha Iyer", branch: "DS", batch: "2022-26", score: 7.8, domain: 7.5, skills: 9, college: "VIT Vellore" },
+  { rank: 1, name: "Priya Sharma", branch: "CSE", batch: "2021-25", score: 9.1, domain: 8.9, skills: 14, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 2, name: "Siddharth Joshi", branch: "IT", batch: "2020-24", score: 9.0, domain: 8.7, skills: 12, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 3, name: "Ananya Gupta", branch: "AIML", batch: "2021-25", score: 8.9, domain: 8.8, skills: 11, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 4, name: "Arjun Mehta", branch: "AIML", batch: "2021-25", score: 8.6, domain: 8.4, skills: 13, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 5, name: "Kiran Kumar", branch: "DS", batch: "2022-26", score: 8.4, domain: 8.2, skills: 10, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 6, name: "Meera Patel", branch: "CSE", batch: "2020-24", score: 8.3, domain: 8.0, skills: 12, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 7, name: "Rohit Sharma", branch: "CSE", batch: "2021-25", score: 8.2, domain: 7.9, skills: 9, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 8, name: "Divya Krishnan", branch: "IT", batch: "2022-26", score: 8.0, domain: 7.7, skills: 8, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 9, name: "Aditya Rao", branch: "CSE", batch: "2021-25", score: 7.9, domain: 7.6, skills: 11, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
+  { rank: 10, name: "Sneha Iyer", branch: "DS", batch: "2022-26", score: 7.8, domain: 7.5, skills: 9, college: "Gyan Ganga Institute of Technology and Sciences (GGITS)" },
 ];
 
 const PODIUM_COLORS = [
@@ -31,7 +31,7 @@ export default function Leaderboard() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-extrabold" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>Top Performers</h1>
-        <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>Campus leaderboard ranked by platform score · VIT Vellore</p>
+        <p className="text-sm mt-1" style={{ color: "var(--text-secondary)" }}>Campus leaderboard ranked by platform score · Gyan Ganga Institute of Technology and Sciences (GGITS)</p>
       </div>
 
       {/* Filters */}
