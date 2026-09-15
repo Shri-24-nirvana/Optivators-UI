@@ -975,13 +975,54 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 }
 
 function SpiderRadarMini() {
+  const [spreadProgress, setSpreadProgress] = useState(0);
+  const containerRef = useRef<SVGSVGElement | null>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            const duration = 1400;
+            const startTime = performance.now();
+
+            const animate = (time: number) => {
+              const elapsed = time - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              setSpreadProgress(eased);
+
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              } else {
+                setSpreadProgress(1);
+              }
+            };
+
+            requestAnimationFrame(animate);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
+
   const labels = ["Technical", "Coding", "Aptitude", "Reasoning", "English", "Problem"];
   const values = [0.88, 0.75, 0.82, 0.90, 0.70, 0.85];
   const cx = 100, cy = 80, r = 60;
   const n = labels.length;
   const points = values.map((v, i) => {
     const angle = (i / n) * 2 * Math.PI - Math.PI / 2;
-    return { x: cx + v * r * Math.cos(angle), y: cy + v * r * Math.sin(angle) };
+    const currentVal = v * spreadProgress;
+    return { x: cx + currentVal * r * Math.cos(angle), y: cy + currentVal * r * Math.sin(angle) };
   });
   const gridPoints = Array.from({ length: n }, (_, i) => {
     const angle = (i / n) * 2 * Math.PI - Math.PI / 2;
@@ -990,17 +1031,31 @@ function SpiderRadarMini() {
   const polyPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ") + " Z";
 
   return (
-    <svg viewBox="0 0 200 160" className="w-full" style={{ maxHeight: 160 }}>
-      {[0.25, 0.5, 0.75, 1].map(scale => (
-        <polygon
-          key={scale}
-          points={gridPoints.map(p => `${cx + (p.x - cx) * scale},${cy + (p.y - cy) * scale}`).join(" ")}
-          fill="none" stroke="var(--border-subtle)" strokeWidth="0.75"
-        />
+    <svg ref={containerRef} viewBox="0 0 200 160" className="w-full select-none overflow-visible" style={{ maxHeight: 160 }}>
+      <defs>
+        <radialGradient id="miniRadarGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#0D9488" stopOpacity="0.08" />
+        </radialGradient>
+      </defs>
+      {[0.25, 0.5, 0.75, 1].map(scale => {
+        const ringScale = scale * Math.min(1, spreadProgress * 1.15);
+        return (
+          <polygon
+            key={scale}
+            points={gridPoints.map(p => `${cx + (p.x - cx) * ringScale},${cy + (p.y - cy) * ringScale}`).join(" ")}
+            fill="none" stroke="var(--border-subtle)" strokeWidth="0.75"
+          />
+        );
+      })}
+      {gridPoints.map((p, i) => {
+        const lineProg = Math.min(1, spreadProgress * 1.2);
+        return <line key={i} x1={cx} y1={cy} x2={cx + (p.x - cx) * lineProg} y2={cy + (p.y - cy) * lineProg} stroke="var(--border-subtle)" strokeWidth="0.75" />;
+      })}
+      <path d={polyPath} fill="url(#miniRadarGrad)" stroke="#0D9488" strokeWidth="2" strokeLinejoin="round" />
+      {points.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r={3 * spreadProgress} fill="#0D9488" stroke="#FFFFFF" strokeWidth={0.75} />
       ))}
-      {gridPoints.map((p, i) => <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="var(--border-subtle)" strokeWidth="0.75" />)}
-      <path d={polyPath} fill="rgba(13,148,136,0.15)" stroke="#0D9488" strokeWidth="2" strokeLinejoin="round" />
-      {points.map((p, i) => <circle key={i} cx={p.x} cy={p.y} r="3" fill="#0D9488" />)}
     </svg>
   );
 }
