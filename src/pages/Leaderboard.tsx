@@ -2,7 +2,6 @@ import { useState, useMemo } from "react";
 import {
   Trophy,
   Crown,
-  Medal,
   Flame,
   Zap,
   TrendingUp,
@@ -11,7 +10,6 @@ import {
   Sparkles,
   Search,
   CheckCircle2,
-  ExternalLink,
   Code2,
   Cpu,
   Brain,
@@ -21,8 +19,6 @@ import {
   Target,
   UserCheck,
   ArrowUpRight,
-  Share2,
-  SlidersHorizontal,
 } from "lucide-react";
 
 interface StudentRank {
@@ -432,7 +428,8 @@ export default function Leaderboard() {
       {/* ─────────────────────────────────────────────────────────────
           1. HEADER & LIVE SEASON STATUS
       ───────────────────────────────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-3xl p-6 sm:p-8 border backdrop-blur-xl shadow-2xl transition-all"
+      <div
+        className="relative overflow-hidden rounded-3xl p-6 sm:p-8 border backdrop-blur-xl shadow-2xl transition-all"
         style={{
           background: "linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(37, 99, 235, 0.05) 50%, rgba(124, 58, 237, 0.08) 100%)",
           borderColor: "var(--border-strong)",
@@ -864,7 +861,7 @@ export default function Leaderboard() {
       ───────────────────────────────────────────────────────────── */}
       <div className="space-y-4">
         {/* Track Category Buttons */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" style={{ overscrollBehaviorX: "contain" }}>
           {TRACK_OPTIONS.map((track) => {
             const Icon = track.icon;
             const active = selectedTrack === track.id;
@@ -1004,7 +1001,7 @@ export default function Leaderboard() {
             </p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto w-full" style={{ overscrollBehavior: "auto" }}>
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr
