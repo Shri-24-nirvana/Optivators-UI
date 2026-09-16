@@ -430,4 +430,13 @@ export const globalStyles = `
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.shimmer-text {
+    background: linear-gradient(90deg, var(--color-primary, #0D9488) 0%, var(--color-primaryHover, #2DD4BF) 40%, var(--color-primary, #0D9488) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}
 `;

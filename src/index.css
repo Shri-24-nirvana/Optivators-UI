@@ -462,6 +462,26 @@ html, body, #root {
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s linear infinite;
 }
+.theme-orange .shimmer-text {
+  background: linear-gradient(90deg, #EA580C 0%, #FB923C 40%, #EA580C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+.dark .theme-orange .shimmer-text,
+.theme-orange.dark .shimmer-text,
+.dark.theme-orange .shimmer-text,
+[data-theme-color="orange"].dark .shimmer-text,
+[data-theme-color="orange"] .dark .shimmer-text {
+  background: linear-gradient(90deg, #FB923C 0%, #FDBA74 40%, #FB923C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
 
 .threeui-background {
   position: absolute;
