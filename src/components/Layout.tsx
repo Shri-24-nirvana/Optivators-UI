@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import StreamConvergenceBackground from "@/components/ui/StreamConvergenceBackground";
 import SwitchMode from "@/components/ui/SwitchMode";
+import ThemePaletteToggle from "@/components/ui/ThemePaletteToggle";
 import Notifications from "@/components/ui/Notifications";
 
 const NAV_STUDENT = [
@@ -79,8 +80,8 @@ export default function Layout({ children, dark, onToggleDark }: { children: Rea
             className="shrink-0 flex items-center justify-center rounded-xl font-bold text-white text-sm"
             style={{
               width: 38, height: 38,
-              background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
-              boxShadow: "0 4px 14px rgba(13,148,136,0.35)",
+              background: "linear-gradient(135deg, var(--accent-primary) 0%, rgba(13,148,136,0.8) 100%)",
+              boxShadow: "0 4px 14px var(--accent-soft)",
             }}
           >
             <OctagonIcon />
@@ -184,8 +185,11 @@ export default function Layout({ children, dark, onToggleDark }: { children: Rea
             </span>
           </div>
 
-          <div className="ml-auto flex items-center gap-3">
-            {/* Theme Toggle */}
+          <div className="ml-auto flex items-center gap-2.5">
+            {/* Color Theme Selector (Green / Orange) */}
+            <ThemePaletteToggle />
+
+            {/* Dark/Light Mode Toggle */}
             <SwitchMode width={54} height={28} isDark={dark} onToggle={onToggleDark} />
 
             {/* Interactive Notifications Dropdown */}

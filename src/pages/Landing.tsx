@@ -14,6 +14,7 @@ import CursorImageTrail from "@/components/CursorImageTrail";
 import BlobCard from "@/components/ui/BlobCard";
 import StreamConvergenceBackground from "@/components/ui/StreamConvergenceBackground";
 import SwitchMode from "@/components/ui/SwitchMode";
+import ThemePaletteToggle from "@/components/ui/ThemePaletteToggle";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/core/dock";
 import TechScrollAnimation from "@/components/ui/text-scroll-animation";
 
@@ -272,8 +273,13 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             >{item}</a>
           ))}
         </div>
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-2.5">
+          {/* Color Theme Selector (Green / Orange) */}
+          <ThemePaletteToggle />
+
+          {/* Dark / Light Toggle */}
           <SwitchMode width={60} height={30} isDark={dark} onToggle={onToggleDark} />
+
           <Link
             to="/login"
             className="px-4 py-2 rounded-xl text-sm font-semibold border transition-colors"
@@ -283,8 +289,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
           </Link>
           <Link
             to="/register"
-            className="px-4 py-2 rounded-xl text-sm font-bold text-white transition-all"
-            style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 4px 14px rgba(13,148,136,0.3)" }}
+            className="px-4 py-2 rounded-xl text-sm font-bold text-white transition-all hover:brightness-110 active:scale-95 shadow-md"
+            style={{ background: "linear-gradient(135deg, var(--accent-primary) 0%, rgba(13,148,136,0.85) 100%)" }}
           >
             Get Started
           </Link>

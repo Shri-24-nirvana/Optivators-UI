@@ -63,6 +63,81 @@
   --sidebar-bg: rgba(9, 14, 26, 0.88);
 }
 
+/* ============================================================
+   ORANGE THEME COLOR PALETTE (White & Orange / Dark & Orange)
+============================================================ */
+:root.theme-orange,
+html.theme-orange:not(.dark),
+[data-theme-color="orange"]:not(.dark) {
+  --accent-primary: #EA580C;
+  --accent-soft: rgba(234, 88, 12, 0.12);
+  --accent-hover: #C2410C;
+  --track-nontech: #2563EB;
+}
+
+.dark.theme-orange,
+html.dark.theme-orange,
+.theme-orange.dark,
+[data-theme-color="orange"].dark {
+  --accent-primary: #FB923C;
+  --accent-soft: rgba(251, 146, 60, 0.18);
+  --accent-hover: #F97316;
+  --track-nontech: #38BDF8;
+}
+
+/* Orange Theme Glasscard Rim Lighting */
+.theme-orange .glass-card::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(251, 146, 60, 0.5) 50%, transparent 100%);
+}
+
+.theme-orange .glass-input:focus {
+  border-color: #EA580C;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dark.theme-orange .glass-input:focus,
+.theme-orange .dark .glass-input:focus {
+  border-color: #FB923C;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Orange Theme Utility Overrides for Tailwind Teal/Green classes */
+.theme-orange .bg-teal-500,
+.theme-orange .bg-teal-600 {
+  background-color: #EA580C !important;
+}
+.theme-orange .bg-teal-500\/10,
+.theme-orange .bg-teal-500\/15,
+.theme-orange .bg-teal-500\/20 {
+  background-color: rgba(234, 88, 12, 0.14) !important;
+}
+.theme-orange .text-teal-500,
+.theme-orange .text-teal-400 {
+  color: #FB923C !important;
+}
+.theme-orange:not(.dark) .text-teal-600,
+.theme-orange:not(.dark) .text-teal-700 {
+  color: #EA580C !important;
+}
+.theme-orange .border-teal-500,
+.theme-orange .border-teal-400,
+.theme-orange .border-teal-500\/30,
+.theme-orange .border-teal-500\/40 {
+  border-color: rgba(251, 146, 60, 0.4) !important;
+}
+.theme-orange .ring-teal-400,
+.theme-orange .ring-teal-500,
+.theme-orange .ring-teal-400\/40 {
+  --tw-ring-color: rgba(251, 146, 60, 0.45) !important;
+}
+.theme-orange .focus\:border-teal-500:focus {
+  border-color: #EA580C !important;
+}
+.theme-orange .focus\:ring-teal-500\/20:focus,
+.theme-orange .focus\:ring-teal-500\/30:focus {
+  --tw-ring-color: rgba(234, 88, 12, 0.25) !important;
+}
+
 html, body, #root {
   height: 100%;
   font-family: 'DM Sans', system-ui, sans-serif;
