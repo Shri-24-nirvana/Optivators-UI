@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "@/context/ThemeContext";
+import ThemePaletteToggle from "@/components/ui/ThemePaletteToggle";
+import SwitchMode from "@/components/ui/SwitchMode";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { isOrange } = useTheme();
+  const { isOrange, isDark, toggleTheme } = useTheme();
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,24 +19,52 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ background: "var(--surface-bg)", fontFamily: "var(--font-sans)" }}>
-      {/* Left panel - glassmorphic brand visual */}
+    <div className="min-h-screen flex relative" style={{ background: "var(--surface-bg)", fontFamily: "var(--font-sans)" }}>
+      {/* Top right theme controls */}
+      <div className="absolute top-5 right-6 z-20 flex items-center gap-2.5">
+        <Link
+          to="/"
+          className="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors hover:border-slate-400 dark:hover:border-white/30"
+          style={{ borderColor: "var(--border-strong)", color: "var(--text-secondary)", background: "var(--surface-elevated)" }}
+        >
+          ← Home
+        </Link>
+        <ThemePaletteToggle />
+        <SwitchMode width={54} height={28} isDark={isDark} onToggle={toggleTheme} />
+      </div>
+
+      {/* Left panel - glassmorphic brand visual with Light and Dark theme support */}
       <div
-        className="hidden lg:flex flex-col justify-between w-[55%] relative overflow-hidden p-12"
-        style={{ background: "linear-gradient(145deg, #080C14 0%, #0C1525 60%, #0D1F35 100%)" }}
+        className="hidden lg:flex flex-col justify-between w-[55%] relative overflow-hidden p-12 transition-all duration-500"
+        style={{
+          background: isDark
+            ? "linear-gradient(145deg, #080C14 0%, #0C1525 60%, #0D1F35 100%)"
+            : isOrange
+              ? "linear-gradient(145deg, #FFF7ED 0%, #FFEDD5 50%, #FED7AA 100%)"
+              : "linear-gradient(145deg, #F0FDFA 0%, #CCFBF1 50%, #99F6E4 100%)",
+          borderRight: isDark ? "1px solid rgba(255,255,255,0.08)" : isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
+        }}
       >
         {/* Mesh bg */}
         <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full opacity-30"
+            className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full"
             style={{
               background: isOrange
                 ? "radial-gradient(circle, #EA580C 0%, transparent 70%)"
                 : "radial-gradient(circle, #0D9488 0%, transparent 70%)",
+              opacity: isDark ? 0.3 : 0.25,
               filter: "blur(60px)",
             }}
           />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #2563EB 0%, transparent 70%)", filter: "blur(50px)" }} />
+          <div
+            className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full"
+            style={{
+              background: "radial-gradient(circle, #2563EB 0%, transparent 70%)",
+              opacity: isDark ? 0.2 : 0.15,
+              filter: "blur(50px)",
+            }}
+          />
         </div>
 
         {/* Logo */}
@@ -46,54 +76,63 @@ export default function Login() {
                 ? "linear-gradient(135deg, #EA580C, #C2410C)"
                 : "linear-gradient(135deg, #0D9488, #0f766e)",
               boxShadow: isOrange
-                ? "0 4px 20px rgba(234,88,12,0.5)"
-                : "0 4px 20px rgba(13,148,136,0.5)",
+                ? "0 4px 20px rgba(234,88,12,0.35)"
+                : "0 4px 20px rgba(13,148,136,0.35)",
             }}
           >
-            <svg width={20} height={20} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <svg width={20} height={20} viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
           </div>
-          <span className="text-xl font-bold text-white">Optivators</span>
+          <span className={`text-xl font-black tracking-tight ${isDark ? "text-white" : "text-slate-900"}`}>
+            Optivators
+          </span>
         </div>
 
         {/* Central content */}
         <div className="relative">
-          <h2 className="text-5xl font-extrabold text-white mb-4 leading-tight" style={{ letterSpacing: "-0.02em" }}>
+          <h2 className={`text-5xl font-extrabold mb-4 leading-tight ${isDark ? "text-white" : "text-slate-900"}`} style={{ letterSpacing: "-0.02em" }}>
             Benchmark your{" "}
             <span
               style={{
                 fontFamily: "var(--font-serif)",
                 fontStyle: "italic",
-                color: isOrange ? "#FB923C" : "#2DD4BF",
+                color: isDark
+                  ? isOrange ? "#FB923C" : "#2DD4BF"
+                  : isOrange ? "#EA580C" : "#0D9488",
               }}
             >
               cognitive edge.
             </span>
           </h2>
-          <p className="text-lg mb-10" style={{ color: "#94A3B8" }}>
+          <p className={`text-lg mb-10 leading-relaxed font-medium ${isDark ? "text-slate-400" : "text-slate-700"}`}>
             India's most advanced campus career readiness platform — built for students who aim for the top percentile.
           </p>
 
           {/* Floating stat cards */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { label: "Questions Attempted", value: "100K+", color: isOrange ? "#FB923C" : "#2DD4BF" },
-              { label: "Partner Institutes", value: "50+", color: "#60A5FA" },
-              { label: "Avg Placement Rate", value: "94%", color: isOrange ? "#F97316" : "#34D399" },
-              { label: "Skills Validated", value: "280K+", color: "#FB923C" },
+              { label: "Questions Attempted", value: "100K+", color: isDark ? (isOrange ? "#FB923C" : "#2DD4BF") : (isOrange ? "#C2410C" : "#0F766E") },
+              { label: "Partner Institutes", value: "50+", color: isDark ? "#60A5FA" : "#1D4ED8" },
+              { label: "Avg Placement Rate", value: "94%", color: isDark ? (isOrange ? "#F97316" : "#34D399") : (isOrange ? "#EA580C" : "#059669") },
+              { label: "Skills Validated", value: "280K+", color: isDark ? "#FB923C" : "#D97706" },
             ].map(({ label, value, color }) => (
               <div
                 key={label}
-                className="rounded-2xl p-4"
-                style={{ background: "rgba(15,21,32,0.78)", backdropFilter: "blur(24px)", border: "1px solid rgba(255,255,255,0.08)" }}
+                className={`rounded-2xl p-4 transition-all duration-300 ${
+                  isDark
+                    ? "bg-[#0F1520]/80 backdrop-blur-2xl border border-white/10 shadow-xl"
+                    : "bg-white/90 backdrop-blur-xl border-2 border-slate-900 shadow-lg shadow-slate-900/5"
+                }`}
               >
-                <div className="text-2xl font-bold mb-1" style={{ fontFamily: "var(--font-mono)", color }}>{value}</div>
-                <div className="text-xs" style={{ color: "#64748B" }}>{label}</div>
+                <div className="text-2xl font-black mb-1" style={{ fontFamily: "var(--font-mono)", color }}>{value}</div>
+                <div className={`text-xs font-semibold ${isDark ? "text-slate-400" : "text-slate-700"}`}>{label}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="relative text-sm" style={{ color: "#475569" }}>
+        <div className={`relative text-sm font-semibold ${isDark ? "text-slate-500" : "text-slate-600"}`}>
           Trusted by placement cells at IIT, NIT, and 50+ tier-1 institutes.
         </div>
       </div>
