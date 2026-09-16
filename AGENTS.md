@@ -39,3 +39,9 @@ This project uses **Tailwind CSS v4** through the `@tailwindcss/vite` plugin con
 - Use double quotes for strings containing apostrophes (`"We're here to help"`), or escape them in single-quoted strings. An unescaped apostrophe in a single-quoted string breaks the build.
 - Ensure JSX tags are closed and braces are balanced.
 - Export components as default exports.
+
+## Theme & Styling Single Source of Truth
+
+- **`src/context/styles.ts`** & **`src/context/ThemeContext.tsx`**: These two files are the **central single source of truth** for all theme tokens, color palettes (`lightVibrantColors`, `darkVibrantColors`, `lightOrangeColors`, `darkOrangeColors`), dynamic CSS variable bindings, and reusable themed styles (`createThemedStyles`).
+- Whenever making any theme, color, styling, or token changes to the website, always keep these two files updated, cleanly organized, and strictly typed.
+
