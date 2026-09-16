@@ -139,7 +139,215 @@ function getPlatformRoles(isOrange: boolean) {
   ];
 }
 
-function getTrailItems(isOrange: boolean) {
+function getTrailItems(isOrange: boolean, dark: boolean) {
+  if (!dark) {
+    // ==========================================
+    // LIGHT THEME TRAIL CARDS (Vibrant Light Tint)
+    // ==========================================
+    return [
+      // 1. NEURAL IQ
+      <div
+        key="1"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: isOrange
+            ? "linear-gradient(135deg, #FFFFFF 0%, rgba(255, 237, 213, 0.95) 100%)"
+            : "linear-gradient(135deg, #FFFFFF 0%, rgba(204, 251, 241, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: isOrange ? "#EA580C" : "#0D9488",
+          boxShadow: isOrange
+            ? "0 10px 25px -5px rgba(234, 88, 12, 0.25), 0 4px 10px -2px rgba(15, 23, 42, 0.08)"
+            : "0 10px 25px -5px rgba(13, 148, 136, 0.25), 0 4px 10px -2px rgba(15, 23, 42, 0.08)",
+        }}
+      >
+        <div className="flex items-center justify-between gap-1">
+          <span
+            className={`text-[9px] font-black uppercase tracking-wider ${
+              isOrange ? "text-orange-950" : "text-teal-950"
+            }`}
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            NEURAL IQ
+          </span>
+          <span
+            className={`w-1.5 h-1.5 rounded-full animate-pulse ${
+              isOrange ? "bg-orange-600" : "bg-teal-600"
+            }`}
+          />
+        </div>
+        <div className="text-sm font-black text-slate-900 mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+          9.8 <span className={`text-[10px] font-bold ${isOrange ? "text-orange-900" : "text-teal-900"}`}>/ 10</span>
+        </div>
+        <div className={`text-[9px] font-bold truncate ${isOrange ? "text-orange-900/90" : "text-teal-900/90"}`}>
+          Top 0.1% Percentile
+        </div>
+      </div>,
+
+      // 2. ALGO GOD
+      <div
+        key="2"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: isOrange
+            ? "linear-gradient(135deg, #FFFFFF 0%, rgba(254, 215, 170, 0.95) 100%)"
+            : "linear-gradient(135deg, #FFFFFF 0%, rgba(209, 250, 229, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: isOrange ? "#F97316" : "#059669",
+          boxShadow: isOrange
+            ? "0 10px 25px -5px rgba(249, 115, 22, 0.25)"
+            : "0 10px 25px -5px rgba(5, 150, 105, 0.25)",
+        }}
+      >
+        <div className="flex items-center gap-1">
+          <span className="text-xs">⚡</span>
+          <span
+            className={`text-[9px] font-black uppercase tracking-wider ${
+              isOrange ? "text-orange-950" : "text-emerald-950"
+            }`}
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            ALGO GOD
+          </span>
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5">React 19 + DSA</div>
+        <div className={`text-[9px] font-bold ${isOrange ? "text-orange-900" : "text-emerald-900"}`}>
+          FAANG Tier · S
+        </div>
+      </div>,
+
+      // 3. RECRUITER RADAR
+      <div
+        key="3"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: "linear-gradient(135deg, #FFFFFF 0%, rgba(219, 234, 254, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: "#2563EB",
+          boxShadow: "0 10px 25px -5px rgba(37, 99, 235, 0.25)",
+        }}
+      >
+        <div className="flex items-center justify-between gap-1">
+          <span className="text-[9px] font-black uppercase tracking-wider text-blue-950" style={{ fontFamily: "var(--font-mono)" }}>
+            HOT MATCH 🔥
+          </span>
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+          ₹32 LPA · SDE
+        </div>
+        <div className="text-[9px] font-bold text-blue-900 truncate">Direct Recruiter Hit</div>
+      </div>,
+
+      // 4. APEX TIER
+      <div
+        key="4"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: "linear-gradient(135deg, #FFFFFF 0%, rgba(254, 243, 199, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: "#D97706",
+          boxShadow: "0 10px 25px -5px rgba(217, 119, 6, 0.25)",
+        }}
+      >
+        <div className="flex items-center gap-1">
+          <span className="text-xs">🏆</span>
+          <span className="text-[9px] font-black uppercase tracking-wider text-amber-950" style={{ fontFamily: "var(--font-mono)" }}>
+            APEX TIER
+          </span>
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5">
+          Rank #1 MVP
+        </div>
+        <div className="text-[9px] font-bold text-amber-900">GGITS '26</div>
+      </div>,
+
+      // 5. GODSPEED PLACEMENT
+      <div
+        key="5"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: "linear-gradient(135deg, #FFFFFF 0%, rgba(243, 232, 255, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: "#7C3AED",
+          boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.25)",
+        }}
+      >
+        <div className="text-[9px] font-black uppercase tracking-wider text-purple-950" style={{ fontFamily: "var(--font-mono)" }}>
+          PLACEMENT SPEED
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+          99% GODSPEED
+        </div>
+        <div className="text-[9px] font-bold text-purple-900">Instant Hire Ready</div>
+      </div>,
+
+      // 6. PROOF OF SKILL
+      <div
+        key="6"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: "linear-gradient(135deg, #FFFFFF 0%, rgba(252, 231, 243, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: "#DB2777",
+          boxShadow: "0 10px 25px -5px rgba(219, 39, 119, 0.25)",
+        }}
+      >
+        <div className="flex items-center gap-1">
+          <span className="text-xs">🛡️</span>
+          <span className="text-[9px] font-black uppercase tracking-wider text-pink-950" style={{ fontFamily: "var(--font-mono)" }}>
+            PROOF OF SKILL
+          </span>
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5">360° Verified</div>
+        <div className="text-[9px] font-bold text-pink-900">Zero Fluff · Legit</div>
+      </div>,
+
+      // 7. HYBRID BEAST
+      <div
+        key="7"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: "linear-gradient(135deg, #FFFFFF 0%, rgba(255, 237, 213, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: "#EA580C",
+          boxShadow: "0 10px 25px -5px rgba(234, 88, 12, 0.25)",
+        }}
+      >
+        <div className="flex items-center gap-1">
+          <span className="text-xs">🔥</span>
+          <span className="text-[9px] font-black uppercase tracking-wider text-orange-950" style={{ fontFamily: "var(--font-mono)" }}>
+            HYBRID BEAST
+          </span>
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5">Tech + Product</div>
+        <div className="text-[9px] font-bold text-orange-900">Full-Spectrum</div>
+      </div>,
+
+      // 8. RADAR MATRIX
+      <div
+        key="8"
+        className="p-2.5 rounded-xl border-2 shadow-xl transition-all select-none"
+        style={{
+          background: "linear-gradient(135deg, #FFFFFF 0%, rgba(224, 231, 255, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          borderColor: "#4F46E5",
+          boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.25)",
+        }}
+      >
+        <div className="flex items-center gap-1">
+          <span className="text-xs">📊</span>
+          <span className="text-[9px] font-black uppercase tracking-wider text-indigo-950" style={{ fontFamily: "var(--font-mono)" }}>
+            RADAR MATRIX
+          </span>
+        </div>
+        <div className="text-xs font-black text-slate-900 mt-0.5">6-Axis S-Tier</div>
+        <div className="text-[9px] font-bold text-indigo-900">Code · EQ · Speed</div>
+      </div>,
+    ];
+  }
+
+  // ==========================================
+  // DARK THEME TRAIL CARDS (Obsidian Dark Glass)
+  // ==========================================
   return [
     // 1. NEURAL IQ
     <div
@@ -147,8 +355,8 @@ function getTrailItems(isOrange: boolean) {
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
         background: isOrange
-          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(234, 88, 12, 0.35) 100%)"
-          : "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(13, 148, 136, 0.35) 100%)",
+          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(234, 88, 12, 0.35) 100%)"
+          : "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(13, 148, 136, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: isOrange ? "rgba(251, 146, 60, 0.5)" : "rgba(45, 212, 191, 0.5)",
         boxShadow: isOrange
@@ -158,15 +366,17 @@ function getTrailItems(isOrange: boolean) {
     >
       <div className="flex items-center justify-between gap-1">
         <span
-          className={`text-[9px] font-black uppercase tracking-wider ${isOrange ? "text-orange-300" : "text-teal-300"
-            }`}
+          className={`text-[9px] font-black uppercase tracking-wider ${
+            isOrange ? "text-orange-300" : "text-teal-300"
+          }`}
           style={{ fontFamily: "var(--font-mono)" }}
         >
           NEURAL IQ
         </span>
         <span
-          className={`w-1.5 h-1.5 rounded-full animate-pulse ${isOrange ? "bg-orange-400" : "bg-teal-400"
-            }`}
+          className={`w-1.5 h-1.5 rounded-full animate-pulse ${
+            isOrange ? "bg-orange-400" : "bg-teal-400"
+          }`}
         />
       </div>
       <div className="text-sm font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
@@ -183,8 +393,8 @@ function getTrailItems(isOrange: boolean) {
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
         background: isOrange
-          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(249, 115, 22, 0.35) 100%)"
-          : "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(5, 150, 105, 0.35) 100%)",
+          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(249, 115, 22, 0.35) 100%)"
+          : "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(5, 150, 105, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: isOrange ? "rgba(253, 186, 116, 0.5)" : "rgba(52, 211, 153, 0.5)",
         boxShadow: isOrange
@@ -195,8 +405,9 @@ function getTrailItems(isOrange: boolean) {
       <div className="flex items-center gap-1">
         <span className="text-xs">⚡</span>
         <span
-          className={`text-[9px] font-black uppercase tracking-wider ${isOrange ? "text-orange-300" : "text-emerald-300"
-            }`}
+          className={`text-[9px] font-black uppercase tracking-wider ${
+            isOrange ? "text-orange-300" : "text-emerald-300"
+          }`}
           style={{ fontFamily: "var(--font-mono)" }}
         >
           ALGO GOD
@@ -213,7 +424,7 @@ function getTrailItems(isOrange: boolean) {
       key="3"
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(37, 99, 235, 0.35) 100%)",
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(37, 99, 235, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: "rgba(96, 165, 250, 0.5)",
         boxShadow: "0 10px 25px -5px rgba(37, 99, 235, 0.45)",
@@ -235,7 +446,7 @@ function getTrailItems(isOrange: boolean) {
       key="4"
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(217, 119, 6, 0.35) 100%)",
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(217, 119, 6, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: "rgba(251, 191, 36, 0.5)",
         boxShadow: "0 10px 25px -5px rgba(217, 119, 6, 0.45)",
@@ -278,7 +489,7 @@ function getTrailItems(isOrange: boolean) {
       key="6"
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(236, 72, 153, 0.35) 100%)",
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(236, 72, 153, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: "rgba(244, 114, 182, 0.5)",
         boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.45)",
@@ -299,7 +510,7 @@ function getTrailItems(isOrange: boolean) {
       key="7"
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(234, 88, 12, 0.35) 100%)",
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(234, 88, 12, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: "rgba(251, 146, 60, 0.5)",
         boxShadow: "0 10px 25px -5px rgba(234, 88, 12, 0.45)",
@@ -320,7 +531,7 @@ function getTrailItems(isOrange: boolean) {
       key="8"
       className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
       style={{
-        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(99, 102, 241, 0.35) 100%)",
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(99, 102, 241, 0.35) 100%)",
         backdropFilter: "blur(24px)",
         borderColor: "rgba(129, 140, 248, 0.5)",
         boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.45)",
@@ -370,7 +581,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
   const [selectedRoleIdx, setSelectedRoleIdx] = useState(0);
   const platformRoles = getPlatformRoles(isOrange);
   const activeRole = platformRoles[selectedRoleIdx] || platformRoles[0];
-  const trailItems = getTrailItems(isOrange);
+  const trailItems = getTrailItems(isOrange, dark);
+
 
   return (
     <div className="min-h-screen relative" style={{ background: "var(--surface-bg)", color: "var(--text-primary)", fontFamily: "var(--font-sans)" }}>
