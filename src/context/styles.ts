@@ -411,6 +411,32 @@ export const createThemedStyles = (colors: ThemeColors, isDark: boolean) => ({
   purpleButton: {
     background: `linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)`,
   },
+
+  // Cursor Trail & Hero Section Layering Styles
+  cursorTrailContainer: {
+    position: "fixed" as const,
+    inset: 0,
+    pointerEvents: "none" as const,
+    zIndex: 0,
+    overflow: "hidden" as const,
+  },
+  cursorTrailItem: {
+    pointerEvents: "none" as const,
+    position: "fixed" as const,
+    userSelect: "none" as const,
+    zIndex: 0,
+  },
+  heroContentLayer: {
+    position: "relative" as const,
+    zIndex: 10,
+    width: "100%",
+  },
+  heroBackgroundMesh: {
+    position: "absolute" as const,
+    inset: 0,
+    pointerEvents: "none" as const,
+    zIndex: -10,
+  },
 });
 
 export const globalStyles = `
@@ -438,5 +464,26 @@ export const globalStyles = `
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 3s linear infinite;
+}
+
+/* Layering utilities for cursor trail and foreground text */
+.cursor-trail-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-content-layer {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-background-mesh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: -10;
 }
 `;
