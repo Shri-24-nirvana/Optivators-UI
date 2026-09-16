@@ -263,6 +263,17 @@ html.dark.theme-orange,
   background: radial-gradient(circle, #FB923C 0%, transparent 70%) !important;
 }
 
+.theme-orange [style*="linear-gradient(135deg, #0D9488 0%, #0f766e 100%)"],
+.theme-orange [style*="linear-gradient(135deg, #0D9488, #0f766e)"],
+.theme-orange [style*="linear-gradient(135deg, #0d9488 0%, #0f766e 100%)"] {
+  background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%) !important;
+}
+
+.dark.theme-orange [style*="linear-gradient(135deg, #0D9488 0%, #0f766e 100%)"],
+.dark.theme-orange [style*="linear-gradient(135deg, #0D9488, #0f766e)"] {
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%) !important;
+}
+
 html, body, #root {
   height: 100%;
   font-family: 'DM Sans', system-ui, sans-serif;

@@ -17,202 +17,329 @@ import SwitchMode from "@/components/ui/SwitchMode";
 import ThemePaletteToggle from "@/components/ui/ThemePaletteToggle";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/core/dock";
 import TechScrollAnimation from "@/components/ui/text-scroll-animation";
+import { useTheme } from "@/context/ThemeContext";
 
-const PLATFORM_ROLES = [
-  {
-    id: "student",
-    role: "Student",
-    subtitle: "Learner & Placement Candidate",
-    headline: "AI-Powered Career Intelligence & Cognitive Benchmarking",
-    desc: "Benchmark 4 cognitive tracks with adaptive AI, build an employer-ready 360° verified profile, discover recruiter-matched opportunities, and generate ATS-compliant resumes with 1 click.",
-    color: "#0D9488",
-    bg: "rgba(13,148,136,0.12)",
-    icon: GraduationCap,
-    path: "/student",
-    badge: "Student Portal",
-    metrics: [
-      { label: "Adaptive Tracks", value: "4 Tracks" },
-      { label: "Placement Readiness", value: "94% Avg" },
-      { label: "ATS Resume Engine", value: "4 Formats" },
-    ],
-    features: [
-      "Spider Radar scoring across 6 cognitive & domain axes",
-      "Real-time campus & branch-wide leaderboard rankings",
-      "Automated skill validation with GitHub & project linking",
-      "Direct recruiter opportunity alerts with AI match percentage",
-    ],
-  },
-  {
-    id: "faculty",
-    role: "Faculty",
-    subtitle: "Mentor & Department Faculty",
-    headline: "Cohort Progress Tracking & Targeted Student Mentorship",
-    desc: "Monitor real-time student performance across technical domains, distribute institutional promo codes, diagnose batch skill gaps, and review cohort leaderboards.",
-    color: "#2563EB",
-    bg: "rgba(37,99,235,0.12)",
-    icon: Users,
-    path: "/college-faculty",
-    badge: "Faculty Portal",
-    metrics: [
-      { label: "Cohort Visibility", value: "100% Live" },
-      { label: "Promo Allocation", value: "Tiered Quotas" },
-      { label: "Skill Gap Analysis", value: "AI-Powered" },
-    ],
-    features: [
-      "Branch & Batch cohort grouping with granular student drill-downs",
-      "Real-time progress matrix across DSA, Aptitude, and Verbal skills",
-      "Faculty promo code quota allocation and redemption auditing",
-      "Class leaderboard analytics & automated remedial learning triggers",
-    ],
-  },
-  {
-    id: "admin",
-    role: "College Admin",
-    subtitle: "Campus Dean & Placement Cell",
-    headline: "Campus-Wide Placement Intelligence & NAAC Compliance",
-    desc: "Gain comprehensive oversight across all engineering branches, monitor 365-day student activity heatmaps, provision faculty licenses, and export compliance-ready placement analytics.",
-    color: "#059669",
-    bg: "rgba(5,150,105,0.12)",
-    icon: Building2,
-    path: "/college-admin",
-    badge: "Campus Admin",
-    metrics: [
-      { label: "Activity Heatmap", value: "365 Days" },
-      { label: "Branch Performance", value: "6 Dept Views" },
-      { label: "NAAC Ready Data", value: "Instant Export" },
-    ],
-    features: [
-      "365-Day Student Activity Heatmap with daily volume & streak tracking",
-      "Branch-wise platform score averages & learner tier distribution",
-      "Faculty tree management and campus promo wallet control",
-      "Real-time recruiter pipeline and placement readiness indices",
-    ],
-  },
-  {
-    id: "trainer",
-    role: "Optus Trainer",
-    subtitle: "Master Coach & Industry Expert",
-    headline: "Cross-Campus Curriculum Delivery & Live Masterclasses",
-    desc: "Deliver standardized CRT and advanced tech curriculum across multiple partner colleges, conduct proctored live assessments, and benchmark inter-college performance.",
-    color: "#D97706",
-    bg: "rgba(217,119,6,0.12)",
-    icon: Sparkles,
-    path: "/student",
-    badge: "Optus Master",
-    metrics: [
-      { label: "Campus Reach", value: "Multi-University" },
-      { label: "Proctored Tests", value: "AI Monitored" },
-      { label: "Live Quiz Engine", value: "Synchronized" },
-    ],
-    features: [
-      "Standardized multi-campus curriculum delivery and assessments",
-      "Automated difficulty calibration for inter-college competitive tests",
-      "Specialized bootcamps for FAANG, Big 4, and Tier-1 product roles",
-      "Cross-institutional benchmarking and percentile distributions",
-    ],
-  },
-  {
-    id: "super",
-    role: "Super Admin",
-    subtitle: "Global SaaS Platform Operator",
-    headline: "Multi-Tenant University Governance & SaaS Management",
-    desc: "Manage onboarded universities, provision enterprise college instances, oversee global quiz package catalogs, and monitor platform-wide placement metrics.",
-    color: "#7C3AED",
-    bg: "rgba(124,58,237,0.12)",
-    icon: ShieldCheck,
-    path: "/super-admin",
-    badge: "Super Admin",
-    metrics: [
-      { label: "Institutions Managed", value: "Enterprise" },
-      { label: "Quiz Catalog", value: "100+ Packages" },
-      { label: "System SLA", value: "99.98% Uptime" },
-    ],
-    features: [
-      "University tenant provisioning, billing management, and domain whitelisting",
-      "Master quiz repository and custom cognitive test package composer",
-      "Platform-wide analytics, revenue reporting, and promo code minting",
-      "Enterprise security controls, role-based permissions, and audit trails",
-    ],
-  },
-];
+function getPlatformRoles(isOrange: boolean) {
+  return [
+    {
+      id: "student",
+      role: "Student",
+      subtitle: "Learner & Placement Candidate",
+      headline: "AI-Powered Career Intelligence & Cognitive Benchmarking",
+      desc: "Benchmark 4 cognitive tracks with adaptive AI, build an employer-ready 360° verified profile, discover recruiter-matched opportunities, and generate ATS-compliant resumes with 1 click.",
+      color: isOrange ? "#EA580C" : "#0D9488",
+      bg: isOrange ? "rgba(234,88,12,0.12)" : "rgba(13,148,136,0.12)",
+      icon: GraduationCap,
+      path: "/student",
+      badge: "Student Portal",
+      metrics: [
+        { label: "Adaptive Tracks", value: "4 Tracks" },
+        { label: "Placement Readiness", value: "94% Avg" },
+        { label: "ATS Resume Engine", value: "4 Formats" },
+      ],
+      features: [
+        "Spider Radar scoring across 6 cognitive & domain axes",
+        "Real-time campus & branch-wide leaderboard rankings",
+        "Automated skill validation with GitHub & project linking",
+        "Direct recruiter opportunity alerts with AI match percentage",
+      ],
+    },
+    {
+      id: "faculty",
+      role: "Faculty",
+      subtitle: "Mentor & Department Faculty",
+      headline: "Cohort Progress Tracking & Targeted Student Mentorship",
+      desc: "Monitor real-time student performance across technical domains, distribute institutional promo codes, diagnose batch skill gaps, and review cohort leaderboards.",
+      color: "#2563EB",
+      bg: "rgba(37,99,235,0.12)",
+      icon: Users,
+      path: "/college-faculty",
+      badge: "Faculty Portal",
+      metrics: [
+        { label: "Cohort Visibility", value: "100% Live" },
+        { label: "Promo Allocation", value: "Tiered Quotas" },
+        { label: "Skill Gap Analysis", value: "AI-Powered" },
+      ],
+      features: [
+        "Branch & Batch cohort grouping with granular student drill-downs",
+        "Real-time progress matrix across DSA, Aptitude, and Verbal skills",
+        "Faculty promo code quota allocation and redemption auditing",
+        "Class leaderboard analytics & automated remedial learning triggers",
+      ],
+    },
+    {
+      id: "admin",
+      role: "College Admin",
+      subtitle: "Campus Dean & Placement Cell",
+      headline: "Campus-Wide Placement Intelligence & NAAC Compliance",
+      desc: "Gain comprehensive oversight across all engineering branches, monitor 365-day student activity heatmaps, provision faculty licenses, and export compliance-ready placement analytics.",
+      color: isOrange ? "#F97316" : "#059669",
+      bg: isOrange ? "rgba(249,115,22,0.12)" : "rgba(5,150,105,0.12)",
+      icon: Building2,
+      path: "/college-admin",
+      badge: "Campus Admin",
+      metrics: [
+        { label: "Activity Heatmap", value: "365 Days" },
+        { label: "Branch Performance", value: "6 Dept Views" },
+        { label: "NAAC Ready Data", value: "Instant Export" },
+      ],
+      features: [
+        "365-Day Student Activity Heatmap with daily volume & streak tracking",
+        "Branch-wise platform score averages & learner tier distribution",
+        "Faculty tree management and campus promo wallet control",
+        "Real-time recruiter pipeline and placement readiness indices",
+      ],
+    },
+    {
+      id: "trainer",
+      role: "Optus Trainer",
+      subtitle: "Master Coach & Industry Expert",
+      headline: "Cross-Campus Curriculum Delivery & Live Masterclasses",
+      desc: "Deliver standardized CRT and advanced tech curriculum across multiple partner colleges, conduct proctored live assessments, and benchmark inter-college performance.",
+      color: "#D97706",
+      bg: "rgba(217,119,6,0.12)",
+      icon: Sparkles,
+      path: "/student",
+      badge: "Optus Master",
+      metrics: [
+        { label: "Campus Reach", value: "Multi-University" },
+        { label: "Proctored Tests", value: "AI Monitored" },
+        { label: "Live Quiz Engine", value: "Synchronized" },
+      ],
+      features: [
+        "Standardized multi-campus curriculum delivery and assessments",
+        "Automated difficulty calibration for inter-college competitive tests",
+        "Specialized bootcamps for FAANG, Big 4, and Tier-1 product roles",
+        "Cross-institutional benchmarking and percentile distributions",
+      ],
+    },
+    {
+      id: "super",
+      role: "Super Admin",
+      subtitle: "Global SaaS Platform Operator",
+      headline: "Multi-Tenant University Governance & SaaS Management",
+      desc: "Manage onboarded universities, provision enterprise college instances, oversee global quiz package catalogs, and monitor platform-wide placement metrics.",
+      color: "#7C3AED",
+      bg: "rgba(124,58,237,0.12)",
+      icon: ShieldCheck,
+      path: "/super-admin",
+      badge: "Super Admin",
+      metrics: [
+        { label: "Institutions Managed", value: "Enterprise" },
+        { label: "Quiz Catalog", value: "100+ Packages" },
+        { label: "System SLA", value: "99.98% Uptime" },
+      ],
+      features: [
+        "University tenant provisioning, billing management, and domain whitelisting",
+        "Master quiz repository and custom cognitive test package composer",
+        "Platform-wide analytics, revenue reporting, and promo code minting",
+        "Enterprise security controls, role-based permissions, and audit trails",
+      ],
+    },
+  ];
+}
 
-const TRAIL_ITEMS = [
-  // 1. NEURAL IQ
-  <div key="1" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(13, 148, 136, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(45, 212, 191, 0.5)", boxShadow: "0 10px 25px -5px rgba(13, 148, 136, 0.45)" }}>
-    <div className="flex items-center justify-between gap-1">
-      <span className="text-[9px] font-black uppercase tracking-wider text-teal-300" style={{ fontFamily: "var(--font-mono)" }}>NEURAL IQ</span>
-      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-    </div>
-    <div className="text-sm font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>9.8 <span className="text-[10px] font-normal text-teal-200">/ 10</span></div>
-    <div className="text-[9px] font-semibold text-teal-100/80 truncate">Top 0.1% Percentile</div>
-  </div>,
+function getTrailItems(isOrange: boolean) {
+  return [
+    // 1. NEURAL IQ
+    <div
+      key="1"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: isOrange
+          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(234, 88, 12, 0.35) 100%)"
+          : "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(13, 148, 136, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: isOrange ? "rgba(251, 146, 60, 0.5)" : "rgba(45, 212, 191, 0.5)",
+        boxShadow: isOrange
+          ? "0 10px 25px -5px rgba(234, 88, 12, 0.45)"
+          : "0 10px 25px -5px rgba(13, 148, 136, 0.45)",
+      }}
+    >
+      <div className="flex items-center justify-between gap-1">
+        <span
+          className={`text-[9px] font-black uppercase tracking-wider ${
+            isOrange ? "text-orange-300" : "text-teal-300"
+          }`}
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          NEURAL IQ
+        </span>
+        <span
+          className={`w-1.5 h-1.5 rounded-full animate-pulse ${
+            isOrange ? "bg-orange-400" : "bg-teal-400"
+          }`}
+        />
+      </div>
+      <div className="text-sm font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+        9.8 <span className={`text-[10px] font-normal ${isOrange ? "text-orange-200" : "text-teal-200"}`}>/ 10</span>
+      </div>
+      <div className={`text-[9px] font-semibold truncate ${isOrange ? "text-orange-100/80" : "text-teal-100/80"}`}>
+        Top 0.1% Percentile
+      </div>
+    </div>,
 
-  // 2. ALGO GOD
-  <div key="2" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(5, 150, 105, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(52, 211, 153, 0.5)", boxShadow: "0 10px 25px -5px rgba(5, 150, 105, 0.45)" }}>
-    <div className="flex items-center gap-1">
-      <span className="text-xs">⚡</span>
-      <span className="text-[9px] font-black uppercase tracking-wider text-emerald-300" style={{ fontFamily: "var(--font-mono)" }}>ALGO GOD</span>
-    </div>
-    <div className="text-xs font-black text-white mt-0.5">React 19 + DSA</div>
-    <div className="text-[9px] font-bold text-emerald-200/90">FAANG Tier · S</div>
-  </div>,
+    // 2. ALGO GOD
+    <div
+      key="2"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: isOrange
+          ? "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(249, 115, 22, 0.35) 100%)"
+          : "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(5, 150, 105, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: isOrange ? "rgba(253, 186, 116, 0.5)" : "rgba(52, 211, 153, 0.5)",
+        boxShadow: isOrange
+          ? "0 10px 25px -5px rgba(249, 115, 22, 0.45)"
+          : "0 10px 25px -5px rgba(5, 150, 105, 0.45)",
+      }}
+    >
+      <div className="flex items-center gap-1">
+        <span className="text-xs">⚡</span>
+        <span
+          className={`text-[9px] font-black uppercase tracking-wider ${
+            isOrange ? "text-orange-300" : "text-emerald-300"
+          }`}
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          ALGO GOD
+        </span>
+      </div>
+      <div className="text-xs font-black text-white mt-0.5">React 19 + DSA</div>
+      <div className={`text-[9px] font-bold ${isOrange ? "text-orange-200/90" : "text-emerald-200/90"}`}>
+        FAANG Tier · S
+      </div>
+    </div>,
 
-  // 3. RECRUITER RADAR
-  <div key="3" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(37, 99, 235, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(96, 165, 250, 0.5)", boxShadow: "0 10px 25px -5px rgba(37, 99, 235, 0.45)" }}>
-    <div className="flex items-center justify-between gap-1">
-      <span className="text-[9px] font-black uppercase tracking-wider text-blue-300" style={{ fontFamily: "var(--font-mono)" }}>HOT MATCH 🔥</span>
-    </div>
-    <div className="text-xs font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>₹32 LPA · SDE</div>
-    <div className="text-[9px] font-semibold text-blue-100/80 truncate">Direct Recruiter Hit</div>
-  </div>,
+    // 3. RECRUITER RADAR
+    <div
+      key="3"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(37, 99, 235, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: "rgba(96, 165, 250, 0.5)",
+        boxShadow: "0 10px 25px -5px rgba(37, 99, 235, 0.45)",
+      }}
+    >
+      <div className="flex items-center justify-between gap-1">
+        <span className="text-[9px] font-black uppercase tracking-wider text-blue-300" style={{ fontFamily: "var(--font-mono)" }}>
+          HOT MATCH 🔥
+        </span>
+      </div>
+      <div className="text-xs font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+        ₹32 LPA · SDE
+      </div>
+      <div className="text-[9px] font-semibold text-blue-100/80 truncate">Direct Recruiter Hit</div>
+    </div>,
 
-  // 4. APEX TIER
-  <div key="4" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(217, 119, 6, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(251, 191, 36, 0.5)", boxShadow: "0 10px 25px -5px rgba(217, 119, 6, 0.45)" }}>
-    <div className="flex items-center gap-1">
-      <span className="text-xs">🏆</span>
-      <span className="text-[9px] font-black uppercase tracking-wider text-amber-300" style={{ fontFamily: "var(--font-mono)" }}>APEX TIER</span>
-    </div>
-    <div className="text-xs font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>Rank #1 MVP</div>
-    <div className="text-[9px] font-semibold text-amber-100/80">GGITS '26</div>
-  </div>,
+    // 4. APEX TIER
+    <div
+      key="4"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(217, 119, 6, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: "rgba(251, 191, 36, 0.5)",
+        boxShadow: "0 10px 25px -5px rgba(217, 119, 6, 0.45)",
+      }}
+    >
+      <div className="flex items-center gap-1">
+        <span className="text-xs">🏆</span>
+        <span className="text-[9px] font-black uppercase tracking-wider text-amber-300" style={{ fontFamily: "var(--font-mono)" }}>
+          APEX TIER
+        </span>
+      </div>
+      <div className="text-xs font-black text-white mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+        Rank #1 MVP
+      </div>
+      <div className="text-[9px] font-semibold text-amber-100/80">GGITS '26</div>
+    </div>,
 
-  // 5. GODSPEED PLACEMENT
-  <div key="5" className="p-2.5 rounded-xl border shadow-xl transition-all select-none text-white" style={{ background: "linear-gradient(135deg, rgba(124, 58, 237, 0.85) 0%, rgba(79, 70, 229, 0.85) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(167, 139, 250, 0.6)", boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.5)" }}>
-    <div className="text-[9px] font-black uppercase tracking-wider text-purple-200" style={{ fontFamily: "var(--font-mono)" }}>PLACEMENT SPEED</div>
-    <div className="text-xs font-black mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>99% GODSPEED</div>
-    <div className="text-[9px] font-semibold text-purple-200/90">Instant Hire Ready</div>
-  </div>,
+    // 5. GODSPEED PLACEMENT
+    <div
+      key="5"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none text-white"
+      style={{
+        background: "linear-gradient(135deg, rgba(124, 58, 237, 0.85) 0%, rgba(79, 70, 229, 0.85) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: "rgba(167, 139, 250, 0.6)",
+        boxShadow: "0 10px 25px -5px rgba(124, 58, 237, 0.5)",
+      }}
+    >
+      <div className="text-[9px] font-black uppercase tracking-wider text-purple-200" style={{ fontFamily: "var(--font-mono)" }}>
+        PLACEMENT SPEED
+      </div>
+      <div className="text-xs font-black mt-0.5" style={{ fontFamily: "var(--font-mono)" }}>
+        99% GODSPEED
+      </div>
+      <div className="text-[9px] font-semibold text-purple-200/90">Instant Hire Ready</div>
+    </div>,
 
-  // 6. PROOF OF SKILL
-  <div key="6" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(236, 72, 153, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(244, 114, 182, 0.5)", boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.45)" }}>
-    <div className="flex items-center gap-1">
-      <span className="text-xs">🛡️</span>
-      <span className="text-[9px] font-black uppercase tracking-wider text-pink-300" style={{ fontFamily: "var(--font-mono)" }}>PROOF OF SKILL</span>
-    </div>
-    <div className="text-xs font-black text-white mt-0.5">360° Verified</div>
-    <div className="text-[9px] font-semibold text-pink-100/80">Zero Fluff · Legit</div>
-  </div>,
+    // 6. PROOF OF SKILL
+    <div
+      key="6"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(236, 72, 153, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: "rgba(244, 114, 182, 0.5)",
+        boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.45)",
+      }}
+    >
+      <div className="flex items-center gap-1">
+        <span className="text-xs">🛡️</span>
+        <span className="text-[9px] font-black uppercase tracking-wider text-pink-300" style={{ fontFamily: "var(--font-mono)" }}>
+          PROOF OF SKILL
+        </span>
+      </div>
+      <div className="text-xs font-black text-white mt-0.5">360° Verified</div>
+      <div className="text-[9px] font-semibold text-pink-100/80">Zero Fluff · Legit</div>
+    </div>,
 
-  // 7. HYBRID BEAST
-  <div key="7" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(234, 88, 12, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(251, 146, 60, 0.5)", boxShadow: "0 10px 25px -5px rgba(234, 88, 12, 0.45)" }}>
-    <div className="flex items-center gap-1">
-      <span className="text-xs">🔥</span>
-      <span className="text-[9px] font-black uppercase tracking-wider text-orange-300" style={{ fontFamily: "var(--font-mono)" }}>HYBRID BEAST</span>
-    </div>
-    <div className="text-xs font-black text-white mt-0.5">Tech + Product</div>
-    <div className="text-[9px] font-semibold text-orange-100/80">Full-Spectrum</div>
-  </div>,
+    // 7. HYBRID BEAST
+    <div
+      key="7"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(234, 88, 12, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: "rgba(251, 146, 60, 0.5)",
+        boxShadow: "0 10px 25px -5px rgba(234, 88, 12, 0.45)",
+      }}
+    >
+      <div className="flex items-center gap-1">
+        <span className="text-xs">🔥</span>
+        <span className="text-[9px] font-black uppercase tracking-wider text-orange-300" style={{ fontFamily: "var(--font-mono)" }}>
+          HYBRID BEAST
+        </span>
+      </div>
+      <div className="text-xs font-black text-white mt-0.5">Tech + Product</div>
+      <div className="text-[9px] font-semibold text-orange-100/80">Full-Spectrum</div>
+    </div>,
 
-  // 8. RADAR MATRIX
-  <div key="8" className="p-2.5 rounded-xl border shadow-xl transition-all select-none" style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(99, 102, 241, 0.35) 100%)", backdropFilter: "blur(24px)", borderColor: "rgba(129, 140, 248, 0.5)", boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.45)" }}>
-    <div className="flex items-center gap-1">
-      <span className="text-xs">📊</span>
-      <span className="text-[9px] font-black uppercase tracking-wider text-indigo-300" style={{ fontFamily: "var(--font-mono)" }}>RADAR MATRIX</span>
-    </div>
-    <div className="text-xs font-black text-white mt-0.5">6-Axis S-Tier</div>
-    <div className="text-[9px] font-semibold text-indigo-100/80">Code · EQ · Speed</div>
-  </div>,
-];
+    // 8. RADAR MATRIX
+    <div
+      key="8"
+      className="p-2.5 rounded-xl border shadow-xl transition-all select-none"
+      style={{
+        background: "linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(99, 102, 241, 0.35) 100%)",
+        backdropFilter: "blur(24px)",
+        borderColor: "rgba(129, 140, 248, 0.5)",
+        boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.45)",
+      }}
+    >
+      <div className="flex items-center gap-1">
+        <span className="text-xs">📊</span>
+        <span className="text-[9px] font-black uppercase tracking-wider text-indigo-300" style={{ fontFamily: "var(--font-mono)" }}>
+          RADAR MATRIX
+        </span>
+      </div>
+      <div className="text-xs font-black text-white mt-0.5">6-Axis S-Tier</div>
+      <div className="text-[9px] font-semibold text-indigo-100/80">Code · EQ · Speed</div>
+    </div>,
+  ];
+}
 
 function useCounter(target: number, duration = 2000) {
   const [count, setCount] = useState(0);
@@ -239,11 +366,14 @@ function useCounter(target: number, duration = 2000) {
 }
 
 export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }) {
+  const { isOrange } = useTheme();
   const q = useCounter(100000);
   const i = useCounter(50);
   const p = useCounter(94);
   const [selectedRoleIdx, setSelectedRoleIdx] = useState(0);
-  const activeRole = PLATFORM_ROLES[selectedRoleIdx];
+  const platformRoles = getPlatformRoles(isOrange);
+  const activeRole = platformRoles[selectedRoleIdx] || platformRoles[0];
+  const trailItems = getTrailItems(isOrange);
 
   return (
     <div className="min-h-screen relative" style={{ background: "var(--surface-bg)", color: "var(--text-primary)", fontFamily: "var(--font-sans)" }}>
@@ -260,7 +390,17 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
         style={{ background: "var(--surface-glass)", backdropFilter: "blur(20px) saturate(180%)", borderColor: "var(--border-subtle)" }}
       >
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white" style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 4px 14px rgba(13,148,136,0.35)" }}>
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-white"
+            style={{
+              background: isOrange
+                ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+              boxShadow: isOrange
+                ? "0 4px 14px rgba(234,88,12,0.35)"
+                : "0 4px 14px rgba(13,148,136,0.35)",
+            }}
+          >
             <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           </div>
           <span className="font-extrabold text-lg tracking-tight" style={{ color: "var(--text-primary)" }}>Optivators</span>
@@ -290,7 +430,14 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
           <Link
             to="/register"
             className="px-4 py-2 rounded-xl text-sm font-bold text-white transition-all hover:brightness-110 active:scale-95 shadow-md"
-            style={{ background: "linear-gradient(135deg, var(--accent-primary) 0%, rgba(13,148,136,0.85) 100%)" }}
+            style={{
+              background: isOrange
+                ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+              boxShadow: isOrange
+                ? "0 4px 14px rgba(234,88,12,0.35)"
+                : "0 4px 14px rgba(13,148,136,0.35)",
+            }}
           >
             Get Started
           </Link>
@@ -298,20 +445,44 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
       </nav>
 
       {/* Hero with Cursor Trail ONLY on Hero section */}
-      <CursorImageTrail items={TRAIL_ITEMS} itemSize={118} trailLength={7} spawnDistance={55}>
+      <CursorImageTrail items={trailItems} itemSize={118} trailLength={7} spawnDistance={55}>
         <section className="relative overflow-hidden py-24 px-8">
           {/* Background mesh */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #0D9488 0%, transparent 70%)", filter: "blur(64px)" }} />
+            <div
+              className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20"
+              style={{
+                background: isOrange
+                  ? "radial-gradient(circle, #EA580C 0%, transparent 70%)"
+                  : "radial-gradient(circle, #0D9488 0%, transparent 70%)",
+                filter: "blur(64px)",
+              }}
+            />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: "radial-gradient(circle, #2563EB 0%, transparent 70%)", filter: "blur(64px)" }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-5" style={{ background: "radial-gradient(circle, #0D9488 0%, transparent 70%)", filter: "blur(96px)" }} />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-5"
+              style={{
+                background: isOrange
+                  ? "radial-gradient(circle, #EA580C 0%, transparent 70%)"
+                  : "radial-gradient(circle, #0D9488 0%, transparent 70%)",
+                filter: "blur(96px)",
+              }}
+            />
           </div>
 
           <div className="relative max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left text */}
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6" style={{ background: "var(--accent-soft)", color: "var(--accent-primary)", border: "1px solid rgba(13,148,136,0.2)", fontFamily: "var(--font-mono)" }}>
+                <div
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
+                  style={{
+                    background: "var(--accent-soft)",
+                    color: "var(--accent-primary)",
+                    border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
+                    fontFamily: "var(--font-mono)",
+                  }}
+                >
                   <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
                   AI-Powered Career Intelligence · 2026
                 </div>
@@ -326,10 +497,21 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                   Optivators unifies cognitive benchmarking, 4-track assessment, 360° student profiles, Spider Radar scoring, and placement analytics — built for next-gen campus placement cells.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <Link to="/student" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white transition-all" style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 8px 24px rgba(13,148,136,0.35)" }}>
+                  <Link
+                    to="/student"
+                    className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    style={{
+                      background: isOrange
+                        ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                        : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                      boxShadow: isOrange
+                        ? "0 8px 24px rgba(234,88,12,0.35)"
+                        : "0 8px 24px rgba(13,148,136,0.35)",
+                    }}
+                  >
                     <GradCapIcon /> Student Portal
                   </Link>
-                  <Link to="/college-admin" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold border transition-all" style={{ borderColor: "var(--border-strong)", color: "var(--text-primary)" }}>
+                  <Link to="/college-admin" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold border transition-all hover:bg-black/5 dark:hover:bg-white/5" style={{ borderColor: "var(--border-strong)", color: "var(--text-primary)" }}>
                     <BuildingIcon /> College Admin
                   </Link>
                   <a href="#" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm transition-all" style={{ color: "var(--accent-primary)" }}>
@@ -368,15 +550,15 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                           <div className="text-4xl font-bold" style={{ fontFamily: "var(--font-mono)", color: "var(--text-primary)" }}>#14</div>
                         </div>
                       </div>
-                      <SpiderRadarMini />
+                      <SpiderRadarMini isOrange={isOrange} />
                     </div>
                     {/* Track pills */}
                     <div className="px-6 py-4 grid grid-cols-2 gap-2">
                       {[
-                        { label: "Tech Track", score: "9.1", color: "#2DD4BF" },
-                        { label: "Non-Tech", score: "7.8", color: "#FB923C" },
+                        { label: "Tech Track", score: "9.1", color: isOrange ? "#FB923C" : "#2DD4BF" },
+                        { label: "Non-Tech", score: "7.8", color: isOrange ? "#2563EB" : "#FB923C" },
                         { label: "Interview Prep", score: "8.0", color: "#38BDF8" },
-                        { label: "CRT", score: "8.9", color: "#34D399" },
+                        { label: "CRT", score: "8.9", color: isOrange ? "#F97316" : "#34D399" },
                       ].map(({ label, score, color }) => (
                         <div key={label} className="flex items-center justify-between px-3 py-2 rounded-xl dark:border dark:border-white/10" style={{ background: "var(--surface-bg)" }}>
                           <span className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>{label}</span>
@@ -395,12 +577,31 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                     <div className="text-2xl font-bold" style={{ fontFamily: "var(--font-mono)", color: "var(--success)" }}>94%</div>
                   </div>
 
+                  {/* Skills Validated Card */}
                   <div
-                    className="float-anim absolute -bottom-4 -left-6 px-4 py-3 rounded-2xl dark:border dark:border-teal-400/40"
-                    style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 8px 24px rgba(13,148,136,0.4)" }}
+                    className={`float-anim absolute -bottom-4 -left-6 px-4 py-3 rounded-2xl ${
+                      isOrange ? "dark:border dark:border-orange-400/40" : "dark:border dark:border-teal-400/40"
+                    }`}
+                    style={{
+                      background: isOrange
+                        ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                        : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                      boxShadow: isOrange
+                        ? "0 8px 24px rgba(234,88,12,0.4)"
+                        : "0 8px 24px rgba(13,148,136,0.4)",
+                    }}
                   >
-                    <div className="text-xs font-bold text-teal-100 uppercase tracking-widest mb-1" style={{ fontFamily: "var(--font-mono)" }}>Skills Validated</div>
-                    <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-mono)" }}>12 / 18</div>
+                    <div
+                      className={`text-xs font-bold uppercase tracking-widest mb-1 ${
+                        isOrange ? "text-orange-100" : "text-teal-100"
+                      }`}
+                      style={{ fontFamily: "var(--font-mono)" }}
+                    >
+                      Skills Validated
+                    </div>
+                    <div className="text-2xl font-bold text-white" style={{ fontFamily: "var(--font-mono)" }}>
+                      12 / 18
+                    </div>
                   </div>
                 </div>
               </div>
@@ -418,7 +619,12 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             { ref: p.ref, count: p.count, suffix: "%", label: "Placement Readiness", sublabel: "Average across partner campuses" },
           ].map(({ count, suffix, label, sublabel }, idx) => (
             <div key={idx} className="text-center">
-              <div className="text-5xl font-extrabold mb-2 dark:drop-shadow-[0_2px_15px_rgba(45,212,191,0.3)]" style={{ fontFamily: "var(--font-mono)", color: "var(--accent-primary)" }}>
+              <div
+                className={`text-5xl font-extrabold mb-2 ${
+                  isOrange ? "dark:drop-shadow-[0_2px_15px_rgba(251,146,60,0.35)]" : "dark:drop-shadow-[0_2px_15px_rgba(45,212,191,0.3)]"
+                }`}
+                style={{ fontFamily: "var(--font-mono)", color: "var(--accent-primary)" }}
+              >
                 {count.toLocaleString()}{suffix}
               </div>
               <div className="font-bold mb-1" style={{ color: "var(--text-primary)" }}>{label}</div>
@@ -449,7 +655,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 tag: "Cognitive Engine",
                 title: "4-Track Assessment System",
                 description: "Tech, Non-Tech, Interview Prep, and CRT tracks powered by adaptive AI. Spider Radar scoring across 6 cognitive axes with automated percentile ranking.",
-                accent: "#2DD4BF",
+                accent: isOrange ? "#FB923C" : "#2DD4BF",
                 items: ["Adaptive difficulty engine", "6-axis Spider Radar", "Proctored assessments", "Real-time scoring API"],
               },
               {
@@ -465,7 +671,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 tag: "Campus Intelligence",
                 title: "Multi-Tenant Analytics",
                 description: "Branch-wise performance dashboards, cohort tracking, promo code wallet management, and faculty tree hierarchy — all in one admin panel.",
-                accent: "#34D399",
+                accent: isOrange ? "#F97316" : "#34D399",
                 items: ["Branch-wise breakdown", "Cohort benchmarking", "Faculty org tree", "Promo code wallet"],
               },
             ].map(({ icon, tag, title, description, accent, items }) => (
@@ -514,7 +720,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
               style={{
                 background: "var(--accent-soft)",
                 color: "var(--accent-primary)",
-                border: "1px solid rgba(13,148,136,0.2)",
+                border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
                 fontFamily: "var(--font-mono)",
               }}
             >
@@ -593,7 +799,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 
                     {/* Features list */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                      {activeRole.features.map((feature, idx) => (
+                      {activeRole.features.map((feature: string, idx: number) => (
                         <div key={idx} className="flex items-start gap-2 text-xs" style={{ color: "var(--text-primary)" }}>
                           <CheckCircle2
                             size={15}
@@ -630,7 +836,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                   {/* Right metrics & visual preview column (5 cols) */}
                   <div className="lg:col-span-5 space-y-4">
                     <div className="grid grid-cols-1 gap-3">
-                      {activeRole.metrics.map(({ label, value }) => (
+                      {activeRole.metrics.map(({ label, value }: { label: string; value: string }) => (
                         <div
                           key={label}
                           className="p-4 rounded-2xl border flex items-center justify-between transition-all dark:border-white/15 dark:shadow-md"
@@ -691,7 +897,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 direction="bottom"
                 className="bg-white/90 dark:bg-[#0E1524]/90 border border-slate-200/90 dark:border-white/15 shadow-2xl backdrop-blur-2xl px-5 py-2.5 rounded-[32px]"
               >
-                {PLATFORM_ROLES.map((role, idx) => {
+                {platformRoles.map((role, idx) => {
                   const RoleIcon = role.icon;
                   const isSelected = selectedRoleIdx === idx;
                   return (
@@ -738,7 +944,15 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
       <section id="pricing" className="py-24 px-8 relative" style={{ background: "var(--surface-bg)" }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4" style={{ background: "var(--accent-soft)", color: "var(--accent-primary)", border: "1px solid rgba(13,148,136,0.2)", fontFamily: "var(--font-mono)" }}>
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4"
+              style={{
+                background: "var(--accent-soft)",
+                color: "var(--accent-primary)",
+                border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
+                fontFamily: "var(--font-mono)",
+              }}
+            >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
               TRANSPARENT CAMPUS PRICING
             </div>
@@ -757,13 +971,20 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             {/* Card 1: Student Career Pro */}
             <BlobCard
               headerHeight={200}
-              cardClassName="bg-[#0F1520] border-teal-500/30 shadow-2xl shadow-teal-500/10"
-              lightColors={["#0D9488", "#2DD4BF", "#06B6D4", "#0f766e"]}
-              darkColors={["#0f766e", "#042f2e", "#134e4a", "#115e59"]}
-              glowColors={["#0D9488", "#2DD4BF", "#06B6D4", "#14B8A6", "#0D9488"]}
+              cardClassName={isOrange ? "bg-[#0F1520] border-orange-500/30 shadow-2xl shadow-orange-500/10" : "bg-[#0F1520] border-teal-500/30 shadow-2xl shadow-teal-500/10"}
+              lightColors={isOrange ? ["#EA580C", "#FB923C", "#F97316", "#C2410C"] : ["#0D9488", "#2DD4BF", "#06B6D4", "#0f766e"]}
+              darkColors={isOrange ? ["#7c2d12", "#451a03", "#78350f", "#9a3412"] : ["#0f766e", "#042f2e", "#134e4a", "#115e59"]}
+              glowColors={isOrange ? ["#EA580C", "#FB923C", "#F97316", "#FED7AA", "#EA580C"] : ["#0D9488", "#2DD4BF", "#06B6D4", "#14B8A6", "#0D9488"]}
               header={
                 <div>
-                  <div className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3 text-teal-300 bg-teal-500/15 border border-teal-500/30" style={{ fontFamily: "var(--font-mono)" }}>
+                  <div
+                    className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3 ${
+                      isOrange
+                        ? "text-orange-300 bg-orange-500/15 border border-orange-500/30"
+                        : "text-teal-300 bg-teal-500/15 border border-teal-500/30"
+                    }`}
+                    style={{ fontFamily: "var(--font-mono)" }}
+                  >
                     INDIVIDUAL STUDENT
                   </div>
                   <h3 className="text-2xl font-extrabold text-white">Career Starter</h3>
@@ -781,7 +1002,14 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                   </p>
 
                   <div className="space-y-3 pt-4 mt-4 border-t border-white/10">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-teal-400" style={{ fontFamily: "var(--font-mono)" }}>INCLUDED FEATURES:</div>
+                    <div
+                      className={`text-[11px] font-bold uppercase tracking-wider ${
+                        isOrange ? "text-orange-400" : "text-teal-400"
+                      }`}
+                      style={{ fontFamily: "var(--font-mono)" }}
+                    >
+                      INCLUDED FEATURES:
+                    </div>
                     {[
                       "4-Track Cognitive Testing Engine",
                       "360° Verified Profile & Spider Radar",
@@ -790,7 +1018,13 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                       "Direct Recruiter Opportunity Alerts",
                     ].map((f) => (
                       <div key={f} className="flex items-center gap-2.5 text-xs font-medium text-slate-200">
-                        <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-teal-300 bg-teal-500/25 font-bold shrink-0">✓</span>
+                        <span
+                          className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${
+                            isOrange ? "text-orange-300 bg-orange-500/25" : "text-teal-300 bg-teal-500/25"
+                          }`}
+                        >
+                          ✓
+                        </span>
                         <span>{f}</span>
                       </div>
                     ))}
@@ -799,7 +1033,11 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 
                 <Link
                   to="/register"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-teal-300 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 shadow-lg shadow-teal-500/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
+                  className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold shadow-lg transition-all hover:scale-[1.01] active:scale-[0.99] ${
+                    isOrange
+                      ? "text-orange-300 bg-orange-500/20 hover:bg-orange-500/30 border border-orange-500/40 shadow-orange-500/20"
+                      : "text-teal-300 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 shadow-teal-500/20"
+                  }`}
                 >
                   Start Free Today
                 </Link>
@@ -923,7 +1161,14 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
       {/* CTA Section */}
       <section className="py-24 px-8 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(13,148,136,0.12) 0%, transparent 70%)" }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: isOrange
+                ? "radial-gradient(ellipse at 50% 50%, rgba(234,88,12,0.14) 0%, transparent 70%)"
+                : "radial-gradient(ellipse at 50% 50%, rgba(13,148,136,0.12) 0%, transparent 70%)",
+            }}
+          />
         </div>
         <div className="relative max-w-3xl mx-auto text-center">
           <h2 className="text-5xl font-extrabold mb-6" style={{ letterSpacing: "-0.02em" }}>
@@ -934,10 +1179,21 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             Join 50+ partner institutes deploying Optivators for AI-powered placement readiness.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/register" className="px-8 py-4 rounded-2xl font-bold text-white text-lg transition-all" style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 12px 32px rgba(13,148,136,0.4)" }}>
+            <Link
+              to="/register"
+              className="px-8 py-4 rounded-2xl font-bold text-white text-lg transition-all hover:scale-[1.02] active:scale-[0.98]"
+              style={{
+                background: isOrange
+                  ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                  : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                boxShadow: isOrange
+                  ? "0 12px 32px rgba(234,88,12,0.4)"
+                  : "0 12px 32px rgba(13,148,136,0.4)",
+              }}
+            >
               Start Free — Register as Student
             </Link>
-            <a href="#" className="px-8 py-4 rounded-2xl font-bold text-lg border transition-all" style={{ borderColor: "var(--border-strong)", color: "var(--text-primary)" }}>
+            <a href="#" className="px-8 py-4 rounded-2xl font-bold text-lg border transition-all hover:bg-black/5 dark:hover:bg-white/5" style={{ borderColor: "var(--border-strong)", color: "var(--text-primary)" }}>
               Request College Demo
             </a>
           </div>
@@ -950,7 +1206,16 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
             <div className="col-span-2">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-xs font-bold" style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)" }}>O</div>
+                <div
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-xs font-bold"
+                  style={{
+                    background: isOrange
+                      ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                      : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                  }}
+                >
+                  O
+                </div>
                 <span className="font-extrabold" style={{ color: "var(--text-primary)" }}>Optivators</span>
               </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-muted)" }}>Next-gen AI career readiness, cognitive testing & campus placement platform for modern institutions.</p>
@@ -980,7 +1245,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
   );
 }
 
-function SpiderRadarMini() {
+function SpiderRadarMini({ isOrange }: { isOrange?: boolean }) {
   const [spreadProgress, setSpreadProgress] = useState(0);
   const containerRef = useRef<SVGSVGElement | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -1036,12 +1301,15 @@ function SpiderRadarMini() {
   });
   const polyPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ") + " Z";
 
+  const primaryColor = isOrange ? "#FB923C" : "#2DD4BF";
+  const darkAccent = isOrange ? "#EA580C" : "#0D9488";
+
   return (
     <svg ref={containerRef} viewBox="0 0 200 160" className="w-full select-none overflow-visible" style={{ maxHeight: 160 }}>
       <defs>
         <radialGradient id="miniRadarGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#0D9488" stopOpacity="0.08" />
+          <stop offset="0%" stopColor={primaryColor} stopOpacity="0.4" />
+          <stop offset="100%" stopColor={darkAccent} stopOpacity="0.08" />
         </radialGradient>
       </defs>
       {[0.25, 0.5, 0.75, 1].map(scale => {
@@ -1058,9 +1326,9 @@ function SpiderRadarMini() {
         const lineProg = Math.min(1, spreadProgress * 1.2);
         return <line key={i} x1={cx} y1={cy} x2={cx + (p.x - cx) * lineProg} y2={cy + (p.y - cy) * lineProg} stroke="var(--border-subtle)" strokeWidth="0.75" />;
       })}
-      <path d={polyPath} fill="url(#miniRadarGrad)" stroke="#0D9488" strokeWidth="2" strokeLinejoin="round" />
+      <path d={polyPath} fill="url(#miniRadarGrad)" stroke={darkAccent} strokeWidth="2" strokeLinejoin="round" />
       {points.map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r={3 * spreadProgress} fill="#0D9488" stroke="#FFFFFF" strokeWidth={0.75} />
+        <circle key={i} cx={p.x} cy={p.y} r={3 * spreadProgress} fill={darkAccent} stroke="#FFFFFF" strokeWidth={0.75} />
       ))}
     </svg>
   );

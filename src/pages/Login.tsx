@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { isOrange } = useTheme();
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,13 +25,31 @@ export default function Login() {
       >
         {/* Mesh bg */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full opacity-30" style={{ background: "radial-gradient(circle, #0D9488 0%, transparent 70%)", filter: "blur(60px)" }} />
+          <div
+            className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full opacity-30"
+            style={{
+              background: isOrange
+                ? "radial-gradient(circle, #EA580C 0%, transparent 70%)"
+                : "radial-gradient(circle, #0D9488 0%, transparent 70%)",
+              filter: "blur(60px)",
+            }}
+          />
           <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-20" style={{ background: "radial-gradient(circle, #2563EB 0%, transparent 70%)", filter: "blur(50px)" }} />
         </div>
 
         {/* Logo */}
         <div className="relative flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold" style={{ background: "linear-gradient(135deg, #0D9488, #0f766e)", boxShadow: "0 4px 20px rgba(13,148,136,0.5)" }}>
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold"
+            style={{
+              background: isOrange
+                ? "linear-gradient(135deg, #EA580C, #C2410C)"
+                : "linear-gradient(135deg, #0D9488, #0f766e)",
+              boxShadow: isOrange
+                ? "0 4px 20px rgba(234,88,12,0.5)"
+                : "0 4px 20px rgba(13,148,136,0.5)",
+            }}
+          >
             <svg width={20} height={20} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           </div>
           <span className="text-xl font-bold text-white">Optivators</span>
@@ -39,7 +59,13 @@ export default function Login() {
         <div className="relative">
           <h2 className="text-5xl font-extrabold text-white mb-4 leading-tight" style={{ letterSpacing: "-0.02em" }}>
             Benchmark your{" "}
-            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", color: "#2DD4BF" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontStyle: "italic",
+                color: isOrange ? "#FB923C" : "#2DD4BF",
+              }}
+            >
               cognitive edge.
             </span>
           </h2>
@@ -50,9 +76,9 @@ export default function Login() {
           {/* Floating stat cards */}
           <div className="grid grid-cols-2 gap-4">
             {[
-              { label: "Questions Attempted", value: "100K+", color: "#2DD4BF" },
+              { label: "Questions Attempted", value: "100K+", color: isOrange ? "#FB923C" : "#2DD4BF" },
               { label: "Partner Institutes", value: "50+", color: "#60A5FA" },
-              { label: "Avg Placement Rate", value: "94%", color: "#34D399" },
+              { label: "Avg Placement Rate", value: "94%", color: isOrange ? "#F97316" : "#34D399" },
               { label: "Skills Validated", value: "280K+", color: "#FB923C" },
             ].map(({ label, value, color }) => (
               <div
@@ -169,10 +195,17 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full py-3.5 rounded-xl font-bold text-white transition-all"
-              style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 8px 24px rgba(13,148,136,0.35)" }}
-              onMouseEnter={e => (e.currentTarget.style.boxShadow = "0 12px 32px rgba(13,148,136,0.5)")}
-              onMouseLeave={e => (e.currentTarget.style.boxShadow = "0 8px 24px rgba(13,148,136,0.35)")}
+              className="w-full py-3.5 rounded-xl font-bold text-white transition-all hover:scale-[1.01] active:scale-[0.99]"
+              style={{
+                background: isOrange
+                  ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                  : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                boxShadow: isOrange
+                  ? "0 8px 24px rgba(234,88,12,0.35)"
+                  : "0 8px 24px rgba(13,148,136,0.35)",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.boxShadow = isOrange ? "0 12px 32px rgba(234,88,12,0.5)" : "0 12px 32px rgba(13,148,136,0.5)")}
+              onMouseLeave={e => (e.currentTarget.style.boxShadow = isOrange ? "0 8px 24px rgba(234,88,12,0.35)" : "0 8px 24px rgba(13,148,136,0.35)")}
             >
               Sign In to Portal
             </button>
