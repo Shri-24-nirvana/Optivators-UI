@@ -155,9 +155,8 @@ export function CursorImageTrail({
       }}
       className={cn("relative", className)}
     >
-      {children}
-
-      <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+      {/* Floating Trail Cards placed behind text and interactive elements */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
         <AnimatePresence>
           {trail.map((item, i) => {
             const age = total - 1 - i;
@@ -173,7 +172,7 @@ export function CursorImageTrail({
                   width: itemSize,
                   x: "-50%",
                   y: "-50%",
-                  zIndex: 100 + i,
+                  zIndex: 0,
                 }}
                 initial={{
                   opacity: 0,
@@ -209,6 +208,11 @@ export function CursorImageTrail({
             );
           })}
         </AnimatePresence>
+      </div>
+
+      {/* Hero section / Children rendered above trail cards */}
+      <div className="relative z-10 w-full">
+        {children}
       </div>
     </div>
   );

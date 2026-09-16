@@ -657,7 +657,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
       <CursorImageTrail items={trailItems} itemSize={118} trailLength={7} spawnDistance={55}>
         <section className="relative overflow-hidden py-24 px-8">
           {/* Background mesh */}
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none -z-10">
             <div
               className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-20"
               style={{
