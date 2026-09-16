@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 
 export interface AnimatedLinearProgressProps {
   label: string;
@@ -26,9 +27,15 @@ export function AnimatedLinearProgress({
   duration = 1400,
   animateOnScroll = true,
 }: AnimatedLinearProgressProps) {
+  const { isOrange, isDark } = useTheme();
   const [currentValue, setCurrentValue] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+
+  let resolvedColor = color;
+  if (isOrange && (color === "#2DD4BF" || color === "#0D9488" || color === "var(--accent-primary)")) {
+    resolvedColor = isDark ? "#FB923C" : "#EA580C";
+  }
 
   useEffect(() => {
     if (!animateOnScroll) {
@@ -104,8 +111,8 @@ export function AnimatedLinearProgress({
           className="h-full rounded-full transition-all ease-out relative"
           style={{
             width: `${currentValue}%`,
-            background: color,
-            boxShadow: `0 0 12px ${color}50`,
+            background: resolvedColor,
+            boxShadow: `0 0 12px ${resolvedColor}50`,
           }}
         >
           {/* Subtle glossy sheen highlight */}
@@ -121,7 +128,7 @@ export function AnimatedLinearProgress({
             <div
               className="absolute right-0 top-0 bottom-0 w-2 rounded-full bg-white opacity-80"
               style={{
-                boxShadow: `0 0 8px #FFFFFF, 0 0 14px ${color}`,
+                boxShadow: `0 0 8px #FFFFFF, 0 0 14px ${resolvedColor}`,
               }}
             />
           )}
@@ -133,8 +140,8 @@ export function AnimatedLinearProgress({
         className="w-11 text-xs font-bold text-right tabular-nums transition-transform duration-200 group-hover:scale-110"
         style={{
           fontFamily: "var(--font-mono)",
-          color,
-          textShadow: currentValue >= value ? `0 0 10px ${color}60` : "none",
+          color: resolvedColor,
+          textShadow: currentValue >= value ? `0 0 10px ${resolvedColor}60` : "none",
         }}
       >
         {currentValue}%

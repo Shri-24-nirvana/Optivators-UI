@@ -87,55 +87,180 @@ html.dark.theme-orange,
 
 /* Orange Theme Glasscard Rim Lighting */
 .theme-orange .glass-card::before {
-  background: linear-gradient(90deg, transparent 0%, rgba(251, 146, 60, 0.5) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(251, 146, 60, 0.6) 50%, transparent 100%) !important;
 }
 
 .theme-orange .glass-input:focus {
-  border-color: #EA580C;
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  border-color: #EA580C !important;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
 }
 
 .dark.theme-orange .glass-input:focus,
 .theme-orange .dark .glass-input:focus {
-  border-color: #FB923C;
-  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  border-color: #FB923C !important;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Orange Theme Utility Overrides for Tailwind Teal/Green classes */
+/* Orange Theme Background Overrides */
+.theme-orange .bg-teal-50,
+.theme-orange .bg-teal-100,
+.theme-orange .bg-emerald-50,
+.theme-orange .bg-emerald-100 {
+  background-color: #FFF7ED !important;
+}
+
 .theme-orange .bg-teal-500,
-.theme-orange .bg-teal-600 {
+.theme-orange .bg-teal-600,
+.theme-orange .bg-emerald-500,
+.theme-orange .bg-emerald-600 {
   background-color: #EA580C !important;
 }
+
+.theme-orange .bg-teal-400,
+.theme-orange .bg-emerald-400 {
+  background-color: #F97316 !important;
+}
+
 .theme-orange .bg-teal-500\/10,
 .theme-orange .bg-teal-500\/15,
-.theme-orange .bg-teal-500\/20 {
+.theme-orange .bg-teal-500\/20,
+.theme-orange .bg-emerald-500\/10,
+.theme-orange .bg-emerald-500\/15,
+.theme-orange .bg-emerald-500\/20 {
   background-color: rgba(234, 88, 12, 0.14) !important;
 }
+
+.dark.theme-orange .bg-teal-500\/10,
+.dark.theme-orange .bg-teal-500\/15,
+.dark.theme-orange .bg-teal-500\/20,
+.dark.theme-orange .bg-emerald-500\/10,
+.dark.theme-orange .bg-emerald-500\/15,
+.dark.theme-orange .bg-emerald-500\/20 {
+  background-color: rgba(251, 146, 60, 0.18) !important;
+}
+
+/* Orange Theme Text Overrides */
+.theme-orange .text-teal-400,
 .theme-orange .text-teal-500,
-.theme-orange .text-teal-400 {
+.theme-orange .text-emerald-400,
+.theme-orange .text-emerald-500 {
   color: #FB923C !important;
 }
+
 .theme-orange:not(.dark) .text-teal-600,
-.theme-orange:not(.dark) .text-teal-700 {
+.theme-orange:not(.dark) .text-teal-700,
+.theme-orange:not(.dark) .text-teal-800,
+.theme-orange:not(.dark) .text-emerald-600,
+.theme-orange:not(.dark) .text-emerald-700 {
   color: #EA580C !important;
 }
-.theme-orange .border-teal-500,
+
+.dark.theme-orange .text-teal-300,
+.dark.theme-orange .text-teal-200,
+.dark.theme-orange .text-emerald-300 {
+  color: #FED7AA !important;
+}
+
+/* Orange Theme Border & Outline Overrides */
+.theme-orange .border-teal-200,
+.theme-orange .border-teal-300,
+.theme-orange .border-emerald-200,
+.theme-orange .border-emerald-300 {
+  border-color: #FED7AA !important;
+}
+
 .theme-orange .border-teal-400,
+.theme-orange .border-teal-500,
+.theme-orange .border-teal-600,
+.theme-orange .border-emerald-400,
+.theme-orange .border-emerald-500 {
+  border-color: #F97316 !important;
+}
+
+.theme-orange .border-teal-500\/20,
 .theme-orange .border-teal-500\/30,
-.theme-orange .border-teal-500\/40 {
+.theme-orange .border-teal-500\/40,
+.theme-orange .border-emerald-500\/20,
+.theme-orange .border-emerald-500\/30 {
   border-color: rgba(251, 146, 60, 0.4) !important;
 }
+
 .theme-orange .ring-teal-400,
 .theme-orange .ring-teal-500,
-.theme-orange .ring-teal-400\/40 {
+.theme-orange .ring-teal-400\/40,
+.theme-orange .ring-emerald-400,
+.theme-orange .ring-emerald-500 {
   --tw-ring-color: rgba(251, 146, 60, 0.45) !important;
 }
-.theme-orange .focus\:border-teal-500:focus {
+
+.theme-orange .focus\:border-teal-500:focus,
+.theme-orange .focus\:border-emerald-500:focus {
   border-color: #EA580C !important;
 }
+
 .theme-orange .focus\:ring-teal-500\/20:focus,
 .theme-orange .focus\:ring-teal-500\/30:focus {
   --tw-ring-color: rgba(234, 88, 12, 0.25) !important;
+}
+
+/* Orange Theme Gradients */
+.theme-orange .from-teal-400,
+.theme-orange .from-teal-500,
+.theme-orange .from-emerald-400,
+.theme-orange .from-emerald-500 {
+  --tw-gradient-from: #FB923C var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(251, 146, 60, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.theme-orange .to-teal-600,
+.theme-orange .to-teal-700,
+.theme-orange .to-emerald-600,
+.theme-orange .to-emerald-700 {
+  --tw-gradient-to: #EA580C var(--tw-gradient-to-position) !important;
+}
+
+/* Orange Theme SVGs, Radar & Heatmap Gradients */
+.theme-orange svg stop[stop-color="#2DD4BF"],
+.theme-orange svg stop[stop-color="#0D9488"],
+.theme-orange svg stop[stop-color="#0F766E"],
+.theme-orange svg stop[stop-color="#14B8A6"] {
+  stop-color: #FB923C !important;
+}
+
+.theme-orange svg [stroke="#2DD4BF"],
+.theme-orange svg [stroke="#0D9488"],
+.theme-orange svg [stroke="#0F766E"],
+.theme-orange svg [stroke="rgba(45, 212, 191, 0.25)"] {
+  stroke: #FB923C !important;
+}
+
+.theme-orange svg [fill="#2DD4BF"],
+.theme-orange svg [fill="#0D9488"],
+.theme-orange svg [fill="#0F766E"] {
+  fill: #FB923C !important;
+}
+
+/* Orange Theme Glows & Backdrop Aura */
+.theme-orange .teal-glow {
+  box-shadow: 0 0 40px rgba(234, 88, 12, 0.3), 0 0 80px rgba(234, 88, 12, 0.1) !important;
+}
+
+.dark.theme-orange .teal-glow,
+.theme-orange .dark .teal-glow {
+  box-shadow: 0 0 40px rgba(251, 146, 60, 0.4), 0 0 80px rgba(251, 146, 60, 0.2) !important;
+}
+
+.theme-orange [style*="radial-gradient(circle, #0D9488"],
+.theme-orange [style*="radial-gradient(circle, #2DD4BF"] {
+  background: radial-gradient(circle, #EA580C 0%, transparent 70%) !important;
+}
+
+.dark.theme-orange [style*="radial-gradient(circle, #0D9488"],
+.dark.theme-orange [style*="radial-gradient(circle, #2DD4BF"],
+.theme-orange .dark [style*="radial-gradient(circle, #0D9488"],
+.theme-orange .dark [style*="radial-gradient(circle, #2DD4BF"] {
+  background: radial-gradient(circle, #FB923C 0%, transparent 70%) !important;
 }
 
 html, body, #root {

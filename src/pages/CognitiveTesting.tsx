@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
-const SCORECARDS = [
+const BASE_SCORECARDS = [
   { label: "Domain Quizzes", score: "8.4", max: 10, completed: 72, color: "#0D9488", icon: <CodeIcon /> },
   { label: "Non-Tech Skills", score: "7.8", max: 10, completed: 58, color: "#EA580C", icon: <BriefIcon /> },
   { label: "Interview Prep", score: "8.0", max: 10, completed: 65, color: "#2563EB", icon: <MicIcon /> },
@@ -44,8 +45,18 @@ const PACKAGES = [
 ];
 
 export default function CognitiveTesting() {
+  const { isOrange } = useTheme();
   const [activeFilter, setActiveFilter] = useState("All Branches");
   const [expandedPkg, setExpandedPkg] = useState<string | null>(PACKAGES[0].name);
+
+  const primaryAccent = isOrange ? "#EA580C" : "#0D9488";
+
+  const scorecards = [
+    { label: "Domain Quizzes", score: "8.4", max: 10, completed: 72, color: primaryAccent, icon: <CodeIcon /> },
+    { label: "Non-Tech Skills", score: "7.8", max: 10, completed: 58, color: "#EA580C", icon: <BriefIcon /> },
+    { label: "Interview Prep", score: "8.0", max: 10, completed: 65, color: "#2563EB", icon: <MicIcon /> },
+    { label: "CRT / Aptitude", score: "8.9", max: 10, completed: 80, color: "#059669", icon: <CalcIcon /> },
+  ];
 
   return (
     <div className="space-y-8">
@@ -53,7 +64,7 @@ export default function CognitiveTesting() {
       <div className="flex items-center gap-4">
         <div
           className="flex items-center gap-3 px-5 py-3 rounded-2xl"
-          style={{ background: "rgba(13,148,136,0.12)", border: "1px solid rgba(13,148,136,0.25)" }}
+          style={{ background: "var(--accent-soft)", border: "1px solid var(--border-strong)" }}
         >
           <span style={{ color: "var(--accent-primary)" }}>
             <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -67,7 +78,7 @@ export default function CognitiveTesting() {
 
       {/* Scorecards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        {SCORECARDS.map(({ label, score, max, completed, color, icon }) => (
+        {scorecards.map(({ label, score, max, completed, color, icon }) => (
           <div
             key={label}
             className="rounded-2xl p-5 transition-all duration-200"

@@ -1,8 +1,9 @@
 import * as React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 
-export type GithubGraphVariant = "github" | "graphite" | "ocean" | "violet" | "teal";
+export type GithubGraphVariant = "github" | "graphite" | "ocean" | "violet" | "teal" | "orange";
 export type GithubGraphAnimation = "none" | "wave" | "scan" | "cascade";
 export type GithubGraphAmbientEffect = "none" | "tide" | "drift" | "twinkle";
 
@@ -59,6 +60,7 @@ const CONTRIBUTIONS_ENDPOINT = "https://github-contributions-api.jogruber.de/v4"
 
 const VARIANTS: Record<GithubGraphVariant, [string, string, string, string, string]> = {
   teal: ["var(--border-subtle)", "#99f6e4", "#2dd4bf", "#0d9488", "#0f766e"],
+  orange: ["var(--border-subtle)", "#fed7aa", "#fb923c", "#f97316", "#c2410c"],
   github: ["var(--border-subtle)", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
   graphite: ["var(--border-subtle)", "#cccccc", "#969696", "#5f5f5f", "#171717"],
   ocean: ["var(--border-subtle)", "#b4e2ff", "#62bdf5", "#2585d8", "#124e93"],
@@ -251,7 +253,9 @@ export function GithubGraph({
     dayIndex: number;
   } | null>(null);
 
-  const colors = VARIANTS[variant] || VARIANTS.teal;
+  const { isOrange } = useTheme();
+  const effectiveVariant = (variant === "teal" && isOrange) ? "orange" : variant;
+  const colors = VARIANTS[effectiveVariant] || (isOrange ? VARIANTS.orange : VARIANTS.teal);
   const resolvedCellRadius = Math.max(0, Math.min(cellRadius, Math.max(0, cellSize) / 2));
   const autoFitColumns = Math.max(
     1,

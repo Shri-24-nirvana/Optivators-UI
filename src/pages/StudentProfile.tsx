@@ -1,9 +1,8 @@
-"use client";
-
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatedCircularProgressBar } from "@/registry/magicui/animated-circular-progress-bar";
 import { AnimatedLinearProgress } from "@/components/ui/AnimatedLinearProgress";
 import { StudentProfileLinks } from "@/components/ui/StudentProfileLinks";
+import { useTheme } from "@/context/ThemeContext";
 import {
   RotateCcw,
   Sparkles,
@@ -72,6 +71,7 @@ const RADAR_AXES = [
 ];
 
 function RadarChart() {
+  const { isOrange } = useTheme();
   const [spreadProgress, setSpreadProgress] = useState(0);
   const [activeHover, setActiveHover] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -192,9 +192,9 @@ function RadarChart() {
       <svg viewBox="0 0 320 300" className="w-full overflow-visible" style={{ maxHeight: 280 }}>
         <defs>
           <radialGradient id="spiderWebGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#2DD4BF" stopOpacity="0.45" />
-            <stop offset="60%" stopColor="#0D9488" stopOpacity="0.25" />
-            <stop offset="100%" stopColor="#0F766E" stopOpacity="0.08" />
+            <stop offset="0%" stopColor={isOrange ? "#FB923C" : "#2DD4BF"} stopOpacity="0.45" />
+            <stop offset="60%" stopColor={isOrange ? "#EA580C" : "#0D9488"} stopOpacity="0.25" />
+            <stop offset="100%" stopColor={isOrange ? "#C2410C" : "#0F766E"} stopOpacity="0.08" />
           </radialGradient>
           <filter id="spiderGlow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -211,11 +211,11 @@ function RadarChart() {
             <polygon
               key={s}
               points={ringPoints}
-              fill={ringIdx === 3 ? "rgba(13,148,136,0.04)" : "none"}
-              stroke="rgba(45, 212, 191, 0.25)"
+              fill={ringIdx === 3 ? (isOrange ? "rgba(234,88,12,0.05)" : "rgba(13,148,136,0.04)") : "none"}
+              stroke={isOrange ? "rgba(251, 146, 60, 0.3)" : "rgba(45, 212, 191, 0.25)"}
               strokeWidth={s === 1 ? 1.2 : 0.75}
               strokeDasharray={s === 1 ? "none" : "3,3"}
-              className="dark:stroke-teal-500/30 transition-all duration-100"
+              className="transition-all duration-100"
             />
           );
         })}
@@ -232,9 +232,9 @@ function RadarChart() {
                 y1={cy}
                 x2={endX}
                 y2={endY}
-                stroke={isHovered ? "#2DD4BF" : "rgba(45, 212, 191, 0.25)"}
+                stroke={isHovered ? (isOrange ? "#FB923C" : "#2DD4BF") : (isOrange ? "rgba(251, 146, 60, 0.3)" : "rgba(45, 212, 191, 0.25)")}
                 strokeWidth={isHovered ? 1.75 : 0.85}
-                className="dark:stroke-teal-500/30 transition-colors duration-150"
+                className="transition-colors duration-150"
               />
             </g>
           );
@@ -243,7 +243,7 @@ function RadarChart() {
         <path
           d={polyPath}
           fill="url(#spiderWebGradient)"
-          stroke="#2DD4BF"
+          stroke={isOrange ? "#FB923C" : "#2DD4BF"}
           strokeWidth="2.5"
           strokeLinejoin="round"
           filter="url(#spiderGlow)"
@@ -263,7 +263,7 @@ function RadarChart() {
                 cx={p.x}
                 cy={p.y}
                 r={isHovered ? 8 : 5.5 * spreadProgress}
-                fill="#2DD4BF"
+                fill={isOrange ? "#FB923C" : "#2DD4BF"}
                 fillOpacity={isHovered ? 0.45 : 0.25}
                 className={spreadProgress >= 1 ? "animate-ping" : ""}
                 style={{ animationDuration: "3.5s" }}
@@ -272,7 +272,7 @@ function RadarChart() {
                 cx={p.x}
                 cy={p.y}
                 r={isHovered ? 5.5 : 4 * spreadProgress}
-                fill="#0D9488"
+                fill={isOrange ? "#EA580C" : "#0D9488"}
                 stroke="#FFFFFF"
                 strokeWidth={1.5}
                 className="transition-all duration-150"
@@ -319,7 +319,7 @@ function RadarChart() {
                   dominantBaseline="middle"
                   style={{
                     fontSize: 9.5,
-                    fill: "#2DD4BF",
+                    fill: isOrange ? "#FB923C" : "#2DD4BF",
                     fontFamily: "var(--font-mono)",
                     fontWeight: 700,
                     opacity: Math.min(1, (spreadProgress - 0.35) * 2),
@@ -336,14 +336,16 @@ function RadarChart() {
   );
 }
 
-function CircleProgress({ value, size = 68, color = "#0D9488", label }: { value: number; size?: number; color?: string; label: string }) {
+function CircleProgress({ value, size = 68, color, label }: { value: number; size?: number; color?: string; label: string }) {
+  const { isOrange } = useTheme();
+  const resolvedColor = color || (isOrange ? "#EA580C" : "#0D9488");
   return (
     <div className="flex flex-col items-center gap-2 group transition-transform duration-200 hover:scale-105">
       <AnimatedCircularProgressBar
         value={value}
         size={size}
         strokeWidth={6}
-        gaugePrimaryColor={color}
+        gaugePrimaryColor={resolvedColor}
         gaugeSecondaryColor="var(--border-subtle)"
       />
       <span

@@ -152,7 +152,7 @@ export default function StudentDashboard() {
           <Link
             to="/student/cognitive"
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white transition-all shadow-lg hover:scale-[1.01] active:scale-[0.99]"
-            style={{ background: "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)", boxShadow: "0 6px 20px rgba(13,148,136,0.35)" }}
+            style={{ background: "linear-gradient(135deg, var(--accent-primary) 0%, rgba(13,148,136,0.85) 100%)", boxShadow: "0 6px 20px var(--accent-soft)" }}
           >
             <SparklesIcon /> Start Assessment
           </Link>
@@ -181,8 +181,8 @@ export default function StudentDashboard() {
 
           <Link
             to="/student/opportunities"
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold mt-2 transition-all hover:scale-[1.01] active:scale-[0.99] dark:border-teal-500/40"
-            style={{ background: "var(--accent-soft)", color: "var(--accent-primary)", border: "1px solid rgba(13,148,136,0.25)" }}
+            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold mt-2 transition-all hover:scale-[1.01] active:scale-[0.99]"
+            style={{ background: "var(--accent-soft)", color: "var(--accent-primary)", border: "1px solid var(--border-strong)" }}
           >
             Browse All Opportunities <ArrowRightIcon />
           </Link>
