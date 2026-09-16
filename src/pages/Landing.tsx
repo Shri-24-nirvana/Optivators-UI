@@ -1285,14 +1285,14 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 dark
                   ? isOrange
                     ? "bg-[#0F1520] border-orange-500/40 shadow-orange-500/20 ring-1 ring-orange-500/30 text-white"
-                    : "bg-[#0F1520] border-purple-500/40 shadow-purple-500/20 ring-1 ring-purple-500/30 text-white"
+                    : "bg-[#0F1520] border-teal-500/40 shadow-teal-500/20 ring-1 ring-teal-500/30 text-white"
                   : isOrange
                     ? "bg-white border-2 border-slate-900 ring-2 ring-orange-900/20 shadow-2xl text-slate-900"
-                    : "bg-white border-2 border-slate-900 ring-2 ring-purple-900/20 shadow-2xl shadow-purple-950/10 text-slate-900"
+                    : "bg-white border-2 border-slate-900 ring-2 ring-teal-900/20 shadow-2xl shadow-teal-950/10 text-slate-900"
               }
-              lightColors={isOrange ? ["#FED7AA", "#FDBA74", "#FFEDD5", "#FDE68A"] : ["#DDD6FE", "#F5D0FE", "#C4B5FD", "#FBCFE8"]}
-              darkColors={isOrange ? ["#7c2d12", "#451a03", "#78350f", "#9a3412"] : ["#4c0519", "#831843", "#4c1d95", "#312e81"]}
-              glowColors={isOrange ? ["#EA580C", "#FB923C", "#F59E0B", "#FED7AA", "#EA580C"] : ["#EC4899", "#8B5CF6", "#F43F5E", "#A855F7", "#EC4899"]}
+              lightColors={isOrange ? ["#FED7AA", "#FDBA74", "#FFEDD5", "#FDE68A"] : ["#99F6E4", "#A7F3D0", "#5EEAD4", "#CCFBF1"]}
+              darkColors={isOrange ? ["#7c2d12", "#451a03", "#78350f", "#9a3412"] : ["#0f766e", "#042f2e", "#134e4a", "#115e59"]}
+              glowColors={isOrange ? ["#EA580C", "#FB923C", "#F59E0B", "#FED7AA", "#EA580C"] : ["#0D9488", "#2DD4BF", "#10B981", "#34D399", "#0D9488"]}
               header={
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -1301,10 +1301,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                         dark
                           ? isOrange
                             ? "text-orange-300 bg-orange-500/15 border border-orange-500/30"
-                            : "text-purple-300 bg-purple-500/15 border border-purple-500/30"
+                            : "text-teal-300 bg-teal-500/15 border border-teal-500/30"
                           : isOrange
                             ? "text-orange-950 bg-orange-200/80 border border-slate-900"
-                            : "text-purple-950 bg-purple-200/80 border border-slate-900"
+                            : "text-teal-950 bg-teal-200/80 border border-slate-900"
                       }`}
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
@@ -1315,7 +1315,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                         dark
                           ? isOrange
                             ? "bg-gradient-to-r from-orange-500 to-amber-500"
-                            : "bg-gradient-to-r from-pink-500 to-purple-600"
+                            : "bg-gradient-to-r from-teal-500 to-emerald-600"
                           : "bg-slate-900 border border-slate-900"
                       }`}
                     >
@@ -1342,10 +1342,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                         dark
                           ? isOrange
                             ? "text-orange-400"
-                            : "text-purple-400"
+                            : "text-teal-400"
                           : isOrange
                             ? "text-orange-950"
-                            : "text-purple-950"
+                            : "text-teal-950"
                       }`}
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
@@ -1365,10 +1365,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                             dark
                               ? isOrange
                                 ? "text-orange-300 bg-orange-500/25 border-transparent"
-                                : "text-purple-300 bg-purple-500/25 border-transparent"
+                                : "text-teal-300 bg-teal-500/25 border-transparent"
                               : isOrange
                                 ? "text-orange-950 bg-orange-200 border border-slate-900"
-                                : "text-purple-950 bg-purple-200 border border-slate-900"
+                                : "text-teal-950 bg-teal-200 border border-slate-900"
                           }`}
                         >
                           ✓
@@ -1385,10 +1385,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                     dark
                       ? isOrange
                         ? "bg-gradient-to-r from-orange-500 to-amber-500 shadow-orange-500/25 hover:opacity-95"
-                        : "bg-gradient-to-r from-purple-600 to-pink-500 shadow-purple-500/25 hover:opacity-95"
+                        : "bg-gradient-to-r from-teal-600 to-emerald-600 shadow-teal-500/25 hover:opacity-95"
                       : isOrange
                         ? "bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 shadow-orange-900/20"
-                        : "bg-purple-700 hover:bg-purple-800 border-2 border-slate-900 shadow-purple-900/20"
+                        : "bg-teal-600 hover:bg-teal-700 border-2 border-slate-900 shadow-teal-900/20"
                   }`}
                 >
                   Deploy Campus Plan
@@ -1404,12 +1404,12 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 dark
                   ? isOrange
                     ? "bg-[#0F1520] border-orange-500/30 shadow-orange-500/10 text-white"
-                    : "bg-[#0F1520] border-amber-500/30 shadow-amber-500/10 text-white"
+                    : "bg-[#0F1520] border-teal-500/30 shadow-teal-500/10 text-white"
                   : "bg-white border-2 border-slate-900 shadow-xl text-slate-900"
               }
-              lightColors={isOrange ? ["#FED7AA", "#FDBA74", "#FFEDD5", "#FDE68A"] : ["#FDE68A", "#FED7AA", "#FEF08A", "#FCD34D"]}
-              darkColors={isOrange ? ["#7c2d12", "#451a03", "#78350f", "#9a3412"] : ["#78350f", "#451a03", "#7c2d12", "#7f1d1d"]}
-              glowColors={isOrange ? ["#EA580C", "#FB923C", "#F59E0B", "#FED7AA", "#EA580C"] : ["#F59E0B", "#F97316", "#EAB308", "#FB923C", "#F59E0B"]}
+              lightColors={isOrange ? ["#FED7AA", "#FDBA74", "#FFEDD5", "#FDE68A"] : ["#A7F3D0", "#99F6E4", "#6EE7B7", "#CCFBF1"]}
+              darkColors={isOrange ? ["#7c2d12", "#451a03", "#78350f", "#9a3412"] : ["#064e3b", "#0f766e", "#042f2e", "#065f46"]}
+              glowColors={isOrange ? ["#EA580C", "#FB923C", "#F59E0B", "#FED7AA", "#EA580C"] : ["#059669", "#10B981", "#2DD4BF", "#34D399", "#059669"]}
               header={
                 <div>
                   <div
@@ -1417,10 +1417,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                       dark
                         ? isOrange
                           ? "text-orange-300 bg-orange-500/15 border border-orange-500/30"
-                          : "text-amber-300 bg-amber-500/15 border border-amber-500/30"
+                          : "text-teal-300 bg-teal-500/15 border border-teal-500/30"
                         : isOrange
                           ? "text-orange-950 bg-orange-200/80 border border-slate-900"
-                          : "text-amber-950 bg-amber-200/80 border border-slate-900"
+                          : "text-teal-950 bg-teal-200/80 border border-slate-900"
                     }`}
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
@@ -1446,10 +1446,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                         dark
                           ? isOrange
                             ? "text-orange-400"
-                            : "text-amber-400"
+                            : "text-teal-400"
                           : isOrange
                             ? "text-orange-950"
-                            : "text-amber-950"
+                            : "text-teal-950"
                       }`}
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
@@ -1469,10 +1469,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                             dark
                               ? isOrange
                                 ? "text-orange-300 bg-orange-500/25 border-transparent"
-                                : "text-amber-400 bg-amber-500/25 border-transparent"
+                                : "text-teal-300 bg-teal-500/25 border-transparent"
                               : isOrange
                                 ? "text-orange-950 bg-orange-200 border border-slate-900"
-                                : "text-amber-950 bg-amber-200 border border-slate-900"
+                                : "text-teal-950 bg-teal-200 border border-slate-900"
                           }`}
                         >
                           ✓
@@ -1489,10 +1489,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                     dark
                       ? isOrange
                         ? "text-orange-300 bg-orange-500/20 hover:bg-orange-500/30 border border-orange-500/40 shadow-orange-500/20"
-                        : "text-amber-300 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 shadow-amber-500/20"
+                        : "text-teal-300 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 shadow-teal-500/20"
                       : isOrange
                         ? "text-slate-950 bg-orange-200 hover:bg-orange-300 border-2 border-slate-900"
-                        : "text-slate-950 bg-amber-200 hover:bg-amber-300 border-2 border-slate-900"
+                        : "text-slate-950 bg-teal-200 hover:bg-teal-300 border-2 border-slate-900"
                   }`}
                 >
                   Contact Enterprise Team
