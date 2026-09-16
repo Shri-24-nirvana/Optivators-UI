@@ -973,10 +973,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
               headerHeight={200}
               cardClassName={
                 isOrange
-                  ? "bg-white border-2 border-slate-900 shadow-2xl text-slate-900 dark:bg-[#0F1520] dark:border-orange-500/30 dark:shadow-orange-500/10 dark:text-white"
-                  : "bg-white border-2 border-slate-900 shadow-2xl text-slate-900 dark:bg-[#0F1520] dark:border-teal-500/30 dark:shadow-teal-500/10 dark:text-white"
+                  ? "bg-orange-50/80 border-2 border-slate-900 shadow-xl shadow-orange-950/5 text-slate-900 dark:bg-[#0F1520] dark:border-orange-500/30 dark:shadow-orange-500/10 dark:text-white"
+                  : "bg-teal-50/80 border-2 border-slate-900 shadow-xl shadow-teal-950/5 text-slate-900 dark:bg-[#0F1520] dark:border-teal-500/30 dark:shadow-teal-500/10 dark:text-white"
               }
-              lightColors={isOrange ? ["#EA580C", "#FB923C", "#F97316", "#C2410C"] : ["#0D9488", "#2DD4BF", "#06B6D4", "#0f766e"]}
+              lightColors={isOrange ? ["#FDBA74", "#FED7AA", "#FB923C", "#FFEDD5"] : ["#99F6E4", "#A7F3D0", "#5EEAD4", "#CCFBF1"]}
               darkColors={isOrange ? ["#7c2d12", "#451a03", "#78350f", "#9a3412"] : ["#0f766e", "#042f2e", "#134e4a", "#115e59"]}
               glowColors={isOrange ? ["#EA580C", "#FB923C", "#F97316", "#FED7AA", "#EA580C"] : ["#0D9488", "#2DD4BF", "#06B6D4", "#14B8A6", "#0D9488"]}
               header={
@@ -984,8 +984,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                   <div
                     className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3 ${
                       isOrange
-                        ? "text-orange-900 bg-orange-100 border border-slate-800 dark:text-orange-300 dark:bg-orange-500/15 dark:border-orange-500/30"
-                        : "text-teal-900 bg-teal-100 border border-slate-800 dark:text-teal-300 dark:bg-teal-500/15 dark:border-teal-500/30"
+                        ? "text-orange-950 bg-orange-200/80 border border-slate-900 dark:text-orange-300 dark:bg-orange-500/15 dark:border-orange-500/30"
+                        : "text-teal-950 bg-teal-200/80 border border-slate-900 dark:text-teal-300 dark:bg-teal-500/15 dark:border-teal-500/30"
                     }`}
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
@@ -994,21 +994,21 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                   <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">Career Starter</h3>
                   <div className="flex items-baseline gap-1 mt-2">
                     <span className="text-4xl font-black text-slate-900 dark:text-white" style={{ fontFamily: "var(--font-mono)" }}>₹0</span>
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">/ forever free</span>
+                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">/ forever free</span>
                   </div>
                 </div>
               }
             >
               <div className="space-y-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                  <p className="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
                     Everything an ambitious student needs to benchmark cognitive IQ, build an ATS resume, and get recruiter discovered.
                   </p>
 
-                  <div className="space-y-3 pt-4 mt-4 border-t border-slate-200 dark:border-white/10">
+                  <div className="space-y-3 pt-4 mt-4 border-t border-slate-900/15 dark:border-white/10">
                     <div
                       className={`text-[11px] font-bold uppercase tracking-wider ${
-                        isOrange ? "text-orange-800 dark:text-orange-400" : "text-teal-800 dark:text-teal-400"
+                        isOrange ? "text-orange-950 dark:text-orange-400" : "text-teal-950 dark:text-teal-400"
                       }`}
                       style={{ fontFamily: "var(--font-mono)" }}
                     >
@@ -1021,12 +1021,12 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                       "Campus Peer Leaderboard Access",
                       "Direct Recruiter Opportunity Alerts",
                     ].map((f) => (
-                      <div key={f} className="flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-200">
+                      <div key={f} className="flex items-center gap-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200">
                         <span
                           className={`w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${
                             isOrange
-                              ? "text-orange-900 bg-orange-100 border border-slate-700 dark:border-transparent dark:text-orange-300 dark:bg-orange-500/25"
-                              : "text-teal-900 bg-teal-100 border border-slate-700 dark:border-transparent dark:text-teal-300 dark:bg-teal-500/25"
+                              ? "text-orange-950 bg-orange-200 border border-slate-900 dark:border-transparent dark:text-orange-300 dark:bg-orange-500/25"
+                              : "text-teal-950 bg-teal-200 border border-slate-900 dark:border-transparent dark:text-teal-300 dark:bg-teal-500/25"
                           }`}
                         >
                           ✓
@@ -1041,8 +1041,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                   to="/register"
                   className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold shadow-lg transition-all hover:scale-[1.01] active:scale-[0.99] ${
                     isOrange
-                      ? "text-slate-900 bg-orange-100 hover:bg-orange-200 border-2 border-slate-900 dark:text-orange-300 dark:bg-orange-500/20 dark:hover:bg-orange-500/30 dark:border-orange-500/40 dark:shadow-orange-500/20"
-                      : "text-slate-900 bg-teal-100 hover:bg-teal-200 border-2 border-slate-900 dark:text-teal-300 dark:bg-teal-500/20 dark:hover:bg-teal-500/30 dark:border-teal-500/40 dark:shadow-teal-500/20"
+                      ? "text-slate-950 bg-orange-200 hover:bg-orange-300 border-2 border-slate-900 dark:text-orange-300 dark:bg-orange-500/20 dark:hover:bg-orange-500/30 dark:border-orange-500/40 dark:shadow-orange-500/20"
+                      : "text-slate-950 bg-teal-200 hover:bg-teal-300 border-2 border-slate-900 dark:text-teal-300 dark:bg-teal-500/20 dark:hover:bg-teal-500/30 dark:border-teal-500/40 dark:shadow-teal-500/20"
                   }`}
                 >
                   Start Free Today
@@ -1053,36 +1053,36 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             {/* Card 2: Campus Institutional Pro (Featured) */}
             <BlobCard
               headerHeight={215}
-              cardClassName="bg-white border-2 border-slate-900 shadow-2xl text-slate-900 dark:bg-[#0F1520] dark:border-purple-500/40 dark:shadow-purple-500/20 dark:ring-1 dark:ring-purple-500/30 dark:text-white"
-              lightColors={["#8B5CF6", "#EC4899", "#A855F7", "#6366F1"]}
+              cardClassName="bg-purple-50/80 border-2 border-slate-900 ring-2 ring-purple-900/20 shadow-2xl shadow-purple-950/10 text-slate-900 dark:bg-[#0F1520] dark:border-purple-500/40 dark:shadow-purple-500/20 dark:ring-1 dark:ring-purple-500/30 dark:text-white"
+              lightColors={["#DDD6FE", "#F5D0FE", "#C4B5FD", "#FBCFE8"]}
               darkColors={["#4c0519", "#831843", "#4c1d95", "#312e81"]}
               glowColors={["#EC4899", "#8B5CF6", "#F43F5E", "#A855F7", "#EC4899"]}
               header={
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-purple-900 bg-purple-100 border border-slate-800 dark:text-purple-300 dark:bg-purple-500/15 dark:border-purple-500/30" style={{ fontFamily: "var(--font-mono)" }}>
+                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-purple-950 bg-purple-200/80 border border-slate-900 dark:text-purple-300 dark:bg-purple-500/15 dark:border-purple-500/30" style={{ fontFamily: "var(--font-mono)" }}>
                       CAMPUS EDITION
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-white bg-gradient-to-r from-pink-500 to-purple-600 shadow-md">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-white bg-slate-900 dark:bg-gradient-to-r dark:from-pink-500 dark:to-purple-600 border border-slate-900 shadow-md">
                       POPULAR
                     </span>
                   </div>
                   <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">Institutional Pro</h3>
                   <div className="flex items-baseline gap-1 mt-2">
                     <span className="text-4xl font-black text-slate-900 dark:text-white" style={{ fontFamily: "var(--font-mono)" }}>₹499</span>
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">/ student / year</span>
+                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">/ student / year</span>
                   </div>
                 </div>
               }
             >
               <div className="space-y-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                  <p className="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
                     Turnkey placement suite for engineering & degree colleges scaling career readiness and NAAC/NIRF metrics.
                   </p>
 
-                  <div className="space-y-3 pt-4 mt-4 border-t border-slate-200 dark:border-white/10">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-purple-800 dark:text-purple-400" style={{ fontFamily: "var(--font-mono)" }}>EVERYTHING IN STARTER PLUS:</div>
+                  <div className="space-y-3 pt-4 mt-4 border-t border-slate-900/15 dark:border-white/10">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-purple-950 dark:text-purple-400" style={{ fontFamily: "var(--font-mono)" }}>EVERYTHING IN STARTER PLUS:</div>
                     {[
                       "College Admin Dashboard & Branch KPIs",
                       "Hierarchical Faculty & Cohort Tree",
@@ -1091,8 +1091,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                       "Bulk Student CSV Onboarding & Sync",
                       "Dedicated Placement Cell Specialist",
                     ].map((f) => (
-                      <div key={f} className="flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-200">
-                        <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-purple-900 bg-purple-100 border border-slate-700 dark:border-transparent dark:text-purple-300 dark:bg-purple-500/25 font-bold shrink-0">✓</span>
+                      <div key={f} className="flex items-center gap-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                        <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-purple-950 bg-purple-200 border border-slate-900 dark:border-transparent dark:text-purple-300 dark:bg-purple-500/25 font-bold shrink-0">✓</span>
                         <span>{f}</span>
                       </div>
                     ))}
@@ -1101,7 +1101,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 
                 <Link
                   to="/register"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-white shadow-lg shadow-purple-500/25 bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-95 transition-all hover:scale-[1.01] active:scale-[0.99] border-2 border-slate-900 dark:border-transparent"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-white shadow-lg shadow-purple-900/20 bg-purple-700 hover:bg-purple-800 dark:bg-gradient-to-r dark:from-purple-600 dark:to-pink-500 dark:hover:opacity-95 transition-all hover:scale-[1.01] active:scale-[0.99] border-2 border-slate-900 dark:border-transparent"
                 >
                   Deploy Campus Plan
                 </Link>
@@ -1111,31 +1111,31 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             {/* Card 3: Enterprise University Group */}
             <BlobCard
               headerHeight={200}
-              cardClassName="bg-white border-2 border-slate-900 shadow-2xl text-slate-900 dark:bg-[#0F1520] dark:border-amber-500/30 dark:shadow-amber-500/10 dark:text-white"
-              lightColors={["#F59E0B", "#F97316", "#EAB308", "#EF4444"]}
+              cardClassName="bg-amber-50/80 border-2 border-slate-900 shadow-xl shadow-amber-950/5 text-slate-900 dark:bg-[#0F1520] dark:border-amber-500/30 dark:shadow-amber-500/10 dark:text-white"
+              lightColors={["#FDE68A", "#FED7AA", "#FEF08A", "#FCD34D"]}
               darkColors={["#78350f", "#451a03", "#7c2d12", "#7f1d1d"]}
               glowColors={["#F59E0B", "#F97316", "#EAB308", "#FB923C", "#F59E0B"]}
               header={
                 <div>
-                  <div className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3 text-amber-900 bg-amber-100 border border-slate-800 dark:text-amber-300 dark:bg-amber-500/15 dark:border-amber-500/30" style={{ fontFamily: "var(--font-mono)" }}>
+                  <div className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider mb-3 text-amber-950 bg-amber-200/80 border border-slate-900 dark:text-amber-300 dark:bg-amber-500/15 dark:border-amber-500/30" style={{ fontFamily: "var(--font-mono)" }}>
                     GLOBAL SAAS & NETWORKS
                   </div>
                   <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">Enterprise Network</h3>
                   <div className="flex items-baseline gap-1 mt-2">
                     <span className="text-4xl font-black text-slate-900 dark:text-white" style={{ fontFamily: "var(--font-mono)" }}>Custom</span>
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">/ multi-campus</span>
+                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">/ multi-campus</span>
                   </div>
                 </div>
               }
             >
               <div className="space-y-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                  <p className="text-xs leading-relaxed text-slate-700 dark:text-slate-300">
                     Tailored infrastructure for university consortiums, state education boards, and global SaaS edtech partners.
                   </p>
 
-                  <div className="space-y-3 pt-4 mt-4 border-t border-slate-200 dark:border-white/10">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400" style={{ fontFamily: "var(--font-mono)" }}>ENTERPRISE POWERS:</div>
+                  <div className="space-y-3 pt-4 mt-4 border-t border-slate-900/15 dark:border-white/10">
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-amber-950 dark:text-amber-400" style={{ fontFamily: "var(--font-mono)" }}>ENTERPRISE POWERS:</div>
                     {[
                       "Multi-Tenant College Architecture",
                       "Custom Master Question Bank & Packages",
@@ -1144,8 +1144,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                       "Dedicated Optus Master Trainers & Coaching",
                       "24/7 Priority SLA & Solutions Architect",
                     ].map((f) => (
-                      <div key={f} className="flex items-center gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-200">
-                        <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-amber-900 bg-amber-100 border border-slate-700 dark:border-transparent dark:text-amber-400 dark:bg-amber-500/25 font-bold shrink-0">✓</span>
+                      <div key={f} className="flex items-center gap-2.5 text-xs font-semibold text-slate-800 dark:text-slate-200">
+                        <span className="w-4 h-4 rounded-full flex items-center justify-center text-[10px] text-amber-950 bg-amber-200 border border-slate-900 dark:border-transparent dark:text-amber-400 dark:bg-amber-500/25 font-bold shrink-0">✓</span>
                         <span>{f}</span>
                       </div>
                     ))}
@@ -1154,7 +1154,7 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 
                 <a
                   href="#contact"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-slate-900 bg-amber-100 hover:bg-amber-200 border-2 border-slate-900 dark:text-amber-300 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 dark:border-amber-500/40 dark:shadow-amber-500/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-bold text-slate-950 bg-amber-200 hover:bg-amber-300 border-2 border-slate-900 dark:text-amber-300 dark:bg-amber-500/20 dark:hover:bg-amber-500/30 dark:border-amber-500/40 dark:shadow-amber-500/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
                 >
                   Contact Enterprise Team
                 </a>

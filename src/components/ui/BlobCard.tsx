@@ -41,21 +41,21 @@ export function BlobCard({
         />
       </div>
 
-      {/* Main card body - Pure white with bold dark borders in Light Mode, Dark Obsidian in Dark Mode */}
+      {/* Main card body - Light background color with dark highlighted border in Light Mode, Dark Obsidian in Dark Mode */}
       <div
         className={cn(
           "relative z-10 rounded-[20px] overflow-hidden transition-all duration-300 flex flex-col h-full",
-          "bg-white dark:bg-[#0F1520] backdrop-blur-2xl text-slate-900 dark:text-white",
+          "text-slate-900 dark:text-white",
           "border-2 border-slate-900 dark:border dark:border-white/10",
           "shadow-xl dark:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)_inset]",
           cardClassName
         )}
       >
         <div
-          className="relative overflow-hidden rounded-t-[20px] shrink-0 bg-white dark:bg-transparent"
+          className="relative overflow-hidden rounded-t-[20px] shrink-0"
           style={{ height: headerHeight }}
         >
-          <div className="hidden dark:block absolute inset-0">
+          <div className="absolute inset-0 opacity-40 dark:opacity-100 pointer-events-none">
             <FluidBlobs
               lightColors={lightColors}
               darkColors={darkColors}
@@ -69,13 +69,13 @@ export function BlobCard({
               blur={45}
             />
             <div
-              className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-[#0F1520]/40 to-[#0F1520]"
+              className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-black/[0.02] to-black/[0.06] dark:via-[#0F1520]/40 dark:to-[#0F1520]"
             />
           </div>
           {header && <div className="relative z-10 p-7 pb-0">{header}</div>}
         </div>
 
-        {children && <div className="p-7 pt-3 flex-1 flex flex-col bg-white dark:bg-transparent">{children}</div>}
+        {children && <div className="p-7 pt-3 flex-1 flex flex-col relative z-10">{children}</div>}
       </div>
     </div>
   );
