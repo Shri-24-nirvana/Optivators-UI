@@ -1,15 +1,45 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import {
+  lightVibrantColors,
+  darkVibrantColors,
+  getPaletteColors,
+} from "./styles";
 
-export type Theme = "light" | "dark" | "system";
+export type ThemeMode = "light" | "dark" | "system";
+export type Theme = ThemeMode; // Alias for backward compatibility
 export type ColorTheme = "green" | "orange";
 
-interface ThemeContextType {
-  theme: Theme;
+export interface ThemeColors {
+  background: string;
+  surface: string;
+  surfaceSecondary: string;
+  text: string;
+  textSecondary: string;
+  textTertiary: string;
+  primary: string;
+  primaryHover: string;
+  primaryLight: string;
+  secondary: string;
+  success: string;
+  warning: string;
+  error: string;
+  info: string;
+  hover: string;
+  focus: string;
+  border: string;
+  borderLight: string;
+  shadow: string;
+  overlay: string;
+}
+
+export interface ThemeContextType {
+  theme: ThemeMode;
   resolvedTheme: "light" | "dark";
   colorTheme: ColorTheme;
   isDark: boolean;
   isOrange: boolean;
-  setTheme: (theme: Theme) => void;
+  colors: ThemeColors;
+  setTheme: (theme: ThemeMode) => void;
   setColorTheme: (colorTheme: ColorTheme) => void;
   toggleTheme: () => void;
   toggleColorTheme: () => void;
@@ -17,10 +47,10 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    const saved = localStorage.getItem("theme") as Theme | null;
-    return saved ?? "light";
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [theme, setThemeState] = useState<ThemeMode>(() => {
+    const saved = localStorage.getItem("theme");
+    return (saved as ThemeMode) || "light";
   });
 
   const [colorTheme, setColorThemeState] = useState<ColorTheme>(() => {
@@ -28,65 +58,84 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return saved ?? "green";
   });
 
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() => {
+  const [isDark, setIsDark] = useState<boolean>(() => {
     if (theme === "system") {
-      return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
-    return theme === "dark" ? "dark" : "light";
+    return theme === "dark";
   });
 
   useEffect(() => {
-    const root = document.documentElement;
-    let actualTheme: "light" | "dark" = "light";
+    const updateTheme = () => {
+      const shouldBeDark =
+        theme === "system"
+          ? typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches
+          : theme === "dark";
 
-    if (theme === "system") {
-      actualTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    } else {
-      actualTheme = theme;
+      setIsDark(shouldBeDark);
+
+      const root = document.documentElement;
+
+      // Update .dark class
+      if (shouldBeDark) {
+        root.classList.add("dark");
+        root.style.colorScheme = "dark";
+      } else {
+        root.classList.remove("dark");
+        root.style.colorScheme = "light";
+      }
+
+      // Update .theme-orange class
+      if (colorTheme === "orange") {
+        root.classList.add("theme-orange");
+        root.setAttribute("data-theme-color", "orange");
+      } else {
+        root.classList.remove("theme-orange");
+        root.setAttribute("data-theme-color", "green");
+      }
+
+      // Get colors based on dark and palette
+      const activeColors = getPaletteColors(shouldBeDark, colorTheme);
+
+      // Inject CSS variables to :root
+      Object.entries(activeColors).forEach(([key, value]) => {
+        root.style.setProperty(`--color-${key}`, value);
+      });
+      root.style.background = activeColors.background;
+      root.style.color = activeColors.text;
+    };
+
+    updateTheme();
+
+    if (theme === "system" && typeof window !== "undefined") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      mediaQuery.addEventListener("change", updateTheme);
+      return () => mediaQuery.removeEventListener("change", updateTheme);
     }
+  }, [theme, colorTheme]);
 
-    setResolvedTheme(actualTheme);
-
-    if (actualTheme === "dark") {
-      root.classList.add("dark");
-      root.style.colorScheme = "dark";
-    } else {
-      root.classList.remove("dark");
-      root.style.colorScheme = "light";
-    }
-
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (colorTheme === "orange") {
-      root.classList.add("theme-orange");
-      root.setAttribute("data-theme-color", "orange");
-    } else {
-      root.classList.remove("theme-orange");
-      root.setAttribute("data-theme-color", "green");
-    }
-    localStorage.setItem("color-theme", colorTheme);
-  }, [colorTheme]);
-
-  const setTheme = (newTheme: Theme) => {
+  const handleSetTheme = (newTheme: ThemeMode) => {
     setThemeState(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
-  const setColorTheme = (newColor: ColorTheme) => {
+  const handleSetColorTheme = (newColor: ColorTheme) => {
     setColorThemeState(newColor);
+    localStorage.setItem("color-theme", newColor);
   };
 
   const toggleTheme = () => {
-    setThemeState((prev) => (prev === "dark" ? "light" : "dark"));
+    const nextTheme: ThemeMode = isDark ? "light" : "dark";
+    handleSetTheme(nextTheme);
   };
 
   const toggleColorTheme = () => {
-    setColorThemeState((prev) => (prev === "orange" ? "green" : "orange"));
+    const nextColor: ColorTheme = colorTheme === "orange" ? "green" : "orange";
+    handleSetColorTheme(nextColor);
   };
 
-  const isDark = resolvedTheme === "dark";
+  const colors = getPaletteColors(isDark, colorTheme);
+  const resolvedTheme: "light" | "dark" = isDark ? "dark" : "light";
   const isOrange = colorTheme === "orange";
 
   return (
@@ -97,8 +146,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         colorTheme,
         isDark,
         isOrange,
-        setTheme,
-        setColorTheme,
+        colors,
+        setTheme: handleSetTheme,
+        setColorTheme: handleSetColorTheme,
         toggleTheme,
         toggleColorTheme,
       }}
@@ -106,21 +156,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       {children}
     </ThemeContext.Provider>
   );
-}
+};
 
-export function useTheme() {
+export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    // Fallback if rendered outside ThemeProvider
+    // Fallback if accessed outside ThemeProvider
     const isDark = typeof document !== "undefined" && document.documentElement.classList.contains("dark");
     const isOrange = typeof document !== "undefined" && document.documentElement.classList.contains("theme-orange");
+    const colors = getPaletteColors(isDark, isOrange ? "orange" : "green");
+
     return {
-      theme: (isDark ? "dark" : "light") as Theme,
+      theme: (isDark ? "dark" : "light") as ThemeMode,
       resolvedTheme: (isDark ? "dark" : "light") as "light" | "dark",
       colorTheme: (isOrange ? "orange" : "green") as ColorTheme,
       isDark,
       isOrange,
-      setTheme: (t: Theme) => {
+      colors,
+      setTheme: (t: ThemeMode) => {
         if (t === "dark") {
           document.documentElement.classList.add("dark");
           localStorage.setItem("theme", "dark");
@@ -161,4 +214,6 @@ export function useTheme() {
     };
   }
   return context;
-}
+};
+
+export default ThemeProvider;
