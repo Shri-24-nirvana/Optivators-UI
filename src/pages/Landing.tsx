@@ -17,6 +17,7 @@ import SwitchMode from "@/components/ui/SwitchMode";
 import ThemePaletteToggle from "@/components/ui/ThemePaletteToggle";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/core/dock";
 import TechScrollAnimation from "@/components/ui/text-scroll-animation";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
 import { useTheme } from "@/context/ThemeContext";
 
 function getPlatformRoles(isOrange: boolean) {
@@ -297,7 +298,10 @@ function getTrailItems(isOrange: boolean, dark: boolean) {
             PROOF OF SKILL
           </span>
         </div>
-        <div className="text-xs font-black text-slate-900 mt-0.5">360° Verified</div>
+        <div className="text-xs font-black text-slate-900 mt-0.5 flex items-center gap-1">
+          <span>360° Verified</span>
+          <VerifiedBadge size={13} className="shrink-0" />
+        </div>
         <div className="text-[9px] font-bold text-pink-900">Zero Fluff · Legit</div>
       </div>,
 
@@ -501,7 +505,10 @@ function getTrailItems(isOrange: boolean, dark: boolean) {
           PROOF OF SKILL
         </span>
       </div>
-      <div className="text-xs font-black text-white mt-0.5">360° Verified</div>
+      <div className="text-xs font-black text-white mt-0.5 flex items-center gap-1">
+        <span>360° Verified</span>
+        <VerifiedBadge size={13} className="shrink-0" />
+      </div>
       <div className="text-[9px] font-semibold text-pink-100/80">Zero Fluff · Legit</div>
     </div>,
 

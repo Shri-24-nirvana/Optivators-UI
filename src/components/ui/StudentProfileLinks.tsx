@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { VerifiedBadge } from "./VerifiedBadge";
 import {
   ExternalLink,
   Plus,
@@ -416,11 +417,7 @@ export function StudentProfileLinks({
                   <div>
                     <div className="font-bold text-sm flex items-center gap-1.5" style={{ color: "var(--text-primary)" }}>
                       <span>{link.label}</span>
-                      {link.verified && (
-                        <span className="text-[10px] font-extrabold px-1.5 py-0.2 rounded-full bg-teal-500/15 text-teal-600 dark:text-teal-400 border border-teal-500/20">
-                          ✓ Verified
-                        </span>
-                      )}
+                      {link.verified && <VerifiedBadge size={15} />}
                     </div>
                     <div
                       className="text-xs truncate max-w-[160px]"

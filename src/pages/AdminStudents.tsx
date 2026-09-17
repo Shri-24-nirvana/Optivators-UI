@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
+import { useTheme } from "@/context/ThemeContext";
 
 const STUDENTS = [
   { name: "Priya Sharma", roll: "21BCE0147", branch: "CSE", batch: "2021-25", cohort: "Alpha Batch", score: 9.1, cognitive: 8.8, completion: 96, tier: "Advanced", views: 142 },
@@ -14,11 +16,11 @@ const STUDENTS = [
   { name: "Divya Nair", roll: "21ECE0188", branch: "Mech", batch: "2021-25", cohort: "Alpha Batch", score: 4.2, cognitive: 4.0, completion: 30, tier: "Beginner", views: 8 },
 ];
 
-const TIER_COLORS: Record<string, string> = { Advanced: "#059669", Intermediate: "#D97706", Beginner: "#DC2626" };
 const BRANCHES = ["All Branches", "CSE", "IT", "AIML", "DS", "ECE", "Mech", "MBA"];
 const TIERS = ["All Tiers", "Advanced", "Intermediate", "Beginner"];
 
 export default function AdminStudents() {
+  const { isOrange } = useTheme();
   const [search, setSearch] = useState("");
   const [branch, setBranch] = useState("All Branches");
   const [tier, setTier] = useState("All Tiers");
@@ -95,10 +97,13 @@ export default function AdminStudents() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ background: "linear-gradient(135deg, #0D9488, #2563EB)" }}>
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{ background: isOrange ? "linear-gradient(135deg, #EA580C, #F97316)" : "linear-gradient(135deg, #0D9488, #2563EB)" }}>
                       {s.name.split(" ").map(n => n[0]).join("")}
                     </div>
-                    <span className="font-medium" style={{ color: "var(--text-primary)" }}>{s.name}</span>
+                    <div className="font-medium flex items-center gap-1.5" style={{ color: "var(--text-primary)" }}>
+                      <span>{s.name}</span>
+                      <VerifiedBadge size={14} className="shrink-0" />
+                    </div>
                   </div>
                 </td>
                 <td className="px-4 py-3 text-xs" style={{ fontFamily: "var(--font-mono)", color: "var(--text-muted)" }}>{s.roll}</td>
@@ -119,7 +124,24 @@ export default function AdminStudents() {
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-bold" style={{ background: `${TIER_COLORS[s.tier]}15`, color: TIER_COLORS[s.tier] }}>{s.tier}</span>
+                  <span
+                    className={`px-2.5 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1.5 ${
+                      isOrange
+                        ? s.tier === "Advanced"
+                          ? "bg-orange-500/20 text-orange-600 dark:text-orange-300 border border-orange-500/40"
+                          : s.tier === "Intermediate"
+                          ? "bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/40"
+                          : "bg-rose-500/15 text-rose-600 dark:text-rose-300 border border-rose-500/30"
+                        : s.tier === "Advanced"
+                        ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/40"
+                        : s.tier === "Intermediate"
+                        ? "bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/40"
+                        : "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30"
+                    }`}
+                  >
+                    <VerifiedBadge size={12} className="shrink-0" />
+                    <span>{s.tier}</span>
+                  </span>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex gap-1">
@@ -148,13 +170,23 @@ export default function AdminStudents() {
 
             <div className="p-6 space-y-5">
               {/* Header */}
-              <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #0D9488, #2563EB)" }}>
+              <div
+                className="rounded-2xl p-5 transition-all duration-300"
+                style={{
+                  background: isOrange
+                    ? "linear-gradient(135deg, #EA580C, #F97316)"
+                    : "linear-gradient(135deg, #0D9488, #2563EB)",
+                }}
+              >
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl" style={{ background: "rgba(255,255,255,0.2)" }}>
                     {drawerStudent.name.split(" ").map(n => n[0]).join("")}
                   </div>
                   <div>
-                    <div className="text-xl font-bold text-white">{drawerStudent.name}</div>
+                    <div className="text-xl font-bold text-white flex items-center gap-2">
+                      <span>{drawerStudent.name}</span>
+                      <VerifiedBadge size={18} className="shrink-0 drop-shadow-md" />
+                    </div>
                     <div className="text-sm text-white/80">{drawerStudent.branch} · {drawerStudent.batch} · {drawerStudent.roll}</div>
                     <div className="flex gap-2 mt-2">
                       <span className="px-2.5 py-1 rounded-full text-xs font-bold" style={{ background: "rgba(255,255,255,0.2)", color: "white" }}>{drawerStudent.cohort}</span>

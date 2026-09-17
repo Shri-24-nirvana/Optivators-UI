@@ -1,4 +1,6 @@
 import { useState, useMemo } from "react";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
+import { useTheme } from "@/context/ThemeContext";
 import {
   Trophy,
   Crown,
@@ -396,6 +398,7 @@ const TIER_COLORS: Record<string, { bg: string; text: string; border: string; gl
 };
 
 export default function Leaderboard() {
+  const { isOrange } = useTheme();
   const [selectedBranch, setSelectedBranch] = useState("All Branches");
   const [selectedTrack, setSelectedTrack] = useState("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState("All-time Season");
@@ -519,10 +522,11 @@ export default function Leaderboard() {
 
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-extrabold text-lg sm:text-xl" style={{ color: "var(--text-primary)" }}>
-                  {currentUser.name}
+                <h3 className="font-extrabold text-lg sm:text-xl flex items-center gap-1.5" style={{ color: "var(--text-primary)" }}>
+                  <span>{currentUser.name}</span>
+                  <VerifiedBadge size={16} className="shrink-0" />
                 </h3>
-                <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/30">
+                <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold border ${isOrange ? "bg-orange-500/20 text-orange-600 dark:text-orange-300 border-orange-500/30" : "bg-teal-500/20 text-teal-600 dark:text-teal-300 border-teal-500/30"}`}>
                   {currentUser.tier} Tier
                 </span>
               </div>
@@ -1228,7 +1232,10 @@ export default function Leaderboard() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-xl font-extrabold">{selectedStudent.name}</h3>
+                    <h3 className="text-xl font-extrabold flex items-center gap-1.5">
+                      <span>{selectedStudent.name}</span>
+                      <VerifiedBadge size={18} className="shrink-0 drop-shadow-md" />
+                    </h3>
                     <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-amber-400 text-slate-950 shadow">
                       Rank #{selectedStudent.rank}
                     </span>
@@ -1268,14 +1275,18 @@ export default function Leaderboard() {
               {/* Skills Verified */}
               <div>
                 <div className="text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5" style={{ color: "var(--text-primary)" }}>
-                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                  Verified Skills & Strengths
+                  <VerifiedBadge size={15} className="shrink-0" />
+                  <span>Verified Skills & Strengths</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {selectedStudent.skills.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20"
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold ${
+                        isOrange
+                          ? "bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-500/25"
+                          : "bg-teal-500/10 text-teal-600 dark:text-teal-300 border border-teal-500/25"
+                      }`}
                     >
                       {skill}
                     </span>

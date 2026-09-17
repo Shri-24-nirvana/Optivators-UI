@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
+import { useTheme } from "@/context/ThemeContext";
 
 const PEERS = [
   { name: "Priya Sharma", branch: "CSE", year: "3rd Year", batch: "2021-25", score: 9.1, rank: 1, skills: ["React", "Python", "ML"], tier: "Advanced", avatar: "#0D9488" },
@@ -18,9 +20,9 @@ const PEERS = [
 
 const BRANCHES = ["All Branches", "CSE", "IT", "AIML", "DS", "ECE", "Mech", "MBA"];
 const TIERS = ["All Tiers", "Advanced", "Intermediate", "Beginner"];
-const TIER_COLORS: Record<string, string> = { Advanced: "#059669", Intermediate: "#D97706", Beginner: "#DC2626" };
 
 export default function CampusDirectory() {
+  const { isOrange } = useTheme();
   const [search, setSearch] = useState("");
   const [branch, setBranch] = useState("All Branches");
   const [tier, setTier] = useState("All Tiers");
@@ -72,7 +74,10 @@ export default function CampusDirectory() {
                 {name.split(" ").map(n => n[0]).join("")}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-bold text-sm" style={{ color: "var(--text-primary)" }}>{name}</div>
+                <div className="font-bold text-sm flex items-center gap-1.5" style={{ color: "var(--text-primary)" }}>
+                  <span>{name}</span>
+                  <VerifiedBadge size={15} className="shrink-0" />
+                </div>
                 <div className="text-xs" style={{ color: "var(--text-muted)" }}>{br} · {year} · {batch}</div>
               </div>
               <div className="text-right">
@@ -81,12 +86,40 @@ export default function CampusDirectory() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-1 mb-4">
-              {skills.map(s => <span key={s} className="px-2 py-0.5 rounded text-xs" style={{ background: "var(--border-subtle)", color: "var(--text-secondary)" }}>{s}</span>)}
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {skills.map(s => (
+                <span
+                  key={s}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-semibold ${
+                    isOrange
+                      ? "bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-500/25"
+                      : "bg-teal-500/10 text-teal-600 dark:text-teal-300 border border-teal-500/25"
+                  }`}
+                >
+                  {s}
+                </span>
+              ))}
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="px-2.5 py-1 rounded-full text-xs font-bold" style={{ background: `${TIER_COLORS[t]}12`, color: TIER_COLORS[t] }}>{t}</span>
+              <span
+                className={`px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 ${
+                  isOrange
+                    ? t === "Advanced"
+                      ? "bg-orange-500/20 text-orange-600 dark:text-orange-300 border border-orange-500/40"
+                      : t === "Intermediate"
+                      ? "bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/40"
+                      : "bg-rose-500/15 text-rose-600 dark:text-rose-300 border border-rose-500/30"
+                    : t === "Advanced"
+                    ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/40"
+                    : t === "Intermediate"
+                    ? "bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/40"
+                    : "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30"
+                }`}
+              >
+                <VerifiedBadge size={12} className="shrink-0" />
+                <span>{t}</span>
+              </span>
               <Link
                 to="/student/profile"
                 className="px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
@@ -101,3 +134,4 @@ export default function CampusDirectory() {
     </div>
   );
 }
+

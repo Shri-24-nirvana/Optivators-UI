@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import LiquidCylinderProgress from "@/components/ui/LiquidCylinderProgress";
 import JobsAnimatedList from "@/components/ui/JobsAnimatedList";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
+import { useTheme } from "@/context/ThemeContext";
 
 const KPI_CARDS = [
   { label: "Profile Views", value: "142", sub: "Viewed by recruiters", icon: <EyeIcon />, color: "#7C3AED", bg: "rgba(124,58,237,0.12)" },
@@ -35,33 +37,48 @@ const RECENT_ACTIVITY = [
 ];
 
 export default function StudentDashboard() {
+  const { isOrange } = useTheme();
+
   return (
     <div className="space-y-8">
       {/* Profile completion banner */}
       <div
-        className="rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center gap-5 relative overflow-hidden transition-all duration-300 backdrop-blur-2xl dark:border-orange-500/30"
+        className="rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center gap-5 relative overflow-hidden transition-all duration-300 backdrop-blur-2xl"
         style={{
-          background: "linear-gradient(135deg, rgba(234,88,12,0.12) 0%, rgba(249,115,22,0.06) 50%, rgba(13,148,136,0.08) 100%)",
-          border: "1px solid rgba(249,115,22,0.25)",
-          boxShadow: "0 8px 32px -8px rgba(234,88,12,0.15), inset 0 1px 0 rgba(255,255,255,0.12)",
+          background: isOrange
+            ? "linear-gradient(135deg, rgba(234,88,12,0.12) 0%, rgba(249,115,22,0.06) 50%, rgba(13,148,136,0.08) 100%)"
+            : "linear-gradient(135deg, rgba(13,148,136,0.12) 0%, rgba(37,99,235,0.06) 50%, rgba(124,58,237,0.08) 100%)",
+          border: isOrange
+            ? "1px solid rgba(249,115,22,0.25)"
+            : "1px solid rgba(13,148,136,0.25)",
+          boxShadow: isOrange
+            ? "0 8px 32px -8px rgba(234,88,12,0.15), inset 0 1px 0 rgba(255,255,255,0.12)"
+            : "0 8px 32px -8px rgba(13,148,136,0.15), inset 0 1px 0 rgba(255,255,255,0.12)",
         }}
       >
         <div className="flex items-center gap-4 w-full md:w-auto">
           <div className="relative shrink-0">
             <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg"
+              className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg transition-all duration-300"
               style={{
-                background: "linear-gradient(135deg, #EA580C 0%, #F97316 50%, #0D9488 100%)",
-                boxShadow: "0 8px 20px -4px rgba(234,88,12,0.45)",
+                background: isOrange
+                  ? "linear-gradient(135deg, #EA580C 0%, #F97316 50%, #0D9488 100%)"
+                  : "linear-gradient(135deg, #0D9488 0%, #2563EB 50%, #7C3AED 100%)",
+                boxShadow: isOrange
+                  ? "0 8px 20px -4px rgba(234,88,12,0.45)"
+                  : "0 8px 20px -4px rgba(13,148,136,0.45)",
               }}
             >
               RK
             </div>
-            <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-orange-500 border-2 border-white dark:border-[#0F1520] shadow-sm animate-pulse" />
+            <span className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white dark:border-[#0F1520] shadow-sm animate-pulse ${isOrange ? "bg-orange-500" : "bg-emerald-500"}`} />
           </div>
 
           <div className="md:hidden flex-1">
-            <div className="font-bold text-base" style={{ color: "var(--text-primary)" }}>Rahul Kumar</div>
+            <div className="font-bold text-base flex items-center gap-1.5" style={{ color: "var(--text-primary)" }}>
+              <span>Rahul Kumar</span>
+              <VerifiedBadge size={15} className="shrink-0" />
+            </div>
             <div className="text-xs" style={{ color: "var(--text-secondary)" }}>B.Tech CSE · Gyan Ganga Institute of Technology and Sciences (GGITS)</div>
           </div>
         </div>
@@ -70,7 +87,8 @@ export default function StudentDashboard() {
           <div className="hidden md:flex items-center justify-between mb-1.5">
             <div className="font-bold text-base flex items-center gap-2" style={{ color: "var(--text-primary)" }}>
               <span>Rahul Kumar</span>
-              <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-orange-500/15 text-orange-600 dark:text-orange-400 border border-orange-500/20">
+              <VerifiedBadge size={16} className="shrink-0" />
+              <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full border ${isOrange ? "bg-orange-500/15 text-orange-600 dark:text-orange-400 border-orange-500/20" : "bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/20"}`}>
                 B.Tech CSE, 3rd Year · Gyan Ganga Institute of Technology and Sciences (GGITS)
               </span>
             </div>
@@ -87,8 +105,16 @@ export default function StudentDashboard() {
         <div className="shrink-0 w-full md:w-auto flex md:flex-col justify-end gap-2">
           <Link
             to="/student/profile"
-            className="w-full md:w-auto px-5 py-2.5 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-1.5 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 hover:scale-[1.02] active:scale-[0.98] transition-all"
-            style={{ background: "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)" }}
+            className={`w-full md:w-auto px-5 py-2.5 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-1.5 shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all ${
+              isOrange
+                ? "shadow-orange-500/20 hover:shadow-orange-500/35"
+                : "shadow-teal-500/20 hover:shadow-teal-500/35"
+            }`}
+            style={{
+              background: isOrange
+                ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                : "linear-gradient(135deg, #0D9488 0%, #0F766E 100%)",
+            }}
           >
             <span>Complete Now</span>
             <span className="text-xs">→</span>

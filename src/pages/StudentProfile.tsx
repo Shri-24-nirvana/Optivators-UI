@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatedCircularProgressBar } from "@/registry/magicui/animated-circular-progress-bar";
 import { AnimatedLinearProgress } from "@/components/ui/AnimatedLinearProgress";
 import { StudentProfileLinks } from "@/components/ui/StudentProfileLinks";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
 import { useTheme } from "@/context/ThemeContext";
 import {
   RotateCcw,
@@ -365,6 +366,7 @@ function CircleProgress({ value, size = 68, color, label }: { value: number; siz
 }
 
 export default function StudentProfile() {
+  const { isOrange, isDark } = useTheme();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -1172,8 +1174,12 @@ export default function StudentProfile() {
 
       {/* Profile Header with Edit Profile Button */}
       <div
-        className="rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all"
-        style={{ background: "linear-gradient(135deg, #0D9488 0%, #2563EB 50%, #7C3AED 100%)" }}
+        className="rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-all duration-300"
+        style={{
+          background: isOrange
+            ? "linear-gradient(135deg, #EA580C 0%, #F97316 50%, #C2410C 100%)"
+            : "linear-gradient(135deg, #0D9488 0%, #2563EB 50%, #7C3AED 100%)",
+        }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.3)" }} />
         
@@ -1205,8 +1211,9 @@ export default function StudentProfile() {
 
             {/* Info Details */}
             <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1 tracking-tight">
-                {name}
+              <div className="text-2xl sm:text-3xl font-extrabold text-white mb-1 tracking-tight flex items-center gap-2">
+                <span>{name}</span>
+                <VerifiedBadge size={22} className="shrink-0 drop-shadow-md" />
               </div>
               <div className="text-white/85 text-sm sm:text-base font-medium mb-1.5 flex items-center gap-1.5 flex-wrap">
                 <span>{college}</span>
@@ -1309,7 +1316,7 @@ export default function StudentProfile() {
       <div className="rounded-2xl p-6 dark:border-white/15 dark:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.7)]" style={{ background: "var(--surface-elevated)", border: "1px solid var(--border-subtle)" }}>
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-bold text-base sm:text-lg" style={{ color: "var(--text-primary)" }}>Skills & Competencies</h3>
-          <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/20">
+          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${isOrange ? "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20" : "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20"}`}>
             {skills.length} Skills Listed
           </span>
         </div>
@@ -1323,8 +1330,11 @@ export default function StudentProfile() {
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1.5 rounded-xl text-xs font-semibold dark:border-teal-500/30 transition-all hover:scale-105"
-                  style={{ background: "rgba(13,148,136,0.1)", color: "var(--accent-primary)", border: "1px solid rgba(13,148,136,0.2)" }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all hover:scale-105 ${
+                    isOrange
+                      ? "bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/30 dark:border-orange-500/40"
+                      : "bg-teal-500/10 text-teal-600 dark:text-teal-400 border border-teal-500/30 dark:border-teal-500/40"
+                  }`}
                 >
                   {skill}
                 </span>
@@ -1340,8 +1350,11 @@ export default function StudentProfile() {
               {["Communication", "Leadership", "Business Analysis", "Figma", "Project Mgmt"].map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1.5 rounded-xl text-xs font-semibold dark:border-orange-500/30"
-                  style={{ background: "rgba(234,88,12,0.1)", color: "#FB923C", border: "1px solid rgba(234,88,12,0.2)" }}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold ${
+                    isOrange
+                      ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30 dark:border-amber-500/40"
+                      : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 dark:border-emerald-500/40"
+                  }`}
                 >
                   {skill}
                 </span>
@@ -1359,17 +1372,33 @@ export default function StudentProfile() {
                 { skill: "Python", level: "Intermediate", pct: 70 },
                 { skill: "System Design", level: "Beginner", pct: 45 },
               ].map(({ skill, level, pct }, idx) => (
-                <div key={skill} className="p-3 rounded-xl dark:border-white/15" style={{ background: "var(--surface-bg)", border: "1px solid var(--border-subtle)" }}>
+                <div
+                  key={skill}
+                  className={`p-3 rounded-xl transition-all duration-200 ${
+                    isOrange
+                      ? "bg-orange-500/10 dark:bg-orange-950/30 border border-orange-500/30 dark:border-orange-500/40 shadow-sm shadow-orange-500/5"
+                      : "bg-teal-500/10 dark:bg-teal-950/30 border border-teal-500/30 dark:border-teal-500/40 shadow-sm shadow-teal-500/5"
+                  }`}
+                >
                   <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-xs font-semibold" style={{ color: "var(--text-primary)" }}>{skill}</span>
+                    <span className="text-xs font-bold" style={{ color: "var(--text-primary)" }}>{skill}</span>
                     <span
-                      className="text-xs font-bold px-2 py-0.5 rounded dark:border dark:border-white/10"
-                      style={{
-                        background: level === "Advanced" ? "rgba(5,150,105,0.15)" : level === "Intermediate" ? "rgba(217,119,6,0.15)" : "rgba(220,38,38,0.15)",
-                        color: level === "Advanced" ? "#34D399" : level === "Intermediate" ? "#FBBF24" : "#F87171",
-                      }}
+                      className={`text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1.5 ${
+                        isOrange
+                          ? level === "Advanced"
+                            ? "bg-orange-500/20 text-orange-600 dark:text-orange-300 border border-orange-500/45"
+                            : level === "Intermediate"
+                            ? "bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/45"
+                            : "bg-rose-500/15 text-rose-600 dark:text-rose-300 border border-rose-500/35"
+                          : level === "Advanced"
+                          ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-300 border border-emerald-500/45"
+                          : level === "Intermediate"
+                          ? "bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/45"
+                          : "bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/35"
+                      }`}
                     >
-                      ✓ {level}
+                      <VerifiedBadge size={13} className="shrink-0" />
+                      <span>{level}</span>
                     </span>
                   </div>
                   <AnimatedLinearProgress
