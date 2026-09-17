@@ -465,6 +465,12 @@ export const createThemedStyles = (colors: ThemeColors, isDark: boolean) => ({
     fontWeight: 600,
     fontSize: "12px",
   },
+  podiumCard: {
+    borderRadius: "24px",
+    padding: "24px",
+    border: `1px solid ${colors.border}`,
+    background: colors.surfaceSecondary,
+  },
 
   // Cursor Trail & Hero Section Layering Styles
   cursorTrailContainer: {

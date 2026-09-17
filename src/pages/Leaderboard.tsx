@@ -398,7 +398,7 @@ const TIER_COLORS: Record<string, { bg: string; text: string; border: string; gl
 };
 
 export default function Leaderboard() {
-  const { isOrange } = useTheme();
+  const { isOrange, isDark } = useTheme();
   const [selectedBranch, setSelectedBranch] = useState("All Branches");
   const [selectedTrack, setSelectedTrack] = useState("all");
   const [selectedTimeframe, setSelectedTimeframe] = useState("All-time Season");
@@ -697,21 +697,44 @@ export default function Leaderboard() {
           4. 3D METALLIC GLOWING PODIUM (TOP 3 CHAMPIONS)
       ───────────────────────────────────────────────────────────── */}
       <div
-        className="rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl border transition-all"
+        className="rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl border transition-all duration-300"
         style={{
-          background: "linear-gradient(180deg, #090E17 0%, #06090F 100%)",
-          borderColor: "rgba(255, 255, 255, 0.12)",
+          background: isDark
+            ? isOrange
+              ? "linear-gradient(180deg, #18120C 0%, #0D0906 100%)"
+              : "linear-gradient(180deg, #090E17 0%, #06090F 100%)"
+            : isOrange
+            ? "linear-gradient(180deg, #FFF7ED 0%, #FFEDD5 100%)"
+            : "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 100%)",
+          borderColor: isDark
+            ? "rgba(255, 255, 255, 0.12)"
+            : isOrange
+            ? "rgba(234, 88, 12, 0.25)"
+            : "rgba(13, 148, 136, 0.25)",
+          boxShadow: isDark
+            ? "0 25px 60px -15px rgba(0, 0, 0, 0.7)"
+            : isOrange
+            ? "0 20px 50px -15px rgba(234, 88, 12, 0.15)"
+            : "0 20px 50px -15px rgba(13, 148, 136, 0.15)",
         }}
       >
         {/* Ambient Top Light Beam */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-56 bg-gradient-to-b from-amber-500/15 via-teal-500/10 to-transparent blur-3xl pointer-events-none" />
+        <div
+          className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-56 blur-3xl pointer-events-none transition-all duration-300 ${
+            isDark
+              ? "bg-gradient-to-b from-amber-500/15 via-teal-500/10 to-transparent"
+              : isOrange
+              ? "bg-gradient-to-b from-amber-400/25 via-orange-300/15 to-transparent"
+              : "bg-gradient-to-b from-teal-400/25 via-emerald-300/15 to-transparent"
+          }`}
+        />
 
         <div className="text-center mb-8 relative z-10">
-          <span className="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest text-amber-400/90 mb-1">
+          <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-widest mb-1 ${isDark ? "text-amber-400/90" : isOrange ? "text-orange-600" : "text-teal-700"}`}>
             <Sparkles className="w-3.5 h-3.5" />
             Top 3 Grand Podium
           </span>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black tracking-tight" style={{ color: "var(--text-primary)" }}>
             Hall of Legends · Gyan Ganga Institute of Technology and Sciences
           </h2>
         </div>
@@ -727,38 +750,41 @@ export default function Leaderboard() {
             <div className="relative mb-3 flex flex-col items-center">
               <div className="relative">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-slate-300 via-slate-100 to-slate-400 p-1 shadow-[0_0_25px_rgba(203,213,225,0.4)] transition-transform group-hover:scale-110">
-                  <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center font-black text-slate-100 text-2xl">
+                  <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center font-black text-slate-800 dark:text-slate-100 text-2xl">
                     SJ
                   </div>
                 </div>
-                <div className="absolute -top-2 -right-1 w-8 h-8 rounded-full bg-slate-300 text-slate-900 flex items-center justify-center font-black text-xs shadow-lg border-2 border-slate-900">
+                <div className="absolute -top-2 -right-1 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-300 text-slate-900 flex items-center justify-center font-black text-xs shadow-lg border-2 border-slate-300 dark:border-slate-900">
                   🥈
                 </div>
               </div>
             </div>
 
             <div className="text-center mb-4">
-              <div className="font-extrabold text-base text-white group-hover:text-cyan-400 transition-colors">
-                {top2.name}
+              <div className="font-extrabold text-base flex items-center justify-center gap-1.5 transition-colors group-hover:text-cyan-500" style={{ color: "var(--text-primary)" }}>
+                <span>{top2.name}</span>
+                <VerifiedBadge size={15} className="shrink-0" />
               </div>
-              <div className="text-xs text-slate-400 font-medium">
+              <div className="text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
                 {top2.branch} · {top2.batch}
               </div>
-              <div className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-slate-800 text-slate-200 border border-slate-700">
-                Score: <span className="text-cyan-400">{top2.score}</span>
+              <div className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-slate-200/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700">
+                Score: <span className="text-cyan-600 dark:text-cyan-400">{top2.score}</span>
               </div>
             </div>
 
             {/* Silver Pillar */}
             <div
-              className="w-full rounded-t-2xl p-4 flex flex-col items-center justify-between border-t border-x border-slate-400/40 relative overflow-hidden shadow-2xl"
+              className="w-full rounded-t-2xl p-4 flex flex-col items-center justify-between border-t border-x border-slate-400/50 relative overflow-hidden shadow-2xl"
               style={{
                 height: 140,
-                background: "linear-gradient(180deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 41, 59, 0.9) 100%)",
+                background: isDark
+                  ? "linear-gradient(180deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 41, 59, 0.9) 100%)"
+                  : "linear-gradient(180deg, #E2E8F0 0%, #CBD5E1 100%)",
               }}
             >
-              <div className="text-3xl font-black text-slate-300 font-mono tracking-wider">#2</div>
-              <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-center">
+              <div className="text-3xl font-black text-slate-700 dark:text-slate-300 font-mono tracking-wider">#2</div>
+              <div className="text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider text-center">
                 Runner-Up
               </div>
             </div>
@@ -771,42 +797,44 @@ export default function Leaderboard() {
           >
             {/* Crown animation */}
             <div className="relative mb-3 flex flex-col items-center">
-              <Crown className="w-10 h-10 text-amber-400 animate-bounce mb-1 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" />
+              <Crown className="w-10 h-10 text-amber-500 dark:text-amber-400 animate-bounce mb-1 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" />
               <div className="relative">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-300 via-yellow-200 to-amber-500 p-1.5 shadow-[0_0_40px_rgba(245,158,11,0.6)] transition-transform group-hover:scale-110">
-                  <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center font-black text-amber-400 text-3xl">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-500 p-1.5 shadow-[0_0_40px_rgba(245,158,11,0.5)] transition-transform group-hover:scale-110">
+                  <div className="w-full h-full rounded-full bg-amber-50 dark:bg-slate-950 flex items-center justify-center font-black text-amber-600 dark:text-amber-400 text-3xl">
                     PS
                   </div>
                 </div>
-                <div className="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-500 text-slate-950 flex items-center justify-center font-black text-sm shadow-xl border-2 border-slate-950">
+                <div className="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-500 text-slate-950 flex items-center justify-center font-black text-sm shadow-xl border-2 border-amber-300 dark:border-slate-950">
                   🥇
                 </div>
               </div>
             </div>
 
             <div className="text-center mb-4">
-              <div className="font-black text-lg text-white group-hover:text-amber-400 transition-colors flex items-center justify-center gap-1.5">
-                {top1.name}
-                <CheckCircle2 className="w-4 h-4 text-teal-400" />
+              <div className="font-black text-lg flex items-center justify-center gap-1.5 transition-colors group-hover:text-amber-500" style={{ color: "var(--text-primary)" }}>
+                <span>{top1.name}</span>
+                <VerifiedBadge size={16} className="shrink-0" />
               </div>
-              <div className="text-xs text-amber-200/70 font-medium">
+              <div className="text-xs font-semibold text-amber-700 dark:text-amber-200/80">
                 {top1.branch} · {top1.batch}
               </div>
-              <div className="inline-block mt-1.5 px-3 py-1 rounded-full text-xs font-mono font-black bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-inner">
-                Score: <span className="text-white text-sm">{top1.score}</span>
+              <div className="inline-block mt-1.5 px-3 py-1 rounded-full text-xs font-mono font-black bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/40 shadow-inner">
+                Score: <span className="text-slate-900 dark:text-white text-sm font-black">{top1.score}</span>
               </div>
             </div>
 
             {/* Gold Pillar */}
             <div
-              className="w-full rounded-t-2xl p-4 flex flex-col items-center justify-between border-t-2 border-x-2 border-amber-400/70 relative overflow-hidden shadow-[0_-10px_35px_rgba(245,158,11,0.3)]"
+              className="w-full rounded-t-2xl p-4 flex flex-col items-center justify-between border-t-2 border-x-2 border-amber-400/80 relative overflow-hidden shadow-[0_-10px_35px_rgba(245,158,11,0.3)]"
               style={{
                 height: 190,
-                background: "linear-gradient(180deg, rgba(245, 158, 11, 0.45) 0%, rgba(45, 20, 5, 0.95) 100%)",
+                background: isDark
+                  ? "linear-gradient(180deg, rgba(245, 158, 11, 0.45) 0%, rgba(45, 20, 5, 0.95) 100%)"
+                  : "linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%)",
               }}
             >
-              <div className="text-4xl font-black text-amber-300 font-mono tracking-wider drop-shadow-md">#1</div>
-              <div className="text-xs font-black text-amber-300 uppercase tracking-widest text-center flex items-center gap-1">
+              <div className="text-4xl font-black text-amber-950 dark:text-amber-300 font-mono tracking-wider drop-shadow-md">#1</div>
+              <div className="text-xs font-black text-amber-950 dark:text-amber-300 uppercase tracking-widest text-center flex items-center gap-1">
                 <Sparkles className="w-3 h-3" /> Campus Champion <Sparkles className="w-3 h-3" />
               </div>
             </div>
@@ -821,38 +849,41 @@ export default function Leaderboard() {
             <div className="relative mb-3 flex flex-col items-center">
               <div className="relative">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-700 via-orange-500 to-amber-800 p-1 shadow-[0_0_25px_rgba(217,119,6,0.35)] transition-transform group-hover:scale-110">
-                  <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center font-black text-amber-200 text-2xl">
+                  <div className="w-full h-full rounded-full bg-orange-50 dark:bg-slate-900 flex items-center justify-center font-black text-orange-700 dark:text-amber-200 text-2xl">
                     AG
                   </div>
                 </div>
-                <div className="absolute -top-2 -right-1 w-8 h-8 rounded-full bg-amber-700 text-amber-100 flex items-center justify-center font-black text-xs shadow-lg border-2 border-slate-900">
+                <div className="absolute -top-2 -right-1 w-8 h-8 rounded-full bg-amber-600 text-white flex items-center justify-center font-black text-xs shadow-lg border-2 border-amber-400 dark:border-slate-900">
                   🥉
                 </div>
               </div>
             </div>
 
             <div className="text-center mb-4">
-              <div className="font-extrabold text-base text-white group-hover:text-orange-400 transition-colors">
-                {top3.name}
+              <div className="font-extrabold text-base flex items-center justify-center gap-1.5 transition-colors group-hover:text-orange-500" style={{ color: "var(--text-primary)" }}>
+                <span>{top3.name}</span>
+                <VerifiedBadge size={15} className="shrink-0" />
               </div>
-              <div className="text-xs text-slate-400 font-medium">
+              <div className="text-xs font-medium" style={{ color: "var(--text-secondary)" }}>
                 {top3.branch} · {top3.batch}
               </div>
-              <div className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-slate-800 text-slate-200 border border-slate-700">
-                Score: <span className="text-orange-400">{top3.score}</span>
+              <div className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-orange-500/15 dark:bg-slate-800 text-orange-800 dark:text-slate-200 border border-orange-500/30 dark:border-slate-700">
+                Score: <span className="text-orange-600 dark:text-orange-400">{top3.score}</span>
               </div>
             </div>
 
             {/* Bronze Pillar */}
             <div
-              className="w-full rounded-t-2xl p-4 flex flex-col items-center justify-between border-t border-x border-amber-600/40 relative overflow-hidden shadow-2xl"
+              className="w-full rounded-t-2xl p-4 flex flex-col items-center justify-between border-t border-x border-amber-600/50 relative overflow-hidden shadow-2xl"
               style={{
                 height: 110,
-                background: "linear-gradient(180deg, rgba(180, 83, 9, 0.35) 0%, rgba(30, 20, 10, 0.9) 100%)",
+                background: isDark
+                  ? "linear-gradient(180deg, rgba(180, 83, 9, 0.35) 0%, rgba(30, 20, 10, 0.9) 100%)"
+                  : "linear-gradient(180deg, #FED7AA 0%, #FB923C 100%)",
               }}
             >
-              <div className="text-2xl font-black text-amber-500 font-mono tracking-wider">#3</div>
-              <div className="text-[11px] font-semibold text-amber-400/80 uppercase tracking-wider text-center">
+              <div className="text-2xl font-black text-amber-950 dark:text-amber-500 font-mono tracking-wider">#3</div>
+              <div className="text-[11px] font-bold text-amber-950 dark:text-amber-400/80 uppercase tracking-wider text-center">
                 2nd Runner-Up
               </div>
             </div>
