@@ -30,6 +30,17 @@ export interface ThemeColors {
   borderLight: string;
   shadow: string;
   overlay: string;
+  
+  // Podium & Hall of Legends Tokens
+  podiumBg: string;
+  podiumBorder: string;
+  podiumGoldPillar: string;
+  podiumSilverPillar: string;
+  podiumBronzePillar: string;
+  podiumGoldBorder: string;
+  podiumSilverBorder: string;
+  podiumBronzeBorder: string;
+  podiumGlow: string;
 }
 
 export interface ThemeContextType {

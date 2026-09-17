@@ -27,6 +27,17 @@ export const lightVibrantColors: ThemeColors = {
   
   shadow: "rgba(15, 23, 42, 0.08)",
   overlay: "rgba(15, 23, 42, 0.5)",
+
+  // Podium & Hall of Legends Tokens (Green Light)
+  podiumBg: "linear-gradient(180deg, #F0FDFA 0%, #CCFBF1 100%)",
+  podiumBorder: "rgba(13, 148, 136, 0.25)",
+  podiumGoldPillar: "linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%)",
+  podiumSilverPillar: "linear-gradient(180deg, #E2E8F0 0%, #CBD5E1 100%)",
+  podiumBronzePillar: "linear-gradient(180deg, #FED7AA 0%, #FB923C 100%)",
+  podiumGoldBorder: "#F59E0B",
+  podiumSilverBorder: "#94A3B8",
+  podiumBronzeBorder: "#F97316",
+  podiumGlow: "rgba(13, 148, 136, 0.2)",
 };
 
 // Green/Teal Dark Palette
@@ -56,6 +67,17 @@ export const darkVibrantColors: ThemeColors = {
   
   shadow: "rgba(0, 0, 0, 0.5)",
   overlay: "rgba(0, 0, 0, 0.75)",
+
+  // Podium & Hall of Legends Tokens (Green Dark)
+  podiumBg: "linear-gradient(180deg, #090E17 0%, #06090F 100%)",
+  podiumBorder: "rgba(255, 255, 255, 0.12)",
+  podiumGoldPillar: "linear-gradient(180deg, rgba(245, 158, 11, 0.45) 0%, rgba(45, 20, 5, 0.95) 100%)",
+  podiumSilverPillar: "linear-gradient(180deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 41, 59, 0.9) 100%)",
+  podiumBronzePillar: "linear-gradient(180deg, rgba(180, 83, 9, 0.35) 0%, rgba(30, 20, 10, 0.9) 100%)",
+  podiumGoldBorder: "rgba(245, 158, 11, 0.7)",
+  podiumSilverBorder: "rgba(148, 163, 184, 0.4)",
+  podiumBronzeBorder: "rgba(217, 119, 6, 0.4)",
+  podiumGlow: "rgba(45, 212, 191, 0.15)",
 };
 
 // Orange Light Palette
@@ -85,6 +107,17 @@ export const lightOrangeColors: ThemeColors = {
   
   shadow: "rgba(15, 23, 42, 0.08)",
   overlay: "rgba(15, 23, 42, 0.5)",
+
+  // Podium & Hall of Legends Tokens (Orange Light)
+  podiumBg: "linear-gradient(180deg, #FFF7ED 0%, #FFEDD5 100%)",
+  podiumBorder: "rgba(234, 88, 12, 0.25)",
+  podiumGoldPillar: "linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%)",
+  podiumSilverPillar: "linear-gradient(180deg, #E2E8F0 0%, #CBD5E1 100%)",
+  podiumBronzePillar: "linear-gradient(180deg, #FED7AA 0%, #FB923C 100%)",
+  podiumGoldBorder: "#F59E0B",
+  podiumSilverBorder: "#94A3B8",
+  podiumBronzeBorder: "#EA580C",
+  podiumGlow: "rgba(234, 88, 12, 0.2)",
 };
 
 // Orange Dark Palette
@@ -114,6 +147,17 @@ export const darkOrangeColors: ThemeColors = {
   
   shadow: "rgba(0, 0, 0, 0.5)",
   overlay: "rgba(0, 0, 0, 0.75)",
+
+  // Podium & Hall of Legends Tokens (Orange Dark)
+  podiumBg: "linear-gradient(180deg, #18120C 0%, #0D0906 100%)",
+  podiumBorder: "rgba(251, 146, 60, 0.2)",
+  podiumGoldPillar: "linear-gradient(180deg, rgba(245, 158, 11, 0.45) 0%, rgba(45, 20, 5, 0.95) 100%)",
+  podiumSilverPillar: "linear-gradient(180deg, rgba(148, 163, 184, 0.35) 0%, rgba(30, 41, 59, 0.9) 100%)",
+  podiumBronzePillar: "linear-gradient(180deg, rgba(180, 83, 9, 0.35) 0%, rgba(30, 20, 10, 0.9) 100%)",
+  podiumGoldBorder: "rgba(245, 158, 11, 0.7)",
+  podiumSilverBorder: "rgba(148, 163, 184, 0.4)",
+  podiumBronzeBorder: "rgba(234, 88, 12, 0.4)",
+  podiumGlow: "rgba(251, 146, 60, 0.15)",
 };
 
 // Helper to get active palette based on dark and colorTheme
@@ -465,11 +509,40 @@ export const createThemedStyles = (colors: ThemeColors, isDark: boolean) => ({
     fontWeight: 600,
     fontSize: "12px",
   },
+  
+  // 3D Podium & Hall of Legends Styles
+  podiumContainer: {
+    borderRadius: "24px",
+    padding: "32px",
+    border: `1px solid ${colors.podiumBorder}`,
+    background: colors.podiumBg,
+    boxShadow: isDark ? "0 25px 60px -15px rgba(0, 0, 0, 0.7)" : "0 20px 50px -15px rgba(15, 23, 42, 0.12)",
+    position: "relative" as const,
+    overflow: "hidden" as const,
+  },
   podiumCard: {
     borderRadius: "24px",
     padding: "24px",
-    border: `1px solid ${colors.border}`,
-    background: colors.surfaceSecondary,
+    border: `1px solid ${colors.podiumBorder}`,
+    background: colors.podiumBg,
+  },
+  podiumGoldPillar: {
+    background: colors.podiumGoldPillar,
+    borderTop: `2px solid ${colors.podiumGoldBorder}`,
+    borderLeft: `1px solid ${colors.podiumGoldBorder}`,
+    borderRight: `1px solid ${colors.podiumGoldBorder}`,
+  },
+  podiumSilverPillar: {
+    background: colors.podiumSilverPillar,
+    borderTop: `2px solid ${colors.podiumSilverBorder}`,
+    borderLeft: `1px solid ${colors.podiumSilverBorder}`,
+    borderRight: `1px solid ${colors.podiumSilverBorder}`,
+  },
+  podiumBronzePillar: {
+    background: colors.podiumBronzePillar,
+    borderTop: `2px solid ${colors.podiumBronzeBorder}`,
+    borderLeft: `1px solid ${colors.podiumBronzeBorder}`,
+    borderRight: `1px solid ${colors.podiumBronzeBorder}`,
   },
 
   // Cursor Trail & Hero Section Layering Styles
