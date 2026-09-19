@@ -434,37 +434,50 @@ export default function Leaderboard() {
       <div
         className="relative overflow-hidden rounded-3xl p-6 sm:p-8 border backdrop-blur-xl shadow-2xl transition-all"
         style={{
-          background: "linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(37, 99, 235, 0.05) 50%, rgba(124, 58, 237, 0.08) 100%)",
+          background: isOrange
+            ? "linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(37, 99, 235, 0.05) 50%, rgba(249, 115, 22, 0.08) 100%)"
+            : "linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(37, 99, 235, 0.05) 50%, rgba(124, 58, 237, 0.08) 100%)",
           borderColor: "var(--border-strong)",
         }}
       >
         {/* Glow Spheres */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div
+          className={`absolute top-0 right-1/4 w-96 h-96 ${
+            isOrange ? "bg-orange-500/10" : "bg-teal-500/10"
+          } rounded-full blur-3xl pointer-events-none -z-10`}
+        />
         <div className="absolute -bottom-10 left-10 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2.5 flex-wrap mb-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-teal-500/15 text-teal-600 dark:text-teal-400 border border-teal-500/30">
+            <div className="flex items-center gap-2 mb-3">
+              <span
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase ${
+                  isOrange
+                    ? "bg-orange-500/15 text-orange-600 dark:text-orange-400 border border-orange-500/30"
+                    : "bg-teal-500/15 text-teal-600 dark:text-teal-400 border border-teal-500/30"
+                }`}
+              >
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                  <span
+                    className={`animate-ping absolute inline-flex h-full w-full rounded-full ${
+                      isOrange ? "bg-orange-400" : "bg-teal-400"
+                    } opacity-75`}
+                  ></span>
+                  <span
+                    className={`relative inline-flex rounded-full h-2 w-2 ${
+                      isOrange ? "bg-orange-500" : "bg-teal-500"
+                    }`}
+                  ></span>
                 </span>
-                Season 2026 · Cycle 4 Active
-              </span>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-200/60 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-black/5 dark:border-white/10">
-                GGITS Campus Ranked
+                Season 2026 · Active
               </span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-3" style={{ color: "var(--text-primary)" }}>
               <span>Campus Champions Arena</span>
-              <Trophy className="w-8 h-8 text-amber-500 animate-bounce" />
+              <Trophy className="w-8 h-8 text-amber-500" />
             </h1>
-            <p className="text-sm sm:text-base mt-2 max-w-2xl" style={{ color: "var(--text-secondary)" }}>
-              Live leaderboard ranked by AI readiness, domain benchmark, coding challenges, and validated skills at{" "}
-              <span className="font-semibold text-teal-600 dark:text-teal-400">Gyan Ganga Institute of Technology and Sciences (GGITS)</span>.
-            </p>
           </div>
 
           {/* Quick Metrics Badges */}
@@ -472,7 +485,7 @@ export default function Leaderboard() {
             {[
               { label: "Active Contenders", val: "1,450+", icon: UserCheck, color: "text-blue-500" },
               { label: "Tests Solved", val: "18.4K", icon: Zap, color: "text-amber-500" },
-              { label: "Top Score", val: "9.68", icon: Crown, color: "text-teal-400" },
+              { label: "Top Score", val: "9.68", icon: Crown, color: isOrange ? "text-orange-400" : "text-teal-400" },
               { label: "Max Streak", val: "68 Days", icon: Flame, color: "text-rose-500" },
             ].map((stat, i) => {
               const Icon = stat.icon;
