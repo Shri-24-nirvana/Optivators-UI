@@ -41,6 +41,11 @@ export interface ThemeColors {
   podiumSilverBorder: string;
   podiumBronzeBorder: string;
   podiumGlow: string;
+
+  // Hero Glass Background Tokens
+  heroGlassBg: string;
+  heroGlassBorder: string;
+  heroGlassShadow: string;
 }
 
 export interface ThemeContextType {

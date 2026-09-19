@@ -688,64 +688,84 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 
           <div className="relative max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left text */}
-              <div>
+              {/* Left text with Frosted Glass Shield */}
+              <div
+                className="relative rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 backdrop-blur-2xl overflow-hidden group shadow-2xl"
+                style={{
+                  background: "var(--color-heroGlassBg)",
+                  border: "1px solid var(--color-heroGlassBorder)",
+                  boxShadow: "var(--color-heroGlassShadow)",
+                }}
+              >
+                {/* Subtle top light sheen on glass edge */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
+                
+                {/* Soft ambient corner glow */}
                 <div
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
+                  className="absolute -top-12 -right-12 w-48 h-48 rounded-full pointer-events-none blur-3xl opacity-20"
                   style={{
-                    background: "var(--accent-soft)",
-                    color: "var(--accent-primary)",
-                    border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
-                    fontFamily: "var(--font-mono)",
+                    background: isOrange ? "#EA580C" : "#0D9488",
                   }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
-                  AI-Powered Career Intelligence · 2026
-                </div>
-                <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-                  Your Campus.{" "}
-                  <span className="block" style={{ fontFamily: "var(--font-serif)", fontStyle: "italic" }}>
-                    <span className="shimmer-text">Cognitive.</span>
-                  </span>
-                  Career-Ready.
-                </h1>
-                <p className="text-lg mb-8 leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  Optivators unifies cognitive benchmarking, 4-track assessment, 360° student profiles, Spider Radar scoring, and placement analytics — built for next-gen campus placement cells.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/student"
-                    className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
+                />
+
+                <div className="relative z-10">
+                  <div
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
                     style={{
-                      background: isOrange
-                        ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
-                        : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
-                      boxShadow: isOrange
-                        ? "0 8px 24px rgba(234,88,12,0.35)"
-                        : "0 8px 24px rgba(13,148,136,0.35)",
+                      background: "var(--accent-soft)",
+                      color: "var(--accent-primary)",
+                      border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
+                      fontFamily: "var(--font-mono)",
                     }}
                   >
-                    <GradCapIcon /> Student Portal
-                  </Link>
-                  <Link to="/college-admin" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold border transition-all hover:bg-black/5 dark:hover:bg-white/5" style={{ borderColor: "var(--border-strong)", color: "var(--text-primary)" }}>
-                    <BuildingIcon /> College Admin
-                  </Link>
-                  <a href="#" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm transition-all" style={{ color: "var(--accent-primary)" }}>
-                    Request Demo <ArrowRightIcon />
-                  </a>
-                </div>
+                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
+                    AI-Powered Career Intelligence · 2026
+                  </div>
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
+                    Your Campus.{" "}
+                    <span className="block" style={{ fontFamily: "var(--font-serif)", fontStyle: "italic" }}>
+                      <span className="shimmer-text">Cognitive.</span>
+                    </span>
+                    Career-Ready.
+                  </h1>
+                  <p className="text-base sm:text-lg mb-8 leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+                    Optivators unifies cognitive benchmarking, 4-track assessment, 360° student profiles, Spider Radar scoring, and placement analytics — built for next-gen campus placement cells.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      to="/student"
+                      className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      style={{
+                        background: isOrange
+                          ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                          : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                        boxShadow: isOrange
+                          ? "0 8px 24px rgba(234,88,12,0.35)"
+                          : "0 8px 24px rgba(13,148,136,0.35)",
+                      }}
+                    >
+                      <GradCapIcon /> Student Portal
+                    </Link>
+                    <Link to="/college-admin" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold border transition-all hover:bg-black/5 dark:hover:bg-white/5" style={{ borderColor: "var(--border-strong)", color: "var(--text-primary)" }}>
+                      <BuildingIcon /> College Admin
+                    </Link>
+                    <a href="#" className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm transition-all" style={{ color: "var(--accent-primary)" }}>
+                      Request Demo <ArrowRightIcon />
+                    </a>
+                  </div>
 
-                {/* Trust badges */}
-                <div className="flex flex-wrap gap-4 mt-10 pt-8 border-t" style={{ borderColor: "var(--border-subtle)" }}>
-                  {[
-                    { label: "NAAC Accredited", icon: "✓" },
-                    { label: "AICTE Approved", icon: "✓" },
-                    { label: "ISO 27001", icon: "✓" },
-                  ].map(({ label, icon }) => (
-                    <div key={label} className="flex items-center gap-1.5 text-xs font-medium" style={{ color: "var(--text-muted)" }}>
-                      <span style={{ color: "var(--success)" }}>{icon}</span> {label}
-                    </div>
-                  ))}
+                  {/* Trust badges */}
+                  <div className="flex flex-wrap gap-4 mt-8 pt-6 border-t" style={{ borderColor: "var(--border-subtle)" }}>
+                    {[
+                      { label: "NAAC Accredited", icon: "✓" },
+                      { label: "AICTE Approved", icon: "✓" },
+                      { label: "ISO 27001", icon: "✓" },
+                    ].map(({ label, icon }) => (
+                      <div key={label} className="flex items-center gap-1.5 text-xs font-medium" style={{ color: "var(--text-muted)" }}>
+                        <span style={{ color: "var(--success)" }}>{icon}</span> {label}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 

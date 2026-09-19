@@ -160,12 +160,13 @@ export function CursorImageTrail({
         <AnimatePresence>
           {trail.map((item, i) => {
             const age = total - 1 - i;
-            const scale = 0.75 + 0.25 * (1 - age / trailLength);
+            const scale = 0.78 + 0.22 * (1 - age / trailLength);
+            const trailOpacity = Math.max(0.45, 1 - (age / trailLength) * 0.5);
 
             return (
               <motion.div
                 key={item.id}
-                className="pointer-events-none fixed select-none"
+                className="pointer-events-none fixed select-none will-change-transform"
                 style={{
                   left: item.x,
                   top: item.y,
@@ -176,32 +177,35 @@ export function CursorImageTrail({
                 }}
                 initial={{
                   opacity: 0,
-                  scale: 0.5,
-                  rotate: item.rotation * 1.3,
+                  scale: 0.6,
+                  y: 18,
+                  rotate: item.rotation * 1.25,
                   filter: "blur(4px)",
                 }}
                 animate={{
-                  opacity: 1,
+                  opacity: trailOpacity,
                   scale,
+                  y: -age * 2,
                   rotate: item.rotation,
                   filter: "blur(0px)",
                 }}
                 exit={{
                   opacity: 0,
-                  scale: 0.35,
-                  rotate: item.rotation * 0.5,
-                  filter: "blur(6px)",
+                  scale: scale * 0.75,
+                  y: -30,
+                  rotate: item.rotation * 0.7,
+                  filter: "blur(8px)",
                   transition: {
-                    duration: 0.35,
-                    ease: "easeOut",
+                    duration: 0.65,
+                    ease: [0.16, 1, 0.3, 1],
                   },
                 }}
                 transition={{
-                  duration: 0.4,
-                  ease: [0.23, 1, 0.32, 1],
+                  duration: 0.55,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
               >
-                <div className="w-full drop-shadow-2xl">
+                <div className="w-full drop-shadow-2xl transition-all duration-300">
                   {items[item.itemIndex]}
                 </div>
               </motion.div>
