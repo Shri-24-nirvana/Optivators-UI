@@ -705,21 +705,21 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 }}
               >
                 <div className="relative z-10">
-                  {/* Hero Brand Logo & AI Intelligence Badge */}
+                  {/* Hero Brand Logo Video & AI Intelligence Badge */}
                   <div className="flex items-center gap-3.5 flex-wrap mb-6">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.92, y: -8 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="relative group cursor-pointer inline-flex items-center px-4 py-2 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.03]"
+                      className="relative group cursor-pointer inline-flex items-center gap-2 p-1.5 pr-4 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02]"
                       style={{
                         background: dark
-                          ? "rgba(255, 255, 255, 0.05)"
-                          : "rgba(255, 255, 255, 0.85)",
-                        border: `1.5px solid ${isOrange ? "rgba(234, 88, 12, 0.28)" : "rgba(13, 148, 136, 0.28)"}`,
+                          ? "rgba(255, 255, 255, 0.06)"
+                          : "rgba(255, 255, 255, 0.9)",
+                        border: `1.5px solid ${isOrange ? "rgba(234, 88, 12, 0.3)" : "rgba(13, 148, 136, 0.3)"}`,
                         boxShadow: isOrange
-                          ? "0 10px 25px -5px rgba(234, 88, 12, 0.2)"
-                          : "0 10px 25px -5px rgba(13, 148, 136, 0.2)",
+                          ? "0 10px 25px -5px rgba(234, 88, 12, 0.25)"
+                          : "0 10px 25px -5px rgba(13, 148, 136, 0.25)",
                       }}
                     >
                       {/* Ambient Logo Glow */}
@@ -732,30 +732,36 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                         }}
                       />
 
-                      <img
-                        src="/logo/logo-transparent.png"
-                        alt="Optivators Logo"
-                        className="h-8 sm:h-9 w-auto object-contain select-none"
-                        style={{
-                          filter: !isOrange
-                            ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
-                            : undefined,
-                        }}
-                      />
-                    </motion.div>
+                      {/* Video Player */}
+                      <div className="rounded-xl overflow-hidden bg-white flex items-center justify-center px-2 py-0.5 shadow-sm">
+                        <video
+                          src="/logo/logo.mp4"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          poster="/logo/logo-transparent.png"
+                          className="h-8 sm:h-9 w-auto object-contain select-none"
+                          style={{
+                            filter: !isOrange ? "hue-rotate(145deg)" : undefined,
+                          }}
+                        />
+                      </div>
 
-                    <div
-                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs font-bold uppercase tracking-widest"
-                      style={{
-                        background: "var(--accent-soft)",
-                        color: "var(--accent-primary)",
-                        border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
-                        fontFamily: "var(--font-mono)",
-                      }}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
-                      AI-Powered Career Intelligence · 2026
-                    </div>
+                      <div className="flex items-center gap-2 pl-1">
+                        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
+                        <span
+                          className="text-xs font-bold uppercase tracking-widest"
+                          style={{
+                            color: "var(--text-primary)",
+                            fontFamily: "var(--font-mono)",
+                          }}
+                        >
+                          AI Platform · 2026
+                        </span>
+                      </div>
+                    </motion.div>
                   </div>
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
                     Your Campus.{" "}
