@@ -690,11 +690,13 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               {/* Left text with Frosted Glass Shield */}
               <div
-                className="relative rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 backdrop-blur-2xl overflow-hidden group shadow-2xl"
+                className="relative rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 backdrop-blur-3xl overflow-hidden group shadow-2xl"
                 style={{
                   background: "var(--color-heroGlassBg)",
                   border: "1px solid var(--color-heroGlassBorder)",
                   boxShadow: "var(--color-heroGlassShadow)",
+                  backdropFilter: "blur(28px) saturate(190%)",
+                  WebkitBackdropFilter: "blur(28px) saturate(190%)",
                 }}
               >
                 {/* Subtle top light sheen on glass edge */}

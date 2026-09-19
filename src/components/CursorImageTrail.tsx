@@ -160,8 +160,9 @@ export function CursorImageTrail({
         <AnimatePresence>
           {trail.map((item, i) => {
             const age = total - 1 - i;
-            const scale = 0.78 + 0.22 * (1 - age / trailLength);
-            const trailOpacity = Math.max(0.45, 1 - (age / trailLength) * 0.5);
+            const progress = Math.max(0, 1 - age / trailLength);
+            const scale = 0.75 + 0.25 * Math.pow(progress, 0.85);
+            const trailOpacity = Math.max(0.35, Math.pow(progress, 0.65));
 
             return (
               <motion.div
@@ -177,31 +178,31 @@ export function CursorImageTrail({
                 }}
                 initial={{
                   opacity: 0,
-                  scale: 0.6,
-                  y: 18,
-                  rotate: item.rotation * 1.25,
-                  filter: "blur(4px)",
+                  scale: 0.65,
+                  y: 16,
+                  rotate: item.rotation * 1.3,
+                  filter: "blur(6px)",
                 }}
                 animate={{
                   opacity: trailOpacity,
                   scale,
-                  y: -age * 2,
+                  y: -age * 3.5,
                   rotate: item.rotation,
                   filter: "blur(0px)",
                 }}
                 exit={{
                   opacity: 0,
-                  scale: scale * 0.75,
-                  y: -30,
-                  rotate: item.rotation * 0.7,
-                  filter: "blur(8px)",
+                  scale: scale * 0.72,
+                  y: -36,
+                  rotate: item.rotation * 0.75,
+                  filter: "blur(10px)",
                   transition: {
-                    duration: 0.65,
+                    duration: 0.7,
                     ease: [0.16, 1, 0.3, 1],
                   },
                 }}
                 transition={{
-                  duration: 0.55,
+                  duration: 0.6,
                   ease: [0.16, 1, 0.3, 1],
                 }}
               >
