@@ -605,22 +605,29 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
         className="sticky top-0 z-50 flex items-center gap-6 px-8 py-4 border-b"
         style={{ background: "var(--surface-glass)", backdropFilter: "blur(20px) saturate(180%)", borderColor: "var(--border-subtle)" }}
       >
-        <div className="flex items-center gap-2.5">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center text-white"
+            className="h-10 px-2.5 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-sm"
             style={{
               background: isOrange
-                ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
-                : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
-              boxShadow: isOrange
-                ? "0 4px 14px rgba(234,88,12,0.35)"
-                : "0 4px 14px rgba(13,148,136,0.35)",
+                ? (dark ? "rgba(234, 88, 12, 0.15)" : "rgba(255, 237, 213, 0.7)")
+                : (dark ? "rgba(13, 148, 136, 0.15)" : "rgba(204, 251, 241, 0.7)"),
+              border: `1px solid ${isOrange ? "rgba(234, 88, 12, 0.25)" : "rgba(13, 148, 136, 0.25)"}`,
             }}
           >
-            <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+            <img
+              src="/logo/logo-transparent.png"
+              alt="Optivators Logo"
+              className="h-6 w-auto object-contain select-none"
+              style={{
+                filter: !isOrange
+                  ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
+                  : undefined,
+              }}
+            />
           </div>
           <span className="font-extrabold text-lg tracking-tight" style={{ color: "var(--text-primary)" }}>Optivators</span>
-        </div>
+        </Link>
         <div className="hidden md:flex items-center gap-1 ml-6">
           {["Platform", "Features", "Colleges", "Pricing"].map(item => (
             <a key={item} href="#" className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors" style={{ color: "var(--text-secondary)" }}
@@ -698,17 +705,57 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 }}
               >
                 <div className="relative z-10">
-                  <div
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
-                    style={{
-                      background: "var(--accent-soft)",
-                      color: "var(--accent-primary)",
-                      border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
-                      fontFamily: "var(--font-mono)",
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
-                    AI-Powered Career Intelligence · 2026
+                  {/* Hero Brand Logo & AI Intelligence Badge */}
+                  <div className="flex items-center gap-3.5 flex-wrap mb-6">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.92, y: -8 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative group cursor-pointer inline-flex items-center px-4 py-2 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.03]"
+                      style={{
+                        background: dark
+                          ? "rgba(255, 255, 255, 0.05)"
+                          : "rgba(255, 255, 255, 0.85)",
+                        border: `1.5px solid ${isOrange ? "rgba(234, 88, 12, 0.28)" : "rgba(13, 148, 136, 0.28)"}`,
+                        boxShadow: isOrange
+                          ? "0 10px 25px -5px rgba(234, 88, 12, 0.2)"
+                          : "0 10px 25px -5px rgba(13, 148, 136, 0.2)",
+                      }}
+                    >
+                      {/* Ambient Logo Glow */}
+                      <div
+                        className="absolute inset-0 rounded-2xl blur-xl opacity-35 group-hover:opacity-75 transition-opacity pointer-events-none -z-10"
+                        style={{
+                          background: isOrange
+                            ? "radial-gradient(circle, #EA580C 0%, transparent 70%)"
+                            : "radial-gradient(circle, #0D9488 0%, transparent 70%)",
+                        }}
+                      />
+
+                      <img
+                        src="/logo/logo-transparent.png"
+                        alt="Optivators Logo"
+                        className="h-8 sm:h-9 w-auto object-contain select-none"
+                        style={{
+                          filter: !isOrange
+                            ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
+                            : undefined,
+                        }}
+                      />
+                    </motion.div>
+
+                    <div
+                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-2xl text-xs font-bold uppercase tracking-widest"
+                      style={{
+                        background: "var(--accent-soft)",
+                        color: "var(--accent-primary)",
+                        border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
+                        fontFamily: "var(--font-mono)",
+                      }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
+                      AI-Powered Career Intelligence · 2026
+                    </div>
                   </div>
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
                     Your Campus.{" "}
@@ -1522,16 +1569,26 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             <div className="col-span-2">
               <div className="flex items-center gap-2.5 mb-4">
                 <div
-                  className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-xs font-bold"
+                  className="h-9 px-2.5 rounded-xl flex items-center justify-center"
                   style={{
                     background: isOrange
-                      ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
-                      : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+                      ? (dark ? "rgba(234, 88, 12, 0.15)" : "rgba(255, 237, 213, 0.8)")
+                      : (dark ? "rgba(13, 148, 136, 0.15)" : "rgba(204, 251, 241, 0.8)"),
+                    border: `1px solid ${isOrange ? "rgba(234, 88, 12, 0.3)" : "rgba(13, 148, 136, 0.3)"}`,
                   }}
                 >
-                  O
+                  <img
+                    src="/logo/logo-transparent.png"
+                    alt="Optivators Logo"
+                    className="h-5 w-auto object-contain"
+                    style={{
+                      filter: !isOrange
+                        ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
+                        : undefined,
+                    }}
+                  />
                 </div>
-                <span className="font-extrabold" style={{ color: "var(--text-primary)" }}>Optivators</span>
+                <span className="font-extrabold text-lg" style={{ color: "var(--text-primary)" }}>Optivators</span>
               </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-muted)" }}>Next-gen AI career readiness, cognitive testing & campus placement platform for modern institutions.</p>
               <div className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>© 2026 Optivators. All rights reserved.</div>
