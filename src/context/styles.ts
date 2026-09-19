@@ -39,10 +39,10 @@ export const lightVibrantColors: ThemeColors = {
   podiumBronzeBorder: "#F97316",
   podiumGlow: "rgba(13, 148, 136, 0.2)",
 
-  // Hero Glass Background Tokens (Green Light)
-  heroGlassBg: "linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(240, 253, 250, 0.5) 100%)",
-  heroGlassBorder: "rgba(255, 255, 255, 0.85)",
-  heroGlassShadow: "0 20px 60px -15px rgba(13, 148, 136, 0.1), 0 0 0 1px rgba(13, 148, 136, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+  // Hero Glass Background Tokens (Green Light) - Invisible Transparent Glass
+  heroGlassBg: "transparent",
+  heroGlassBorder: "transparent",
+  heroGlassShadow: "none",
 };
 
 // Green/Teal Dark Palette
@@ -84,10 +84,10 @@ export const darkVibrantColors: ThemeColors = {
   podiumBronzeBorder: "rgba(217, 119, 6, 0.4)",
   podiumGlow: "rgba(45, 212, 191, 0.15)",
 
-  // Hero Glass Background Tokens (Green Dark)
-  heroGlassBg: "linear-gradient(135deg, rgba(13, 20, 36, 0.6) 0%, rgba(6, 9, 15, 0.45) 100%)",
-  heroGlassBorder: "rgba(255, 255, 255, 0.12)",
-  heroGlassShadow: "0 25px 70px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+  // Hero Glass Background Tokens (Green Dark) - Invisible Transparent Glass
+  heroGlassBg: "transparent",
+  heroGlassBorder: "transparent",
+  heroGlassShadow: "none",
 };
 
 // Orange Light Palette
@@ -129,10 +129,10 @@ export const lightOrangeColors: ThemeColors = {
   podiumBronzeBorder: "#EA580C",
   podiumGlow: "rgba(234, 88, 12, 0.2)",
 
-  // Hero Glass Background Tokens (Orange Light)
-  heroGlassBg: "linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 247, 237, 0.5) 100%)",
-  heroGlassBorder: "rgba(255, 255, 255, 0.85)",
-  heroGlassShadow: "0 20px 60px -15px rgba(234, 88, 12, 0.1), 0 0 0 1px rgba(234, 88, 12, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)",
+  // Hero Glass Background Tokens (Orange Light) - Invisible Transparent Glass
+  heroGlassBg: "transparent",
+  heroGlassBorder: "transparent",
+  heroGlassShadow: "none",
 };
 
 // Orange Dark Palette
@@ -174,10 +174,10 @@ export const darkOrangeColors: ThemeColors = {
   podiumBronzeBorder: "rgba(234, 88, 12, 0.4)",
   podiumGlow: "rgba(251, 146, 60, 0.15)",
 
-  // Hero Glass Background Tokens (Orange Dark)
-  heroGlassBg: "linear-gradient(135deg, rgba(28, 20, 14, 0.6) 0%, rgba(15, 10, 6, 0.45) 100%)",
-  heroGlassBorder: "rgba(255, 255, 255, 0.12)",
-  heroGlassShadow: "0 25px 70px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(251, 146, 60, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+  // Hero Glass Background Tokens (Orange Dark) - Invisible Transparent Glass
+  heroGlassBg: "transparent",
+  heroGlassBorder: "transparent",
+  heroGlassShadow: "none",
 };
 
 // Helper to get active palette based on dark and colorTheme
@@ -565,16 +565,14 @@ export const createThemedStyles = (colors: ThemeColors, isDark: boolean) => ({
     borderRight: `1px solid ${colors.podiumBronzeBorder}`,
   },
 
-  // Hero Section Frosted Glass Background
+  // Hero Section Transparent Frosted Glass Layer
   heroTextGlassCard: {
-    borderRadius: "28px",
-    background: colors.heroGlassBg,
-    border: `1px solid ${colors.heroGlassBorder}`,
-    boxShadow: colors.heroGlassShadow,
+    background: "transparent",
+    border: "none",
+    boxShadow: "none",
     backdropFilter: "blur(24px)",
     WebkitBackdropFilter: "blur(24px)",
     position: "relative" as const,
-    overflow: "hidden" as const,
   },
 
   // Cursor Trail & Hero Section Layering Styles

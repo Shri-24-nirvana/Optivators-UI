@@ -688,28 +688,15 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
 
           <div className="relative max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left text with Frosted Glass Shield */}
+              {/* Left text with Invisible Transparent Frosted Glass Shield */}
               <div
-                className="relative rounded-3xl p-6 sm:p-8 lg:p-10 transition-all duration-300 backdrop-blur-3xl overflow-hidden group shadow-2xl"
+                className="relative rounded-3xl transition-all duration-300 backdrop-blur-2xl"
                 style={{
-                  background: "var(--color-heroGlassBg)",
-                  border: "1px solid var(--color-heroGlassBorder)",
-                  boxShadow: "var(--color-heroGlassShadow)",
-                  backdropFilter: "blur(28px) saturate(190%)",
-                  WebkitBackdropFilter: "blur(28px) saturate(190%)",
+                  background: "transparent",
+                  backdropFilter: "blur(24px)",
+                  WebkitBackdropFilter: "blur(24px)",
                 }}
               >
-                {/* Subtle top light sheen on glass edge */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent pointer-events-none" />
-                
-                {/* Soft ambient corner glow */}
-                <div
-                  className="absolute -top-12 -right-12 w-48 h-48 rounded-full pointer-events-none blur-3xl opacity-20"
-                  style={{
-                    background: isOrange ? "#EA580C" : "#0D9488",
-                  }}
-                />
-
                 <div className="relative z-10">
                   <div
                     className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
