@@ -581,6 +581,87 @@ function useCounter(target: number, duration = 2000) {
   return { count, ref };
 }
 
+function HeroVideoPlayer({ isOrange, dark }: { isOrange: boolean; dark: boolean }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.defaultMuted = true;
+      const p = videoRef.current.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
+    }
+  }, []);
+
+  return (
+    <div className="relative w-full rounded-3xl overflow-hidden group mb-4">
+      {/* Dynamic Ambient Glow Halo */}
+      <div
+        className="absolute inset-0 rounded-3xl blur-3xl opacity-45 group-hover:opacity-80 transition-opacity pointer-events-none -z-10"
+        style={{
+          background: isOrange
+            ? "radial-gradient(circle, #FD3702 0%, #FE8505 50%, transparent 75%)"
+            : "radial-gradient(circle, #0D9488 0%, #2DD4BF 50%, transparent 75%)",
+        }}
+      />
+      <div
+        className="relative rounded-3xl overflow-hidden p-3 sm:p-4 flex flex-col items-center justify-center backdrop-blur-2xl transition-all duration-300"
+        style={{
+          background: dark
+            ? "linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(15, 23, 42, 0.85) 100%)"
+            : "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 247, 237, 0.85) 100%)",
+          border: `2px solid ${isOrange ? "rgba(253, 55, 2, 0.35)" : "rgba(13, 148, 136, 0.35)"}`,
+          boxShadow: isOrange
+            ? "0 24px 60px -15px rgba(253, 55, 2, 0.3)"
+            : "0 24px 60px -15px rgba(13, 148, 136, 0.3)",
+        }}
+      >
+        {/* Top Header Bar inside Video Showcase */}
+        <div className="w-full flex items-center justify-between px-2 pb-2.5 mb-1 border-b" style={{ borderColor: "var(--border-subtle)" }}>
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+              Optivators Live
+            </span>
+          </div>
+          <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10" style={{ color: "var(--text-muted)" }}>
+            Brand Animation
+          </span>
+        </div>
+
+        {/* Video / GIF Element */}
+        <div className="w-full rounded-2xl overflow-hidden bg-white dark:bg-slate-950/40 p-2 sm:p-4 flex items-center justify-center shadow-inner">
+          <video
+            ref={videoRef}
+            src="/logo/logo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/logo/logo-transparent.png"
+            className="w-full h-auto max-h-56 sm:max-h-64 object-contain select-none transition-transform duration-500 group-hover:scale-[1.02]"
+            style={{
+              filter: !isOrange
+                ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
+                : undefined,
+            }}
+          >
+            <source src="/logo/logo.mp4" type="video/mp4" />
+            <img
+              src="/logo/logo.gif"
+              alt="Optivators Animation"
+              className="w-full h-auto max-h-56 sm:max-h-64 object-contain select-none"
+            />
+          </video>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }) {
   const { isOrange } = useTheme();
   const q = useCounter(100000);
@@ -826,8 +907,10 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 </div>
               </div>
 
-              {/* Right: Floating dashboard preview */}
-              <div className="relative">
+              {/* Right: Prominent Video Showcase + Dashboard preview */}
+              <div className="relative flex flex-col">
+                <HeroVideoPlayer isOrange={isOrange} dark={dark} />
+
                 <div className="float-anim relative">
                   {/* Main card */}
                   <div className="rounded-3xl overflow-hidden dark:border-white/20 dark:shadow-[0_32px_80px_-20px_rgba(0,0,0,0.8)]" style={{ background: "var(--surface-elevated)", border: "1px solid var(--border-subtle)", boxShadow: "0 32px 64px -24px rgba(0,0,0,0.2)" }}>
