@@ -11,6 +11,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import CursorImageTrail from "@/components/CursorImageTrail";
+import BouncingBalls from "@/components/ui/BouncingBalls";
 import BlobCard from "@/components/ui/BlobCard";
 import StreamConvergenceBackground from "@/components/ui/StreamConvergenceBackground";
 import SwitchMode from "@/components/ui/SwitchMode";
@@ -670,6 +671,20 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
       {/* Hero with Cursor Trail ONLY on Hero section */}
       <CursorImageTrail items={trailItems} itemSize={118} trailLength={7} spawnDistance={55}>
         <section className="relative overflow-hidden py-24 px-8">
+          {/* Interactive Bouncing Balls Physics Background */}
+          <div className="absolute inset-0 pointer-events-none -z-5 overflow-hidden opacity-60 dark:opacity-35">
+            <BouncingBalls
+              colors={isOrange ? ["#FD3702", "#FE8505", "#FB923C"] : ["#0D9488", "#2DD4BF", "#14B8A6"]}
+              numBalls={32}
+              minRadius={2.5}
+              maxRadius={5.5}
+              speed={0.35}
+              interactive={true}
+              interactionRadius={85}
+              interactionScale={1.75}
+            />
+          </div>
+
           {/* Background mesh */}
           <div className="absolute inset-0 pointer-events-none -z-10">
             <div
@@ -706,34 +721,34 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
               >
                 <div className="relative z-10">
                   {/* Hero Brand Logo Video & AI Intelligence Badge */}
-                  <div className="flex items-center gap-3.5 flex-wrap mb-6">
+                  <div className="flex items-center gap-3.5 flex-wrap mb-7">
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.92, y: -8 }}
+                      initial={{ opacity: 0, scale: 0.92, y: -10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="relative group cursor-pointer inline-flex items-center gap-2 p-1.5 pr-4 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02]"
+                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative group cursor-pointer inline-flex items-center gap-3 p-2 pr-5 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02]"
                       style={{
                         background: dark
                           ? "rgba(255, 255, 255, 0.06)"
                           : "rgba(255, 255, 255, 0.9)",
-                        border: `1.5px solid ${isOrange ? "rgba(234, 88, 12, 0.3)" : "rgba(13, 148, 136, 0.3)"}`,
+                        border: `1.5px solid ${isOrange ? "rgba(253, 55, 2, 0.35)" : "rgba(13, 148, 136, 0.35)"}`,
                         boxShadow: isOrange
-                          ? "0 10px 25px -5px rgba(234, 88, 12, 0.25)"
-                          : "0 10px 25px -5px rgba(13, 148, 136, 0.25)",
+                          ? "0 12px 30px -5px rgba(253, 55, 2, 0.25)"
+                          : "0 12px 30px -5px rgba(13, 148, 136, 0.25)",
                       }}
                     >
                       {/* Ambient Logo Glow */}
                       <div
-                        className="absolute inset-0 rounded-2xl blur-xl opacity-35 group-hover:opacity-75 transition-opacity pointer-events-none -z-10"
+                        className="absolute inset-0 rounded-2xl blur-xl opacity-40 group-hover:opacity-80 transition-opacity pointer-events-none -z-10"
                         style={{
                           background: isOrange
-                            ? "radial-gradient(circle, #EA580C 0%, transparent 70%)"
-                            : "radial-gradient(circle, #0D9488 0%, transparent 70%)",
+                            ? "radial-gradient(circle, #FD3702 0%, #FE8505 50%, transparent 70%)"
+                            : "radial-gradient(circle, #0D9488 0%, #2DD4BF 50%, transparent 70%)",
                         }}
                       />
 
                       {/* Video Player */}
-                      <div className="rounded-xl overflow-hidden bg-white flex items-center justify-center px-2 py-0.5 shadow-sm">
+                      <div className="rounded-xl overflow-hidden bg-white flex items-center justify-center px-2.5 py-1 shadow-sm">
                         <video
                           src="/logo/logo.mp4"
                           autoPlay
@@ -742,15 +757,15 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                           playsInline
                           preload="auto"
                           poster="/logo/logo-transparent.png"
-                          className="h-8 sm:h-9 w-auto object-contain select-none"
+                          className="h-9 sm:h-10 w-auto object-contain select-none"
                           style={{
                             filter: !isOrange ? "hue-rotate(145deg)" : undefined,
                           }}
                         />
                       </div>
 
-                      <div className="flex items-center gap-2 pl-1">
-                        <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
+                      <div className="flex items-center gap-2 pl-0.5">
+                        <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
                         <span
                           className="text-xs font-bold uppercase tracking-widest"
                           style={{
