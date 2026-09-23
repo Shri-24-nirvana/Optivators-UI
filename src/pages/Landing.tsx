@@ -11,7 +11,6 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import CursorImageTrail from "@/components/CursorImageTrail";
-import BouncingBalls from "@/components/ui/BouncingBalls";
 import BlobCard from "@/components/ui/BlobCard";
 import StreamConvergenceBackground from "@/components/ui/StreamConvergenceBackground";
 import SwitchMode from "@/components/ui/SwitchMode";
@@ -581,87 +580,6 @@ function useCounter(target: number, duration = 2000) {
   return { count, ref };
 }
 
-function HeroVideoPlayer({ isOrange, dark }: { isOrange: boolean; dark: boolean }) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.defaultMuted = true;
-      const p = videoRef.current.play();
-      if (p !== undefined) {
-        p.catch(() => {});
-      }
-    }
-  }, []);
-
-  return (
-    <div className="relative w-full rounded-3xl overflow-hidden group mb-4">
-      {/* Dynamic Ambient Glow Halo */}
-      <div
-        className="absolute inset-0 rounded-3xl blur-3xl opacity-45 group-hover:opacity-80 transition-opacity pointer-events-none -z-10"
-        style={{
-          background: isOrange
-            ? "radial-gradient(circle, #FD3702 0%, #FE8505 50%, transparent 75%)"
-            : "radial-gradient(circle, #0D9488 0%, #2DD4BF 50%, transparent 75%)",
-        }}
-      />
-      <div
-        className="relative rounded-3xl overflow-hidden p-3 sm:p-4 flex flex-col items-center justify-center backdrop-blur-2xl transition-all duration-300"
-        style={{
-          background: dark
-            ? "linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(15, 23, 42, 0.85) 100%)"
-            : "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 247, 237, 0.85) 100%)",
-          border: `2px solid ${isOrange ? "rgba(253, 55, 2, 0.35)" : "rgba(13, 148, 136, 0.35)"}`,
-          boxShadow: isOrange
-            ? "0 24px 60px -15px rgba(253, 55, 2, 0.3)"
-            : "0 24px 60px -15px rgba(13, 148, 136, 0.3)",
-        }}
-      >
-        {/* Top Header Bar inside Video Showcase */}
-        <div className="w-full flex items-center justify-between px-2 pb-2.5 mb-1 border-b" style={{ borderColor: "var(--border-subtle)" }}>
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
-              Optivators Live
-            </span>
-          </div>
-          <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10" style={{ color: "var(--text-muted)" }}>
-            Brand Animation
-          </span>
-        </div>
-
-        {/* Video / GIF Element */}
-        <div className="w-full rounded-2xl overflow-hidden bg-white dark:bg-slate-950/40 p-2 sm:p-4 flex items-center justify-center shadow-inner">
-          <video
-            ref={videoRef}
-            src="/logo/logo.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster="/logo/logo-transparent.png"
-            className="w-full h-auto max-h-56 sm:max-h-64 object-contain select-none transition-transform duration-500 group-hover:scale-[1.02]"
-            style={{
-              filter: !isOrange
-                ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
-                : undefined,
-            }}
-          >
-            <source src="/logo/logo.mp4" type="video/mp4" />
-            <img
-              src="/logo/logo.gif"
-              alt="Optivators Animation"
-              className="w-full h-auto max-h-56 sm:max-h-64 object-contain select-none"
-            />
-          </video>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }) {
   const { isOrange } = useTheme();
   const q = useCounter(100000);
@@ -687,29 +605,22 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
         className="sticky top-0 z-50 flex items-center gap-6 px-8 py-4 border-b"
         style={{ background: "var(--surface-glass)", backdropFilter: "blur(20px) saturate(180%)", borderColor: "var(--border-subtle)" }}
       >
-        <Link to="/" className="flex items-center gap-2.5 group">
+        <div className="flex items-center gap-2.5">
           <div
-            className="h-10 px-2.5 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105 shadow-sm"
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-white"
             style={{
               background: isOrange
-                ? (dark ? "rgba(234, 88, 12, 0.15)" : "rgba(255, 237, 213, 0.7)")
-                : (dark ? "rgba(13, 148, 136, 0.15)" : "rgba(204, 251, 241, 0.7)"),
-              border: `1px solid ${isOrange ? "rgba(234, 88, 12, 0.25)" : "rgba(13, 148, 136, 0.25)"}`,
+                ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
+              boxShadow: isOrange
+                ? "0 4px 14px rgba(234,88,12,0.35)"
+                : "0 4px 14px rgba(13,148,136,0.35)",
             }}
           >
-            <img
-              src="/logo/logo-transparent.png"
-              alt="Optivators Logo"
-              className="h-6 w-auto object-contain select-none"
-              style={{
-                filter: !isOrange
-                  ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
-                  : undefined,
-              }}
-            />
+            <svg width={18} height={18} viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
           </div>
           <span className="font-extrabold text-lg tracking-tight" style={{ color: "var(--text-primary)" }}>Optivators</span>
-        </Link>
+        </div>
         <div className="hidden md:flex items-center gap-1 ml-6">
           {["Platform", "Features", "Colleges", "Pricing"].map(item => (
             <a key={item} href="#" className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors" style={{ color: "var(--text-secondary)" }}
@@ -752,20 +663,6 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
       {/* Hero with Cursor Trail ONLY on Hero section */}
       <CursorImageTrail items={trailItems} itemSize={118} trailLength={7} spawnDistance={55}>
         <section className="relative overflow-hidden py-24 px-8">
-          {/* Interactive Bouncing Balls Physics Background */}
-          <div className="absolute inset-0 pointer-events-none -z-5 overflow-hidden opacity-60 dark:opacity-35">
-            <BouncingBalls
-              colors={isOrange ? ["#FD3702", "#FE8505", "#FB923C"] : ["#0D9488", "#2DD4BF", "#14B8A6"]}
-              numBalls={32}
-              minRadius={2.5}
-              maxRadius={5.5}
-              speed={0.35}
-              interactive={true}
-              interactionRadius={85}
-              interactionScale={1.75}
-            />
-          </div>
-
           {/* Background mesh */}
           <div className="absolute inset-0 pointer-events-none -z-10">
             <div
@@ -801,63 +698,17 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 }}
               >
                 <div className="relative z-10">
-                  {/* Hero Brand Logo Video & AI Intelligence Badge */}
-                  <div className="flex items-center gap-3.5 flex-wrap mb-7">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.92, y: -10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                      className="relative group cursor-pointer inline-flex items-center gap-3 p-2 pr-5 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-[1.02]"
-                      style={{
-                        background: dark
-                          ? "rgba(255, 255, 255, 0.06)"
-                          : "rgba(255, 255, 255, 0.9)",
-                        border: `1.5px solid ${isOrange ? "rgba(253, 55, 2, 0.35)" : "rgba(13, 148, 136, 0.35)"}`,
-                        boxShadow: isOrange
-                          ? "0 12px 30px -5px rgba(253, 55, 2, 0.25)"
-                          : "0 12px 30px -5px rgba(13, 148, 136, 0.25)",
-                      }}
-                    >
-                      {/* Ambient Logo Glow */}
-                      <div
-                        className="absolute inset-0 rounded-2xl blur-xl opacity-40 group-hover:opacity-80 transition-opacity pointer-events-none -z-10"
-                        style={{
-                          background: isOrange
-                            ? "radial-gradient(circle, #FD3702 0%, #FE8505 50%, transparent 70%)"
-                            : "radial-gradient(circle, #0D9488 0%, #2DD4BF 50%, transparent 70%)",
-                        }}
-                      />
-
-                      {/* Video Player */}
-                      <div className="rounded-xl overflow-hidden bg-white flex items-center justify-center px-2.5 py-1 shadow-sm">
-                        <video
-                          src="/logo/logo.mp4"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="auto"
-                          poster="/logo/logo-transparent.png"
-                          className="h-9 sm:h-10 w-auto object-contain select-none"
-                          style={{
-                            filter: !isOrange ? "hue-rotate(145deg)" : undefined,
-                          }}
-                        />
-                      </div>
-
-                      <div className="flex items-center gap-2 pl-0.5">
-                        <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
-                        <span
-                          className="text-xs font-bold uppercase tracking-widest"
-                          style={{
-                            color: "var(--text-primary)",
-                            fontFamily: "var(--font-mono)",
-                          }}
-                        >
-                          AI Platform · 2026
-                        </span>
-                      </div>
-                    </motion.div>
+                  <div
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6"
+                    style={{
+                      background: "var(--accent-soft)",
+                      color: "var(--accent-primary)",
+                      border: isOrange ? "1px solid rgba(234,88,12,0.2)" : "1px solid rgba(13,148,136,0.2)",
+                      fontFamily: "var(--font-mono)",
+                    }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "var(--accent-primary)" }} />
+                    AI-Powered Career Intelligence · 2026
                   </div>
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style={{ color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
                     Your Campus.{" "}
@@ -907,10 +758,8 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
                 </div>
               </div>
 
-              {/* Right: Prominent Video Showcase + Dashboard preview */}
-              <div className="relative flex flex-col">
-                <HeroVideoPlayer isOrange={isOrange} dark={dark} />
-
+              {/* Right: Floating dashboard preview */}
+              <div className="relative">
                 <div className="float-anim relative">
                   {/* Main card */}
                   <div className="rounded-3xl overflow-hidden dark:border-white/20 dark:shadow-[0_32px_80px_-20px_rgba(0,0,0,0.8)]" style={{ background: "var(--surface-elevated)", border: "1px solid var(--border-subtle)", boxShadow: "0 32px 64px -24px rgba(0,0,0,0.2)" }}>
@@ -1673,26 +1522,16 @@ export default function Landing({ dark, onToggleDark }: { dark: boolean; onToggl
             <div className="col-span-2">
               <div className="flex items-center gap-2.5 mb-4">
                 <div
-                  className="h-9 px-2.5 rounded-xl flex items-center justify-center"
+                  className="w-8 h-8 rounded-xl flex items-center justify-center text-white text-xs font-bold"
                   style={{
                     background: isOrange
-                      ? (dark ? "rgba(234, 88, 12, 0.15)" : "rgba(255, 237, 213, 0.8)")
-                      : (dark ? "rgba(13, 148, 136, 0.15)" : "rgba(204, 251, 241, 0.8)"),
-                    border: `1px solid ${isOrange ? "rgba(234, 88, 12, 0.3)" : "rgba(13, 148, 136, 0.3)"}`,
+                      ? "linear-gradient(135deg, #EA580C 0%, #C2410C 100%)"
+                      : "linear-gradient(135deg, #0D9488 0%, #0f766e 100%)",
                   }}
                 >
-                  <img
-                    src="/logo/logo-transparent.png"
-                    alt="Optivators Logo"
-                    className="h-5 w-auto object-contain"
-                    style={{
-                      filter: !isOrange
-                        ? (dark ? "hue-rotate(145deg) saturate(1.2)" : "hue-rotate(145deg)")
-                        : undefined,
-                    }}
-                  />
+                  O
                 </div>
-                <span className="font-extrabold text-lg" style={{ color: "var(--text-primary)" }}>Optivators</span>
+                <span className="font-extrabold" style={{ color: "var(--text-primary)" }}>Optivators</span>
               </div>
               <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-muted)" }}>Next-gen AI career readiness, cognitive testing & campus placement platform for modern institutions.</p>
               <div className="text-xs" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>© 2026 Optivators. All rights reserved.</div>
