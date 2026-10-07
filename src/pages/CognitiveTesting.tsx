@@ -130,6 +130,16 @@ const PACKAGES: PackageItem[] = [
         icon: "https://d502jbuhuh9wk.cloudfront.net/courses/6ab0e5cfb932f8d6fea82a62/6ab0e5cfb932f8d6fea82a62_scaled_cover.jpg?v=1",
         quizUrl: "https://optusedu.com/s/courses/6ab0e5cfb932f8d6fea82a62/take",
       },
+      {
+        title: "Computer Vision & Agentic AI",
+        quiz1: null,
+        quiz2: null,
+        progress: 25,
+        done: false,
+        tags: ["Vision Models", "LangChain", "Autonomous Agents"],
+        icon: "https://d502jbuhuh9wk.cloudfront.net/courses/6ab0e5cfb932f8d6fea82a62/6ab0e5cfb932f8d6fea82a62_scaled_cover.jpg?v=1",
+        quizUrl: "https://optusedu.com/s/courses/6ab0e5cfb932f8d6fea82a62/take",
+      },
     ],
   },
 ];
