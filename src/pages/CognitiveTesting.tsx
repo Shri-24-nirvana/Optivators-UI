@@ -10,16 +10,66 @@ const BASE_SCORECARDS = [
 
 const FILTERS = ["All Branches", "CSE Core", "AIML", "Data Science", "Cyber Security", "Cloud & DevOps", "Sales & HR", "Finance"];
 
-const PACKAGES = [
+interface CourseItem {
+  title: string;
+  quiz1: number | null;
+  quiz2: number | null;
+  progress: number;
+  done: boolean;
+  tags: string[];
+  icon?: string;
+  quizUrl?: string;
+}
+
+interface PackageItem {
+  name: string;
+  count: number;
+  completed: number;
+  color: string;
+  icon?: string;
+  quizUrl?: string;
+  courses: CourseItem[];
+}
+
+const PACKAGES: PackageItem[] = [
   {
     name: "Data Structures & Algorithms",
     count: 12,
     completed: 8,
     color: "#0D9488",
+    icon: "https://d502jbuhuh9wk.cloudfront.net/courses/6aad0b2c75b7df5428fcde51/6aad0b2c75b7df5428fcde51_scaled_cover.jpg?v=1",
+    quizUrl: "https://optusedu.com/s/courses/6aad0b2c75b7df5428fcde51/take",
     courses: [
-      { title: "Arrays & Strings Mastery", quiz1: 87, quiz2: 91, progress: 100, done: true, tags: ["Arrays", "Strings", "Two Pointer"] },
-      { title: "Trees & Graph Algorithms", quiz1: 74, quiz2: null, progress: 65, done: false, tags: ["BFS", "DFS", "Dijkstra"] },
-      { title: "Dynamic Programming Core", quiz1: null, quiz2: null, progress: 20, done: false, tags: ["Memoization", "Tabulation"] },
+      {
+        title: "Arrays & Strings Mastery",
+        quiz1: 87,
+        quiz2: 91,
+        progress: 100,
+        done: true,
+        tags: ["Arrays", "Strings", "Two Pointer"],
+        icon: "https://d502jbuhuh9wk.cloudfront.net/courses/6aad0b2c75b7df5428fcde51/6aad0b2c75b7df5428fcde51_scaled_cover.jpg?v=1",
+        quizUrl: "https://optusedu.com/s/courses/6aad0b2c75b7df5428fcde51/take",
+      },
+      {
+        title: "Trees & Graph Algorithms",
+        quiz1: 74,
+        quiz2: null,
+        progress: 65,
+        done: false,
+        tags: ["BFS", "DFS", "Dijkstra"],
+        icon: "https://d502jbuhuh9wk.cloudfront.net/courses/6aad0b2c75b7df5428fcde51/6aad0b2c75b7df5428fcde51_scaled_cover.jpg?v=1",
+        quizUrl: "https://optusedu.com/s/courses/6aad0b2c75b7df5428fcde51/take",
+      },
+      {
+        title: "Dynamic Programming Core",
+        quiz1: null,
+        quiz2: null,
+        progress: 20,
+        done: false,
+        tags: ["Memoization", "Tabulation"],
+        icon: "https://d502jbuhuh9wk.cloudfront.net/courses/6aad0b2c75b7df5428fcde51/6aad0b2c75b7df5428fcde51_scaled_cover.jpg?v=1",
+        quizUrl: "https://optusedu.com/s/courses/6aad0b2c75b7df5428fcde51/take",
+      },
     ],
   },
   {
@@ -153,7 +203,7 @@ export default function CognitiveTesting() {
       {/* Course Package Accordions */}
       <div className="space-y-4">
         <h3 className="text-sm font-bold uppercase tracking-widest" style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>Course Packages</h3>
-        {PACKAGES.map(({ name, count, completed, color, courses }) => {
+        {PACKAGES.map(({ name, count, completed, color, courses, icon, quizUrl }) => {
           const isOpen = expandedPkg === name;
           return (
             <div
@@ -168,9 +218,15 @@ export default function CognitiveTesting() {
                 style={{ background: isOpen ? `${color}08` : "transparent" }}
               >
                 <div
-                  className="w-12 h-8 rounded-lg shrink-0"
+                  className="w-12 h-8 rounded-lg shrink-0 overflow-hidden flex items-center justify-center"
                   style={{ background: `${color}20` }}
-                />
+                >
+                  {icon ? (
+                    <img src={icon} alt={name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full" style={{ background: `${color}20` }} />
+                  )}
+                </div>
                 <div className="flex-1">
                   <div className="font-bold text-sm" style={{ color: "var(--text-primary)" }}>{name}</div>
                   <div className="text-xs" style={{ color: "var(--text-muted)" }}>{count} courses · {completed} completed</div>
@@ -194,25 +250,33 @@ export default function CognitiveTesting() {
               {/* Expanded grid */}
               {isOpen && (
                 <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4 border-t" style={{ borderColor: `${color}20` }}>
-                  {courses.map(({ title, quiz1, quiz2, progress, done, tags }) => (
+                  {courses.map(({ title, quiz1, quiz2, progress, done, tags, icon: courseIcon, quizUrl: courseQuizUrl }) => (
                     <div
                       key={title}
                       className="rounded-xl overflow-hidden"
                       style={{ border: "1px solid var(--border-subtle)", background: "var(--surface-bg)" }}
                     >
                       {/* Thumbnail */}
-                      <div className="relative h-28" style={{ background: `linear-gradient(135deg, ${color}20, ${color}08)` }}>
+                      <div className="relative h-28 overflow-hidden" style={{ background: `linear-gradient(135deg, ${color}20, ${color}08)` }}>
+                        {(courseIcon || icon) ? (
+                          <img
+                            src={courseIcon || icon}
+                            alt={title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center opacity-20">
+                            <div style={{ color, fontSize: 48 }}>⬡</div>
+                          </div>
+                        )}
                         {done && (
                           <div
-                            className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold"
+                            className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm"
                             style={{ background: "#059669", color: "white" }}
                           >
                             ✓ Completed
                           </div>
                         )}
-                        <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                          <div style={{ color, fontSize: 48 }}>⬡</div>
-                        </div>
                       </div>
 
                       <div className="p-4">
@@ -243,12 +307,24 @@ export default function CognitiveTesting() {
                           </div>
                         </div>
 
-                        <button
-                          className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all"
-                          style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
-                        >
-                          {done ? "Retake Quiz" : "Take Quiz"} →
-                        </button>
+                        {courseQuizUrl || quizUrl ? (
+                          <a
+                            href={courseQuizUrl || quizUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all hover:opacity-90 active:scale-[0.99]"
+                            style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
+                          >
+                            {done ? "Retake Quiz" : "Take Quiz"} →
+                          </a>
+                        ) : (
+                          <button
+                            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all"
+                            style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
+                          >
+                            {done ? "Retake Quiz" : "Take Quiz"} →
+                          </button>
+                        )}
                       </div>
                     </div>
                   ))}
