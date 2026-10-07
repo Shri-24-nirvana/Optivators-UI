@@ -249,85 +249,100 @@ export default function CognitiveTesting() {
 
               {/* Expanded grid */}
               {isOpen && (
-                <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4 border-t" style={{ borderColor: `${color}20` }}>
-                  {courses.map(({ title, quiz1, quiz2, progress, done, tags, icon: courseIcon, quizUrl: courseQuizUrl }) => (
-                    <div
-                      key={title}
-                      className="rounded-xl overflow-hidden"
-                      style={{ border: "1px solid var(--border-subtle)", background: "var(--surface-bg)" }}
-                    >
-                      {/* Thumbnail */}
-                      <div className="relative h-28 overflow-hidden" style={{ background: `linear-gradient(135deg, ${color}20, ${color}08)` }}>
-                        {(courseIcon || icon) ? (
-                          <img
-                            src={courseIcon || icon}
-                            alt={title}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                            <div style={{ color, fontSize: 48 }}>⬡</div>
-                          </div>
-                        )}
-                        {done && (
-                          <div
-                            className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm"
-                            style={{ background: "#059669", color: "white" }}
-                          >
-                            ✓ Completed
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="p-4">
-                        <div className="font-semibold text-sm mb-2" style={{ color: "var(--text-primary)" }}>{title}</div>
-
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          {tags.map(t => (
-                            <span key={t} className="px-2 py-0.5 rounded text-xs" style={{ background: "var(--border-subtle)", color: "var(--text-muted)" }}>{t}</span>
-                          ))}
+                <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-5 border-t" style={{ borderColor: `${color}20` }}>
+                  {courses.map(({ title, quiz1, quiz2, progress, done, tags, icon: courseIcon, quizUrl: courseQuizUrl }) => {
+                    const targetUrl = courseQuizUrl || quizUrl;
+                    return (
+                      <div
+                        key={title}
+                        onClick={() => {
+                          if (targetUrl) {
+                            window.open(targetUrl, "_blank", "noopener,noreferrer");
+                          }
+                        }}
+                        className="group rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl active:scale-[0.98] cursor-pointer flex flex-col justify-between"
+                        style={{
+                          border: "1px solid var(--border-subtle)",
+                          background: "var(--surface-bg)",
+                        }}
+                        onMouseEnter={e => {
+                          e.currentTarget.style.borderColor = `${color}60`;
+                          e.currentTarget.style.boxShadow = `0 16px 36px -12px ${color}35`;
+                        }}
+                        onMouseLeave={e => {
+                          e.currentTarget.style.borderColor = "var(--border-subtle)";
+                          e.currentTarget.style.boxShadow = "none";
+                        }}
+                      >
+                        {/* Thumbnail */}
+                        <div className="relative h-36 sm:h-40 overflow-hidden" style={{ background: `linear-gradient(135deg, ${color}20, ${color}08)` }}>
+                          {(courseIcon || icon) ? (
+                            <img
+                              src={courseIcon || icon}
+                              alt={title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              style={{ objectPosition: "center 12%" }}
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:scale-110 transition-transform duration-300">
+                              <div style={{ color, fontSize: 48 }}>⬡</div>
+                            </div>
+                          )}
+                          {done && (
+                            <div
+                              className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-bold shadow-md backdrop-blur-md"
+                              style={{ background: "#059669", color: "white" }}
+                            >
+                              ✓ Completed
+                            </div>
+                          )}
                         </div>
 
-                        {/* Quiz scores */}
-                        {(quiz1 || quiz2) && (
-                          <div className="flex gap-2 mb-3">
-                            {quiz1 && <span className="text-xs font-bold px-2 py-0.5 rounded" style={{ background: `${color}12`, color, fontFamily: "var(--font-mono)" }}>Quiz 1: {quiz1}%</span>}
-                            {quiz2 && <span className="text-xs font-bold px-2 py-0.5 rounded" style={{ background: `${color}12`, color, fontFamily: "var(--font-mono)" }}>Quiz 2: {quiz2}%</span>}
-                          </div>
-                        )}
+                        <div className="p-4 flex-1 flex flex-col justify-between">
+                          <div>
+                            <div className="font-bold text-sm mb-2 group-hover:text-teal-600 transition-colors" style={{ color: "var(--text-primary)" }}>{title}</div>
 
-                        {/* Progress */}
-                        <div className="mb-3">
-                          <div className="flex justify-between text-xs mb-1" style={{ color: "var(--text-muted)" }}>
-                            <span>Progress</span><span style={{ fontFamily: "var(--font-mono)", color }}>{progress}%</span>
-                          </div>
-                          <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--border-subtle)" }}>
-                            <div className="h-full rounded-full" style={{ width: `${progress}%`, background: color }} />
-                          </div>
-                        </div>
+                            {/* Tags */}
+                            <div className="flex flex-wrap gap-1 mb-3">
+                              {tags.map(t => (
+                                <span key={t} className="px-2 py-0.5 rounded text-xs" style={{ background: "var(--border-subtle)", color: "var(--text-muted)" }}>{t}</span>
+                              ))}
+                            </div>
 
-                        {courseQuizUrl || quizUrl ? (
+                            {/* Quiz scores */}
+                            {(quiz1 || quiz2) && (
+                              <div className="flex gap-2 mb-3">
+                                {quiz1 && <span className="text-xs font-bold px-2 py-0.5 rounded" style={{ background: `${color}12`, color, fontFamily: "var(--font-mono)" }}>Quiz 1: {quiz1}%</span>}
+                                {quiz2 && <span className="text-xs font-bold px-2 py-0.5 rounded" style={{ background: `${color}12`, color, fontFamily: "var(--font-mono)" }}>Quiz 2: {quiz2}%</span>}
+                              </div>
+                            )}
+
+                            {/* Progress */}
+                            <div className="mb-4">
+                              <div className="flex justify-between text-xs mb-1" style={{ color: "var(--text-muted)" }}>
+                                <span>Progress</span><span style={{ fontFamily: "var(--font-mono)", color }}>{progress}%</span>
+                              </div>
+                              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "var(--border-subtle)" }}>
+                                <div className="h-full rounded-full transition-all duration-300" style={{ width: `${progress}%`, background: color }} />
+                              </div>
+                            </div>
+                          </div>
+
                           <a
-                            href={courseQuizUrl || quizUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all hover:opacity-90 active:scale-[0.99]"
-                            style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
+                            href={targetUrl || "#"}
+                            onClick={e => e.stopPropagation()}
+                            target={targetUrl ? "_blank" : undefined}
+                            rel={targetUrl ? "noopener noreferrer" : undefined}
+                            className="w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 group-hover:shadow-md"
+                            style={{ background: `${color}18`, color, border: `1px solid ${color}30` }}
                           >
-                            {done ? "Retake Quiz" : "Take Quiz"} →
+                            <span>{done ? "Retake Quiz" : "Take Quiz"}</span>
+                            <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                           </a>
-                        ) : (
-                          <button
-                            className="w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold transition-all"
-                            style={{ background: `${color}15`, color, border: `1px solid ${color}25` }}
-                          >
-                            {done ? "Retake Quiz" : "Take Quiz"} →
-                          </button>
-                        )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
